@@ -117,18 +117,29 @@ def logout(request):
 
         return redirect('home')
 
-def look(request):
+def rec(request,customer_pk):
     customer_list = Customer.objects.all()
 
     context = {
         'customer_list' : customer_list
     }
-    return render(request, 'look.html', context)
+    return render(request, 'rec.html', context)
 
-
-
-def rec(request, customer_pk):
-    pass
 
 def grp(request, customer_pk):
-    pass
+    customer_list = Customer.objects.all()
+
+    context = {
+        'customer_list' : customer_list
+    }
+    return render(request, 'grp.html', context)
+
+#알리미
+def alarm(request, customer_pk):
+    customer_alarm = Customer.objects.get(pk=customer_pk)
+
+    context = {
+        'customer_alarm' : customer_alarm
+    }
+
+    return render(request, 'alarm.html', context )

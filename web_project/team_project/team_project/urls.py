@@ -26,6 +26,6 @@ urlpatterns = [
     path('rec/<int:customer_pk>', views.rec, name='rec'),#팀 추천
     path('grp/<int:customer_pk>', views.grp, name='grp'),#스터디그룹 추천
     path('edit/<int:customer_pk>', views.edit, name='edit'),#정보수정하기
-    path('look/', views.look, name='look'),#현재 팀원을 구하지못한 사람들
+    path('alarm/<int:customer_pk>', views.alarm, name='alarm'),#알리미
 
 ]
