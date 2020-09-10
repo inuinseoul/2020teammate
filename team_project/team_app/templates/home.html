@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Team Recommendation System</h1>
+    {% if user.is_authenticated %}
+        <form action="{% url 'logout'%}" method='POST'>
+        {% csrf_token %}
+        {{user.get_username}}님 어서오세요!!
+        <br/>
+        <br/>
+        <a href="{% url 'edit' user.customer.pk%}">내 정보보기</a>
+        <br/>
+        <br/>
+        <a href="{% url 'look'%}">팀원을 구하지 못한 유저 LIST 보기</a>
+        <br/>
+        <br/>
+        <a href="{% url 'rec' user.customer.pk %}">팀메이트 추천받기</a>
+        <br/>
+        <br/>
+        <a href="{%url 'grp' user.customer.pk %}">스터디그룹 추천받기</a>
+        <br/>
+        <br/>
+        <button type='sumit'>로그아웃</button>
+    {%else%}
+        <a href="{% url 'signup' %}">회원가입</a>
+        <br/>
+        <br/>
+        <a href="{% url 'login'%}">로그인</a>
+        <br/>
+        <br/>
+    {% endif %}  
+</body>
+</html>
