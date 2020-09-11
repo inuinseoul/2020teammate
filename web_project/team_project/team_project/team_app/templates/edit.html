@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>내 정보</h1>
+  <form action="{% url 'edit' customer.pk %}" method="POST">
+    {% csrf_token %}
+    <input placeholder="이름을 입력하세요" name="name" value='{{customer.name}}'/>
+    <br/>
+    <br/>
+    <h3>설문 입력받을것들 수정할수있게..</h3>
+    <br/>
+    <br/>
+    <button type="submit">정보 수정하기</button>
+  </form>
+  <br/>
+  <form action="{% url 'home' %}">
+  <button type="submit">뒤로가기</button></form>
+</body>
+</html>
