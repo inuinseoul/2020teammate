@@ -13,11 +13,13 @@
     <input placeholder="이름을 입력하세요" name="name" value='{{customer.name}}'/>
     <br/>
     <br/>
-    <h3>설문 입력받을것들 수정할수있게..</h3>
-    <br/>
-    <br/>
     <button type="submit">정보 수정하기</button>
   </form>
+  <br/>
+  <form action="{% url 'signup2' %}" method='POST'>
+    {% csrf_token %}
+  <button type="submit">설문조사 수정하러가기</button></form>
+  <br/>
   <br/>
   <form action="{% url 'home' %}">
   <button type="submit">뒤로가기</button></form>

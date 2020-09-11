@@ -43,7 +43,7 @@ def signup(request):
                     )
 
                     auth.login(request, created_user)
-                    return redirect('home')
+                    return render(request, 'signup2.html')
                 else:
                     context['error']['state'] = True
                     context['error']['msg'] = ERROR_MSG['PW_CHECK']
@@ -55,6 +55,17 @@ def signup(request):
             context['error']['msg'] = ERROR_MSG['ID_PW_MISSING']
     
     return render(request, 'signup.html',context)
+
+def signup2(request):
+    if request.method == 'POST':
+        # Customer.objects.filter(pk=customer_pk)
+        
+        return render(request,'signup2.html')
+
+    return render(request, 'signup3.html')
+
+def signup3(request):
+    return redirect('home')
 
 
 
@@ -98,10 +109,10 @@ def edit(request, customer_pk):
     if request.method == 'POST':
         Customer.objects.filter(pk=customer_pk).update(
             name=request.POST['name'],
-            ###등등.. 앞으로추가해줘야함
         )
+        
         return redirect('home')
-    
+            
     customer = Customer.objects.get(pk=customer_pk)
 
     context = {'customer' : customer}
