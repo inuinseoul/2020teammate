@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>*스터디그룹*</h1>
+    <br/>
+    <br/>
+    <form action="{% url 'signup5' user.customer.pk %}">
+        {% csrf_token %}
+        <button type="submit">enter</button>
+    </form>
+    
+</body>
+</html>

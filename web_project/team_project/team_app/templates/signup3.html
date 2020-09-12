@@ -6,14 +6,33 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>팀메이트 관심분야</h1>
-    <h3>하트 10개를 베팅해주세요</h3>
+    <h1>분야별 수준을 알려주세요.</h1>
     <br/>
-    <br/>
-    <br/>
-    <br/>
-    <form action="{% url 'signup3' %}">
-    <button type="submit">enter</button></form>
-    
+    <form action="{% url 'signup3' user.customer.pk%}" method='POST'>
+        {% csrf_token %}
+        <h4>web_score</h4>
+        <input type='text' placeholder='web_score' name='web'/>
+        <br/>
+        <h4>design_score</h4>
+        <input type='text' placeholder='design_score' name='design'/>
+        <br/>
+        <h4>machine_score</h4>
+        <input type='text' placeholder='machine_score' name='machine_learning'/>
+        <br/>
+        <h4>statistics_score</h4>
+        <input type='text' placeholder='statistics_score' name='statistics'/>
+        <br/>
+        <h4>deep_learning_score</h4>
+        <input type='text' placeholder='deep_learning_score' name='deep_learning'/>
+        <br/>
+        <h4>algorithm_score</h4>
+        <input type='text' placeholder='algorithm_score' name='algorithm'/>
+        <br/>
+        <h4>nlp_score</h4>
+        <input type='text' placeholder='nlp_score' name='nlp'/>
+        <br/>
+        <br/>
+        <button type="submit">다음</button>
+    </form>
 </body>
 </html>

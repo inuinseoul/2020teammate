@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Customer
+from .models import Customer, Domain, Score, Role
 from django.contrib.auth.models import User
 from django.contrib import auth
 
@@ -56,16 +56,85 @@ def signup(request):
     
     return render(request, 'signup.html',context)
 
-def signup2(request):
+def signup2(request, customer_pk):
     if request.method == 'POST':
-        # Customer.objects.filter(pk=customer_pk)
+        health = request.POST['health']
+        economy = request.POST['economy']
+        culture_art = request.POST['culture_art']
+        education = request.POST['education']
+        society  = request.POST['society']
+        technology = request.POST['technology']
+
+        customer = Customer.objects.get(pk=customer_pk)
+
+        Domain.objects.create(
+            foreignkey=customer,
+            health = health,
+            economy = economy,
+            culture_art = culture_art,
+            education = education,
+            society = society,
+            technology = technology,
+        )
         
-        return render(request,'signup2.html')
+        
+        return render(request,'signup3.html')
+
+    return render(request, 'signup2.html')
+
+def signup3(request, customer_pk):
+    if request.method == 'POST':
+        web = request.POST['web']
+        design = request.POST['design']
+        machine_learning = request.POST['machine_learning']
+        statistics = request.POST['statistics']
+        deep_learning  = request.POST['deep_learning']
+        algorithm = request.POST['algorithm']
+        nlp = request.POST['nlp']
+
+        customer = Customer.objects.get(pk=customer_pk)
+
+        Score.objects.create(
+            foreignkey=customer,
+            web = web,
+            design = design,
+            machine_learning = machine_learning,
+            statistics = statistics,
+            deep_learning = deep_learning,
+            algorithm = algorithm,
+            nlp = nlp,
+        )
+        
+        
+        return render(request,'signup4.html')
 
     return render(request, 'signup3.html')
 
-def signup3(request):
+def signup4(request, customer_pk):
+    if request.method == 'POST':
+        analysis_hearts = request.POST['analysis_hearts']
+        web_hearts = request.POST['web_hearts']
+        design_hearts = request.POST['design_hearts']
+        modeling_hearts = request.POST['modeling_hearts']
+
+        customer = Customer.objects.get(pk=customer_pk)
+
+        Role.objects.create(
+            foreignkey=customer,
+            analysis_hearts = analysis_hearts,
+            web_hearts = web_hearts,
+            design_hearts = design_hearts,
+            modeling_hearts = modeling_hearts,
+        )
+        
+        
+        return render(request,'signup5.html')
+
+    return render(request, 'signup4.html')
+
+def signup5(request, customer_pk):
     return redirect('home')
+
 
 
 
@@ -110,7 +179,34 @@ def edit(request, customer_pk):
         Customer.objects.filter(pk=customer_pk).update(
             name=request.POST['name'],
         )
+
+        Domain.objects.filter(pk=customer_pk).update(
+            health=request.POST['health'],
+            economy=request.POST['economy'],
+            culture_art=request.POST['culture_art'],
+            education=request.POST['education'],
+            society=request.POST['society'],
+            technology=request.POST['technology'],
+        )
         
+        Score.objects.filter(pk=customer_pk).update(
+            web=request.POST['web'],
+            design=request.POST['design'],
+            machine_learning=request.POST['machine_learning'],
+            statistics=request.POST['statistics'],
+            deep_learning=request.POST['deep_learning'],
+            algorithm=request.POST['algorithm'],
+            nlp=request.POST['nlp'],
+        )
+
+        Role.objects.filter(pk=customer_pk).update(
+            analysis_hearts=request.POST['analysis_hearts'],
+            web_hearts=request.POST['web_hearts'],
+            design_hearts=request.POST['design_hearts'],
+            modeling_hearts=request.POST['modeling_hearts'],
+        )
+
+
         return redirect('home')
             
     customer = Customer.objects.get(pk=customer_pk)
