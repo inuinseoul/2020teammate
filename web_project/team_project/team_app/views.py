@@ -3,7 +3,7 @@ from .models import Customer, Domain, Score, Role
 from django.contrib.auth.models import User
 from django.contrib import auth
 
-# Create your views here.
+# 홈
 def home(request):
 
     return render(request,'home.html')
@@ -15,6 +15,7 @@ ERROR_MSG = {
     'PW_CHECK' : '비밀번호가 일치하지 않습니다.',
 }
 
+# 회원가입
 def signup(request):
     context = {
         'error' : {'state':False, 'msg':''}
@@ -56,6 +57,7 @@ def signup(request):
     
     return render(request, 'signup.html',context)
 
+#회원가입2 - 흥미(건강~기술)
 def signup2(request, customer_pk):
     if request.method == 'POST':
         health = request.POST['health']
@@ -82,6 +84,7 @@ def signup2(request, customer_pk):
 
     return render(request, 'signup2.html')
 
+#회원가입3 - 실력테스트(각분야에대한 점수)
 def signup3(request, customer_pk):
     if request.method == 'POST':
         web = request.POST['web']
@@ -91,6 +94,8 @@ def signup3(request, customer_pk):
         deep_learning  = request.POST['deep_learning']
         algorithm = request.POST['algorithm']
         nlp = request.POST['nlp']
+        data_score = round(int(web)*0.5 + int(design)*0.5)
+        modeling_score = round(int(machine_learning)*0.25+int(deep_learning)*0.25+int(algorithm)*0.25+int(nlp)*0.25)
 
         customer = Customer.objects.get(pk=customer_pk)
 
@@ -103,6 +108,8 @@ def signup3(request, customer_pk):
             deep_learning = deep_learning,
             algorithm = algorithm,
             nlp = nlp,
+            data_score = data_score,
+            modeling_score = modeling_score,
         )
         
         
@@ -110,6 +117,7 @@ def signup3(request, customer_pk):
 
     return render(request, 'signup3.html')
 
+#회원가입4 - 선호역할
 def signup4(request, customer_pk):
     if request.method == 'POST':
         analysis_hearts = request.POST['analysis_hearts']
@@ -132,12 +140,13 @@ def signup4(request, customer_pk):
 
     return render(request, 'signup4.html')
 
+#관심있는 스터디
 def signup5(request, customer_pk):
     return redirect('home')
 
 
 
-
+#로그인
 def login(request):
     context = {
         'error':{'state': False, 'msg':''}
@@ -174,6 +183,7 @@ def login(request):
     
     return render(request,'login.html',context)
 
+#정보수정
 def edit(request, customer_pk):
     if request.method == 'POST':
         Customer.objects.filter(pk=customer_pk).update(
@@ -189,6 +199,16 @@ def edit(request, customer_pk):
             technology=request.POST['technology'],
         )
         
+        web = request.POST['web']
+        design = request.POST['design']
+        machine_learning = request.POST['machine_learning']
+        statistics = request.POST['statistics']
+        deep_learning  = request.POST['deep_learning']
+        algorithm = request.POST['algorithm']
+        nlp = request.POST['nlp']
+        data_score = round(int(web)*0.5 + int(design)*0.5)
+        modeling_score = round(int(machine_learning)*0.25+int(deep_learning)*0.25+int(algorithm)*0.25+int(nlp)*0.25)
+
         Score.objects.filter(pk=customer_pk).update(
             web=request.POST['web'],
             design=request.POST['design'],
@@ -197,6 +217,8 @@ def edit(request, customer_pk):
             deep_learning=request.POST['deep_learning'],
             algorithm=request.POST['algorithm'],
             nlp=request.POST['nlp'],
+            data_score = data_score,
+            modeling_score = modeling_score,
         )
 
         Role.objects.filter(pk=customer_pk).update(
@@ -207,23 +229,29 @@ def edit(request, customer_pk):
         )
 
 
-        return redirect('home')
+        return redirect('edit',customer_pk)
             
     customer = Customer.objects.get(pk=customer_pk)
+    domain = Domain.objects.get(pk=customer_pk)
+    score = Score.objects.get(pk=customer_pk)
+    role = Role.objects.get(pk=customer_pk)
 
-    context = {'customer' : customer}
+
+
+    context = {'customer' : customer, 'domain' : domain, 'score' : score, 'role' : role}
 
     return render(request, 'edit.html',context)
 
 
 
-
+#로그아웃
 def logout(request):
     if request.method == 'POST':
         auth.logout(request)
 
         return redirect('home')
 
+#팀메이트 추천시스템
 def rec(request,customer_pk):
     customer_list = Customer.objects.all()
 
@@ -233,6 +261,7 @@ def rec(request,customer_pk):
     return render(request, 'rec.html', context)
 
 
+#스터디그룹 추천시스템
 def grp(request, customer_pk):
     customer_list = Customer.objects.all()
 

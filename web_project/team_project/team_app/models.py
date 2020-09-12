@@ -19,7 +19,6 @@ class Domain(models.Model):
     society = models.IntegerField()
     technology = models.IntegerField()
 
-
 #프로필(점수) 테이블
 class Score(models.Model):
     foreignkey = models.ForeignKey(
@@ -32,6 +31,9 @@ class Score(models.Model):
     deep_learning = models.IntegerField()
     algorithm = models.IntegerField()
     nlp = models.IntegerField()
+    data_score = models.IntegerField()
+    modeling_score = models.IntegerField()
+
 
 #선호역할 테이블
 class Role(models.Model):
