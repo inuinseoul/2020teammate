@@ -13,6 +13,11 @@
     <br/>
     <br/>
   {% endfor %}
+  {% for domain in domain_list %}
+      {{domain.health}}
+    <br/>
+    <br/>
+  {% endfor %}  
   <form action="{% url 'home' %}">
   <button type="submit">뒤로가기</button></form>
 </body>

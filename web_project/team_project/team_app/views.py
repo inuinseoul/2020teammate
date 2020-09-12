@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from .models import Customer, Domain, Score, Role
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django_pandas.io import read_frame
 
 # Create your views here.
 def home(request):
