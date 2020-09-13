@@ -8,11 +8,21 @@
 </head>
 <body>
   <h1>팀메이트 추천 목록</h1>
-  {% for customer in customer_list %}
-      {{customer.name}}
-    <br/>
-    <br/>
-  {% endfor %}
+      {{user.get_username}}님의 고객넘버 : {{customer_self.pk}}
+      <br/>
+      <br/>
+      {{user.get_username}}님의 모든domain 점수 : {{domain_self}}
+      <br/>
+      <br/>
+      {{user.get_username}}님의 흥미분야(건강) 점수 : {{domain_self.health}}
+    </br>
+    </br>
+    <h4>모든 유저의 흥미분야(건강)부분 점수들</h4>
+    {% for domain in domain_list %}
+      {{domain.pk}}고객 :{{domain.health}}
+    {% endfor %}
+    </br>
+    </br>  
   <form action="{% url 'home' %}">
   <button type="submit">뒤로가기</button></form>
 </body>

@@ -253,11 +253,28 @@ def logout(request):
 
 #팀메이트 추천시스템
 def rec(request,customer_pk):
-    customer_list = Customer.objects.all()
+    #우선 모든 테이블을 가져와줍니다.
 
+    customer_self = Customer.objects.get(pk=customer_pk) #자기자신정보
+    customer_list = Customer.objects.all() #모든 고객정보
+    domain_self = Domain.objects.get(pk=customer_pk) #자기자신 도메인점수
+    domain_list = Domain.objects.all() #모든 도메인점수
+    score_self = Score.objects.get(pk=customer_pk) #자기자신 스코어점수
+    score_list = Score.objects.all() #모든 스코어점수
+    role_self = Role.objects.get(pk=customer_pk) #자기자신 선호역할점수
+    role_list = Role.objects.all() #모든 선호역할점수
+    
     context = {
-        'customer_list' : customer_list
+        'customer_self' : customer_self,
+        'customer_list' : customer_list,
+        'domain_self' : domain_self,
+        'domain_list' : domain_list,
+        'score_self' : score_self,
+        'score_list' : score_list,
+        'role_self' : role_self,
+        'role_list' : role_list,
     }
+    #테이블정보(context)를 rec.html로 전송합니다.
     return render(request, 'rec.html', context)
 
 
