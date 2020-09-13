@@ -21,10 +21,10 @@
         {{user.get_username}}님 어서오세요!!
         <br/>
         <br/>
-        <a href="{% url 'edit' user.pk%}">내 정보보기</a>
+        <a href="{% url 'edit' user.customer.pk%}">내 정보보기</a>
         <br/>
         <br/>
-        <a href="{% url 'alarm' user.pk%}">*알림</a>
+        <a href="{% url 'alarm' user.customer.pk%}">*알림</a>
         </br>
         </br>
         <button type='sumit'>로그아웃</button>

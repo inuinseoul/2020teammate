@@ -315,7 +315,7 @@ def grp(request, customer_pk):
     return render(request, 'grp.html', context)
 
 #알리미
-def alarm(request, customer_pk):
+def alarm(request, customer_pk): 
     customer_alarm = Customer.objects.get(pk=customer_pk)
 
     context = {
