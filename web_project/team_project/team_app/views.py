@@ -2,6 +2,11 @@ from django.shortcuts import render,redirect
 from .models import Customer, Domain, Score, Role
 from django.contrib.auth.models import User
 from django.contrib import auth
+from sklearn.metrics.pairwise import cosine_similarity
+from django_pandas.io import read_frame
+import numpy as np
+import pandas as pd
+
 
 # 홈
 def home(request):
@@ -253,28 +258,50 @@ def logout(request):
 
 #팀메이트 추천시스템
 def rec(request,customer_pk):
-    #우선 모든 테이블을 가져와줍니다.
+    customer_list = Customer.objects.all()
+    score_list = Score.objects.all()
+    domain_list = Domain.objects.all()
+    role_list = Role.objects.all()    
+    df0 = read_frame(customer_list)
+    df1 = read_frame(score_list)
+    df2 = read_frame(domain_list)
+    df3 = read_frame(role_list)
+    customer_score = df1.loc[:,['web', 'design', 'data_score', 'modeling_score']]
+    customer_score_sum = customer_score.sum(axis=1)
+    customer_domain = df2.loc[:,['health', 'economy', 'culture_art', 'education', 'society', 'technology']]
+    customer_role = df3.loc[:,['analysis_hearts', 'web_hearts','design_hearts', 'modeling_hearts']]   
 
-    customer_self = Customer.objects.get(pk=customer_pk) #자기자신정보
-    customer_list = Customer.objects.all() #모든 고객정보
-    domain_self = Domain.objects.get(pk=customer_pk) #자기자신 도메인점수
-    domain_list = Domain.objects.all() #모든 도메인점수
-    score_self = Score.objects.get(pk=customer_pk) #자기자신 스코어점수
-    score_list = Score.objects.all() #모든 스코어점수
-    role_self = Role.objects.get(pk=customer_pk) #자기자신 선호역할점수
-    role_list = Role.objects.all() #모든 선호역할점수
-    
+    my_num = df0[df0['user'] == customer_pk].index.tolist()[0]
+
+    # 각 유사도측정
+    score_similarity = cosine_similarity(customer_score, customer_score)
+    domain_similarity = cosine_similarity(customer_domain, customer_domain)
+    role_similarity = cosine_similarity(customer_role, customer_role)
+
+    grade_subs = np.abs(customer_score_sum - customer_score_sum[my_num]) * 0.1
+    evaluation_value = score_similarity[my_num-1] + grade_subs - domain_similarity[my_num-1] + role_similarity[my_num-1]
+    recommend_id_list = evaluation_value.sort_values().index.tolist()
+    if my_num in recommend_id_list:
+        recommend_id_list.remove(my_num)
+    recommend_pk_list = df0.iloc[recommend_id_list].id
+
+    recommend_customer_list = []
+    recommend_customer_score_list = []
+    recommend_customer_domain_list = []
+    recommend_customer_role_list = []
+
+    for i in recommend_pk_list:
+        recommend_customer_list.append(Customer.objects.get(pk=int(i)))
+        recommend_customer_score_list.append(Score.objects.get(pk=int(i)))
+        recommend_customer_domain_list.append(Domain.objects.get(pk=int(i)))
+        recommend_customer_role_list.append(Role.objects.get(pk=int(i)))
+
     context = {
-        'customer_self' : customer_self,
-        'customer_list' : customer_list,
-        'domain_self' : domain_self,
-        'domain_list' : domain_list,
-        'score_self' : score_self,
-        'score_list' : score_list,
-        'role_self' : role_self,
-        'role_list' : role_list,
+        'recommend_customer_list' : recommend_customer_list,
+        'recommend_customer_score_list' : recommend_customer_score_list,
+        'recommend_customer_domain_list' : recommend_customer_domain_list,
+        'recommend_customer_role_list' : recommend_customer_role_list
     }
-    #테이블정보(context)를 rec.html로 전송합니다.
     return render(request, 'rec.html', context)
 
 

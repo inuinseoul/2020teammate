@@ -8,21 +8,34 @@
 </head>
 <body>
   <h1>팀메이트 추천 목록</h1>
-      {{user.get_username}}님의 고객넘버 : {{customer_self.pk}}
-      <br/>
-      <br/>
-      {{user.get_username}}님의 모든domain 점수 : {{domain_self}}
-      <br/>
-      <br/>
-      {{user.get_username}}님의 흥미분야(건강) 점수 : {{domain_self.health}}
-    </br>
-    </br>
-    <h4>모든 유저의 흥미분야(건강)부분 점수들</h4>
-    {% for domain in domain_list %}
-      {{domain.pk}}고객 :{{domain.health}}
-    {% endfor %}
-    </br>
-    </br>  
+  <div>
+  {% for customer in recommend_customer_list %}
+      {{customer.name}}
+    <br/>
+    <br/>
+  {% endfor %}
+  </div>
+  <div>
+  {% for score in recommend_customer_score_list %}
+      {{score.web}} {{score.design}} {{score.data_score}} {{score.modeling_score}}
+    <br/>
+    <br/>
+  {% endfor %}
+  </div>
+  <div>
+  {% for domain in recommend_customer_domain_list %}
+      {{domain.health}} {{domain.economy}} {{domain.culture_art}} {{domain.education}} {{domain.society}} {{domain.technology}}
+    <br/>
+    <br/>
+  {% endfor %}
+  </div>
+  <div>
+  {% for role in recommend_customer_role_list %}
+      {{role.analysis_hearts}} {{role.web_hearts}} {{role.design_hearts}} {{role.modeling_hearts}}
+    <br/>
+    <br/>
+  {% endfor %}
+  </div>
   <form action="{% url 'home' %}">
   <button type="submit">뒤로가기</button></form>
 </body>
