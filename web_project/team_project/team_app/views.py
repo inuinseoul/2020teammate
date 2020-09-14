@@ -368,3 +368,16 @@ def alarm2(request, message_pk):
     context = {'message_list' : message_list}
 
     return render(request, 'alarm.html',context)
+
+#팀원제의 받은사람이 팀원제의한 사람의 정보를 볼수있게
+def sender_customer(request, message_pk):
+    message = Message.objects.get(pk=message_pk)
+    customer = Customer.objects.get(name=message.sender)
+    customer_pk = customer.pk
+    domain = Domain.objects.get(pk=customer_pk)
+    score = Score.objects.get(pk=customer_pk)
+    role = Role.objects.get(pk=customer_pk)
+
+    context = {'customer' : customer, 'domain' : domain, 'score' : score, 'role' : role,}
+
+    return render(request, 'sender_customer.html', context)

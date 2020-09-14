@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 #유저 테이블
 class Customer(models.Model):
@@ -8,7 +9,6 @@ class Customer(models.Model):
     name = models.CharField(max_length=10)
     email = models.CharField(max_length=20)
     phone_num = models.CharField(max_length=20)
-    liked_users = models.ManyToManyField(User,related_name='liked_users')
 
 
 #흥미 테이블
@@ -50,5 +50,11 @@ class Role(models.Model):
 
 #알리미
 class Message(models.Model):
-    sender = models.CharField(max_length=20)
-    recipient = models.CharField(max_length=20)
+    sender = models.CharField(max_length=20) #보낸사람
+    recipient = models.CharField(max_length=20) #받을사람
+    sentAt = models.DateTimeField(auto_now_add=True) #쪽지를보낸시간
+
+    def save(self, **kwargs):
+        if not self.id:
+            self.sentAt = timezone.now()
+        super(Message, self).save(**kwargs)

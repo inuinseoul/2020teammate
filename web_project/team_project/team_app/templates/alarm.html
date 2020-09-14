@@ -11,8 +11,8 @@
   {% for message in message_list%}
     {% if message.recipient == user.customer.name%}
       {% if message %}
-        {{message.sender}}님에게 팀원제의가 들어왔습니다.
-        <a href="{%url 'alarm2' message.pk%}">알림삭제</a>
+        <a href="{% url 'sender_customer' message.pk %}">{{message.sender}}</a>님에게 팀원제의가 들어왔습니다.<a href="{%url 'alarm2' message.pk%}">알림삭제</a>   
+        <h5>Sent Time: {{message.sentAt}}</h5>
       </br>
       {%endif%}
     {%endif%}
