@@ -26,9 +26,7 @@
         <button type='sumit'>로그아웃</button>
     {%else%}
         <h1>Teammate</h1>
-        <a href="{% url 'users:login'%}">로그인</a>
-        <br/>
-        <br/>
-        <a href="{% url 'users:signup' %}">회원가입</a>
+        <a href="{% url 'users:login'%}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">로그인</a>
+        <a href="{% url 'users:signup' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">회원가입</a>
     {% endif %}  
 {% endblock %}
