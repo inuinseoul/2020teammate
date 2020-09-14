@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block static %}
+<!--이 곳에 static에 해당하는 코드 (css파일 연결 등) 작성-->
+{% endblock %}
+
+{% block content %}
+<!--이 곳에 페이지의 내용 작성-->
+<h1>회원가입</h1>
+{% if error.state %}
+    <h2>{{ error.msg }}</h2>
+{%endif%}
+<form action="{% url 'users:signup' %}" method="POST">
+    {% csrf_token %}
+    <input type='text' placeholder='id를 입력해주세요' name='user_id'/>
+    <br/>
+    <br/>
+    <input type='password' placeholder='pw를 입력해주세요' name='user_pw'/>
+    <br/>
+    <br/>
+    <input type='password' placeholder='pw를 다시 입력해주세요' name='user_pw_check'/>
+    <br/>
+    <br/>
+    <input type='text' placeholder='이름을 입력해주세요' name='name'/>
+    <br/>
+    <br/>
+    <button type='submit'>다음</button>
+</form>
+{% endblock %}

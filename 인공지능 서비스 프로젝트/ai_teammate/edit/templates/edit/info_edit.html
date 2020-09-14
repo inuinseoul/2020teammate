@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>기본정보 수정</title>
+{% endblock %}
+
+{% block static %}
+<!--이 곳에 static에 해당하는 코드 (css파일 연결 등) 작성-->
+{% endblock %}
+
+{% block content %}
+<!--이 곳에 페이지의 내용 작성-->
+  <h1>내 정보</h1>
+  <form action="{% url 'edit:info_edit' customer.pk %}" method = 'POST'>
+    {% csrf_token %}
+    <h4>이름</h4>
+    <input placeholder="이름을 입력하세요" name="name" value='{{customer.name}}'/>
+    <h4>email</h4>
+    <input placeholder="email을 입력하세요" name="email" value='{{customer.email}}'/>
+    <h4>phone_num</h4>
+    <input placeholder="phone_num 을 입력하세요" name="phone_num" value='{{customer.phone_num}}'/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <button type="submit">내 정보 수정하기</button>
+  </form>
+  <br/>
+  <form action="{% url 'edit:survey_edit' customer.pk %}">
+  {% csrf_token %}
+  <button type="submit">설문 수정하러가기</button></form>
+  <br/>
+  <br/>
+  <form action="{% url 'home' %}">
+  <button type="submit">뒤로가기</button></form>
+{% endblock %}

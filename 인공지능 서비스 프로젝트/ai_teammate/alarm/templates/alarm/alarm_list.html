@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>알람 리스트</title>
+{% endblock %}
+
+{% block static %}
+<!--이 곳에 static에 해당하는 코드 (css파일 연결 등) 작성-->
+{% endblock %}
+
+{% block content %}
+<!--이 곳에 페이지의 내용 작성-->
+  <h1>알림</h1>
+  {% for message in message_list%}
+    {% if message.recipient == user.customer.name%}
+      {% if message %}
+        <a href="{% url 'alarm:check_info' message.pk %}">{{message.sender}}</a>님에게 팀원제의가 들어왔습니다.
+        <a href="{%url 'alarm:del_alarm' message.pk%}">알림삭제</a>   
+        <h5>Sent Time: {{message.sentAt}}</h5>
+      </br>
+      {%endif%}
+    {%endif%}
+  {%endfor%}
+    <br/>
+    <br/>
+  <form action="{% url 'home' %}">
+  <button type="submit">뒤로가기</button></form> 
+{% endblock %}

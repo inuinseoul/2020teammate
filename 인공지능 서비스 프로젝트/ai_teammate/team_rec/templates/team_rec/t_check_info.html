@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>정보 확인</title>
+{% endblock %}
+
+{% block static %}
+<!--이 곳에 static에 해당하는 코드 (css파일 연결 등) 작성-->
+{% endblock %}
+
+{% block content %}
+<!--이 곳에 페이지의 내용 작성-->
+  <br/>
+  <br/>
+  회원이름 : {{customer.name}}
+  <br/>
+  email : {{customer.email}}
+  <br/>
+  폰번호: {{customer.phone_num}}
+  <br/>
+  <br/>
+  <h4>성적_score</h4>
+  웹:{{score.web}} 디자인:{{score.design}} 데이터분석:{{score.data_score}} 모델링:{{score.modeling_score}}
+  <h4>도메인_score</h4>
+  건강:{{domain.health}} 경제:{{domain.economy}} 문화/예술:{{domain.culture_art}} 교육:{{domain.education}} 사회:{{domain.society}} 기술:{{domain.technology}}
+  <h4>선호역할_score</h4>
+  데이터분석:{{role.analysis_hearts}} 웹:{{role.web_hearts}} 디자인:{{role.design_hearts}} 모델링:{{role.modeling_hearts}}
+  <br/>
+  <br/>
+  <form action="{% url 'alarm:alarm_list' customer.pk%}" method = 'POST'>
+  {% csrf_token %}
+  <button type="submit">알림 보내기</button></form>
+  <br/>
+  <br/>
+  <form action="{% url 'team_rec:team_rec_list' user.pk %}">
+  <button type="submit">뒤로가기</button></form>
+{% endblock %}

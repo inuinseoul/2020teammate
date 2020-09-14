@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block static %}
+<!--이 곳에 static에 해당하는 코드 (css파일 연결 등) 작성-->
+{% endblock %}
+
+{% block content %}
+<!--이 곳에 페이지의 내용 작성-->
+    <h1>*선호역할*</h1>
+    <h3>하트 10개를 베팅해주세요</h3>
+    <br/>
+    <form action="{% url 'users:signup4' user.customer.pk %}" method='POST'>
+        {% csrf_token %}
+        <h4>데이터분석</h4>
+        <input type='text' placeholder='analysis_hearts' name='analysis_hearts'/>
+        <br/>
+        <h4>웹</h4>
+        <input type='text' placeholder='web_hearts' name='web_hearts'/>
+        <br/>
+        <h4>디자인</h4>
+        <input type='text' placeholder='design_hearts' name='design_hearts'/>
+        <br/>
+        <h4>모델링</h4>
+        <input type='text' placeholder='modeling_hearts' name='modeling_hearts'/>
+        <br/>
+        <br/>
+        <button type="submit">enter</button>
+    </form>
+{% endblock %}

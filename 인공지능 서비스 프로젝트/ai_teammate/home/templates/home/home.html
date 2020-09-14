@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Teammate</title>
+{% endblock %}
+
+{% block static %}
+<!--이 곳에 static에 해당하는 코드 (css파일 연결 등) 작성-->
+{% endblock %}
+
+{% block content %}
+<!--이 곳에 페이지의 내용 작성-->
+    {% if user.is_authenticated %}
+        <h1>Teammate</h1>
+        <form action="{% url 'users:logout'%}" method='POST'>
+        {% csrf_token %}
+        {{user.get_username}}님 어서오세요!!
+        <br/>
+        <a href="{% url 'team_rec:team_rec_list' user.pk %}">팀메이트 추천</a>
+        <br/>
+        <a href="{% url 'edit:info_edit' user.customer.pk%}">내 정보보기</a>
+        <br/>
+        <br/>
+        <a href="{% url 'alarm:alarm_list' user.customer.pk%}">*알림</a>
+        </br>
+        <button type='sumit'>로그아웃</button>
+    {%else%}
+        <h1>Teammate</h1>
+        <a href="{% url 'users:login'%}">로그인</a>
+        <br/>
+        <br/>
+        <a href="{% url 'users:signup' %}">회원가입</a>
+    {% endif %}  
+{% endblock %}
