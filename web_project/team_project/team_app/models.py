@@ -6,6 +6,10 @@ class Customer(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name='customer')
     name = models.CharField(max_length=10)
+    email = models.CharField(max_length=20)
+    phone_num = models.CharField(max_length=20)
+    liked_users = models.ManyToManyField(User,related_name='liked_users')
+
 
 #흥미 테이블
 class Domain(models.Model):
@@ -34,7 +38,6 @@ class Score(models.Model):
     data_score = models.IntegerField()
     modeling_score = models.IntegerField()
 
-
 #선호역할 테이블
 class Role(models.Model):
     foreignkey = models.ForeignKey(
@@ -44,3 +47,8 @@ class Role(models.Model):
     web_hearts = models.IntegerField()
     design_hearts = models.IntegerField()
     modeling_hearts = models.IntegerField()
+
+#알리미
+class Message(models.Model):
+    sender = models.CharField(max_length=20)
+    recipient = models.CharField(max_length=20)

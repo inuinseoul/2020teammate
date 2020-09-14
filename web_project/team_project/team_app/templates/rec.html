@@ -10,32 +10,10 @@
   <h1>팀메이트 추천 목록</h1>
   <div>
   {% for customer in recommend_customer_list %}
-      {{customer.name}}
-    <br/>
-    <br/>
-  {% endfor %}
-  </div>
-  <div>
-  {% for score in recommend_customer_score_list %}
-      {{score.web}} {{score.design}} {{score.data_score}} {{score.modeling_score}}
-    <br/>
+    <a href="{%url 'rec_customer' customer.pk %}">{{customer.name}}</a>
     <br/>
   {% endfor %}
-  </div>
-  <div>
-  {% for domain in recommend_customer_domain_list %}
-      {{domain.health}} {{domain.economy}} {{domain.culture_art}} {{domain.education}} {{domain.society}} {{domain.technology}}
     <br/>
-    <br/>
-  {% endfor %}
-  </div>
-  <div>
-  {% for role in recommend_customer_role_list %}
-      {{role.analysis_hearts}} {{role.web_hearts}} {{role.design_hearts}} {{role.modeling_hearts}}
-    <br/>
-    <br/>
-  {% endfor %}
-  </div>
   <form action="{% url 'home' %}">
   <button type="submit">뒤로가기</button></form>
 </body>

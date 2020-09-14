@@ -10,71 +10,23 @@
   <h1>내 정보</h1>
   <form action="{% url 'edit' customer.pk %}" method = 'POST'>
     {% csrf_token %}
+    <h4>이름</h4>
     <input placeholder="이름을 입력하세요" name="name" value='{{customer.name}}'/>
+    <h4>email</h4>
+    <input placeholder="email을 입력하세요" name="email" value='{{customer.email}}'/>
+    <h4>phone_num</h4>
+    <input placeholder="phone_num 을 입력하세요" name="phone_num" value='{{customer.phone_num}}'/>
     <br/>
-    <h4>--------------------관심있는분야--------------------</h4>
-      <h5>건강(스포츠+헬스+의료)</h5>
-      <input type='text' placeholder='건강' name='health' value='{{domain.health}}'/>
-      <br/>
-      <h5>경제 (금융 + 부동산 + 비즈니스)</h5>
-      <input type='text' placeholder='경제' name='economy' value='{{domain.economy}}'/>
-      <br/>
-      <h5>문화/예술 (음악 + 영화 + 게임 + 패션/뷰티 + 디자인)</h5>
-      <input type='text' placeholder='문화/예술' name='culture_art' value='{{domain.culture_art}}'/>
-      <br/>
-      <h5>교육 (도서 + 학습)</h5>
-      <input type='text' placeholder='교육' name='education' value='{{domain.education}}'/>
-      <br/>
-      <h5>사회 (연애 + 소셜 + 여행 + 교통 + 뉴스)</h5>
-      <input type='text' placeholder='사회' name='society' value='{{domain.society}}'/>
-      <br/>
-      <h5>기술 (자연, 화학, 공학)</h5>
-      <input type='text' placeholder='기술' name='technology' value='{{domain.technology}}'/>
-      <br/>
-      <br/>
-    <h4>--------------------분야별 수준--------------------</h4>
-      <h5>web_score</h5>
-      <input type='text' placeholder='web_score' name='web' value='{{score.web}}'/>
-      <br/>
-      <h5>design_score</h5>
-      <input type='text' placeholder='design_score' name='design' value='{{score.design}}'/>
-      <br/>
-      <h5>machine_score</h5>
-      <input type='text' placeholder='machine_score' name='machine_learning' value='{{score.machine_learning}}'/>
-      <br/>
-      <h5>statistics_score</h5>
-      <input type='text' placeholder='statistics_score' name='statistics' value='{{score.statistics}}'/>
-      <br/>
-      <h5>deep_learning_score</h5>
-      <input type='text' placeholder='deep_learning_score' name='deep_learning' value='{{score.deep_learning}}'/>
-      <br/>
-      <h5>algorithm_score</h5>
-      <input type='text' placeholder='algorithm_score' name='algorithm' value='{{score.algorithm}}'/>
-      <br/>
-      <h5>nlp_score</h5>
-      <input type='text' placeholder='nlp_score' name='nlp' value='{{score.nlp}}'/>
-      <br/>
-      <br/>
-      <h5>-데이터점수(웹*0.5 + 디자인*0.5)</h5>
-      <h5>점수 : {{score.data_score}}</h5>
-      <h5>-모델링점수(머신러닝*0.25 + 딥러닝*0.25 + 알고리즘*0.25 + NLP*0.25)</h5>
-      <h5>점수 : {{score.modeling_score}}</h5>
-    <h4>--------------------선호 역할--------------------</h4>
-      <h5>데이터분석</h5>
-      <input type='text' placeholder='analysis_hearts' name='analysis_hearts' value='{{role.analysis_hearts}}'/>
-      <br/>
-      <h5>웹</h5>
-      <input type='text' placeholder='web_hearts' name='web_hearts' value='{{role.web_hearts}}'/>
-      <br/>
-      <h5>디자인</h5>
-      <input type='text' placeholder='design_hearts' name='design_hearts' value='{{role.design_hearts}}'/>
-      <br/>
-      <h5>모델링</h5>
-      <input type='text' placeholder='modeling_hearts' name='modeling_hearts' value='{{role.modeling_hearts}}'/>
-      <br/>
-      <br/>
+    <br/>
+    <br/>
+    <br/>
     <button type="submit">내 정보 수정하기</button>
   </form>
+  <br/>
+  <form action="{% url 'edit2' customer.pk %}">
+  {% csrf_token %}
+  <button type="submit">설문 수정하러가기</button></form>
+  <br/>
   <br/>
   <form action="{% url 'home' %}">
   <button type="submit">뒤로가기</button></form>

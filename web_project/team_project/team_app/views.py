@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Customer, Domain, Score, Role
+from .models import Customer, Domain, Score, Role, Message
 from django.contrib.auth.models import User
 from django.contrib import auth
 from sklearn.metrics.pairwise import cosine_similarity
@@ -32,6 +32,8 @@ def signup(request):
         user_pw = request.POST['user_pw']
         user_pw_check = request.POST['user_pw_check']
         name = request.POST['name']
+        email = request.POST['email']
+        phone_num = request.POST['phone_num']
 
         if user_id and user_pw:
             user = User.objects.filter(username=user_id)
@@ -45,7 +47,9 @@ def signup(request):
 
                     Customer.objects.create(
                         user = created_user,
-                        name = name
+                        name = name,
+                        email = email,
+                        phone_num = phone_num,
                     )
 
                     auth.login(request, created_user)
@@ -193,7 +197,21 @@ def edit(request, customer_pk):
     if request.method == 'POST':
         Customer.objects.filter(pk=customer_pk).update(
             name=request.POST['name'],
-        )
+            email=request.POST['email'],
+            phone_num=request.POST['phone_num']
+            )
+
+        return redirect('edit',customer_pk)
+    
+    customer = Customer.objects.get(pk=customer_pk)
+
+    context = {'customer' : customer}
+
+    return render(request, 'edit.html',context)
+
+#설문조사정보수정
+def edit2(request, customer_pk):
+    if request.method == 'POST':
 
         Domain.objects.filter(pk=customer_pk).update(
             health=request.POST['health'],
@@ -234,19 +252,16 @@ def edit(request, customer_pk):
         )
 
 
-        return redirect('edit',customer_pk)
+        return redirect('edit2',customer_pk)
             
     customer = Customer.objects.get(pk=customer_pk)
     domain = Domain.objects.get(pk=customer_pk)
     score = Score.objects.get(pk=customer_pk)
     role = Role.objects.get(pk=customer_pk)
 
-
-
     context = {'customer' : customer, 'domain' : domain, 'score' : score, 'role' : role}
 
-    return render(request, 'edit.html',context)
-
+    return render(request, 'edit2.html',context)
 
 
 #로그아웃
@@ -304,6 +319,17 @@ def rec(request,customer_pk):
     }
     return render(request, 'rec.html', context)
 
+#추천회원 정보보기
+def rec_customer(request, customer_pk):
+    customer = Customer.objects.get(pk=customer_pk)
+    domain = Domain.objects.get(pk=customer_pk)
+    score = Score.objects.get(pk=customer_pk)
+    role = Role.objects.get(pk=customer_pk)
+
+    context = {'customer' : customer, 'domain' : domain, 'score' : score, 'role' : role}
+
+    return render(request, 'rec_customer.html', context)
+
 
 #스터디그룹 추천시스템
 def grp(request, customer_pk):
@@ -315,11 +341,30 @@ def grp(request, customer_pk):
     return render(request, 'grp.html', context)
 
 #알리미
-def alarm(request, customer_pk): 
-    customer_alarm = Customer.objects.get(pk=customer_pk)
+def alarm(request, customer_pk):
+    if request.method == 'POST':
+        customer = Customer.objects.get(pk=customer_pk)
+        sender = request.user
 
-    context = {
-        'customer_alarm' : customer_alarm
-    }
+        Message.objects.create(
+                            sender = sender.customer.name,
+                            recipient = customer.name,
+                        )
 
-    return render(request, 'alarm.html', context )
+        return redirect('rec', sender.pk)
+    
+    message_list = Message.objects.all()
+
+    context = {'message_list' : message_list}
+
+    return render(request, 'alarm.html',context)
+
+#알림삭제
+def alarm2(request, message_pk):
+    message = Message.objects.get(pk=message_pk)
+    message.delete()
+    message_list = Message.objects.all()
+
+    context = {'message_list' : message_list}
+
+    return render(request, 'alarm.html',context)

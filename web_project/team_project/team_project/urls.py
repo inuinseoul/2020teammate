@@ -30,6 +30,9 @@ urlpatterns = [
     path('rec/<int:customer_pk>', views.rec, name='rec'),#팀 추천
     path('grp/<int:customer_pk>', views.grp, name='grp'),#스터디그룹 추천
     path('edit/<int:customer_pk>', views.edit, name='edit'),#정보수정하기
-    path('alarm/<int:customer_pk>', views.alarm, name='alarm'),#알리미
+    path('edit2/<int:customer_pk>', views.edit2, name='edit2'),#설문조사정보수정하기
+    path('rec_customer/<int:customer_pk>', views.rec_customer, name='rec_customer'),#추천시스템
+    path('alarm/<int:customer_pk>', views.alarm, name='alarm'),#알림
+    path('alarm2/<int:message_pk>', views.alarm2, name='alarm2'),#알림삭제
 
 ]
