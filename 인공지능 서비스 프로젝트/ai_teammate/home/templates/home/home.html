@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
 <title>Teammate</title>
@@ -12,26 +13,62 @@
 {% block content %}
 <!--이 곳에 페이지의 내용 작성-->
     {% if user.is_authenticated %}
-        <h1>Teammate</h1>
-        <form action="{% url 'users:logout'%}" method='POST'>
-        {% csrf_token %}
-        {{user.get_username}}님 어서오세요!!
-        <br/>
-        <a href="{% url 'team_rec:team_rec_list' user.pk %}">팀메이트 추천</a>
-        <br/>
-        <a href="{% url 'edit:info_edit' user.customer.pk%}">내 정보보기</a>
-        <br/>
-        <br/>
-        <a href="{% url 'alarm:alarm_list' user.customer.pk%}">*알림</a>
-        </br>
-        <button type='sumit'>로그아웃</button>
-    {%else%}
-        <div class="jumbotron">
-            <h1>Teammate</h1>
-            <p>마음이 잘 맞는 팀원을 구하세요. 함께 공부할 스터디메이트를 만나세요.</p>
-            <a href="{% url 'users:login'%}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">로그인</a>
-            <a href="{% url 'users:signup' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">회원가입</a>
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="masthead mb-auto">
+        <div class="inner">
+            <h3 class="masthead-brand">Teammate</h3>
+            <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link" href="{% url 'alarm:alarm_list' user.customer.pk%}">알림</a>
+            <a class="nav-link" href="{% url 'edit:info_edit' user.customer.pk%}">마이페이지</a>
+            <a class="nav-link" href="{% url 'users:logout'%}">로그아웃</a>
+            </nav>
         </div>
+    </header>
 
-    {% endif %}  
+    <main role="main" class="inner cover">
+        <h1 class="cover-heading">{{user.get_username}}님 어서오세요!</h1>
+        <p class="lead">
+        원하는 팀메이트를 찾으셨나요?
+        </p>
+        <p class="lead">
+            <a href="{% url 'team_rec:team_rec_list' user.pk %}" class="btn btn-lg btn-secondary">팀메이트 추천</a>
+        </p>
+    </main>
+
+    <footer class="mastfoot mt-auto">
+        <div class="inner">
+            <p>wemadeteammate <a href="https://github.com/inuinseoul/2020teammate">Github</a>, with <a href="https://inuplace.tistory.com/">@inu</a>.</p>
+        </div>
+        </footer>
+    </div>    
+    {%else%}
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="masthead mb-auto">
+        <div class="inner">
+            <h3 class="masthead-brand">Teammate</h3>
+            <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link" href="{% url 'users:login'%}">로그인</a>
+            <a class="nav-link" href="{% url 'users:signup' %}">회원가입</a>
+            </nav>
+        </div>
+    </header>
+
+    <main role="main" class="inner cover">
+        <h1 class="cover-heading">We are teammate.</h1>
+        <p class="lead">
+        당신의 마음과 잘 맞는 팀원을 구하세요. 
+        목표와 실력이 비슷한 스터디메이트를 만나세요.
+        </p>
+        <p class="lead">
+            <a href="{% url 'users:signup' %}" class="btn btn-lg btn-secondary">Let's Join us!</a>
+        </p>
+    </main>
+
+    <footer class="mastfoot mt-auto">
+        <div class="inner">
+            <p>wemadeteammate <a href="https://github.com/inuinseoul/2020teammate">Github</a>, with <a href="https://inuplace.tistory.com/">@inu</a>.</p>
+        </div>
+        </footer>
+    </div>
+    {% endif %}
 {% endblock %}

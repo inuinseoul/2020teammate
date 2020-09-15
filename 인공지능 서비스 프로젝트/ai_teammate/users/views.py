@@ -178,8 +178,7 @@ def login(request):
 
 #로그아웃
 def logout(request):
-    if request.method == 'POST':
-        auth.logout(request)
+    auth.logout(request)
 
-        return redirect('home')
+    return redirect('home')
         
