@@ -1,12 +1,17 @@
 {% extends "base.html" %}
 
+{% block title %}
+<title>로그인</title>
+{% endblock %}
+
 {% block style %}
 <!--이 곳에 style에 해당하는 코드 (css파일 연결 등) 작성-->
+<link rel='stylesheet' type="text/css" href="{% static 'login.css' %}">
 {% endblock %}
 
 {% block content %}
 <!--이 곳에 페이지의 내용 작성-->
-    <h1>제목 팀메이트</h1>
+    {% comment %} <h1>제목 팀메이트</h1>
     <h2>로그인</h2>
     {% if error.state %}
         <h2>{{ error.msg }}</h2>
@@ -23,5 +28,15 @@
         <br/>
         <br/>
         아이디가 없으신가요?<a href="{% url 'users:signup' %}">회원가입하기</a>
+    </form> {% endcomment %}
+    <form class="form-signin text-center" action="{% url 'users:login'%}" method="POST">
+        {% csrf_token %}
+        <img class="mb-4" src="{% static 'logo.png'%}" alt="{% static 'logo.png'%}" width="100" height="100">
+        <h1 class="h3 mb-3 font-weight-normal">Teammate</h1>
+        <input id="inputEmail" class="form-control" name='user_id' placeholder="ID" required autofocus>
+        <input type='password' id="inputPassword" class="form-control" name='user_pw' placeholder="Password" required>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2020-2020</p>
     </form>
 {% endblock %}
