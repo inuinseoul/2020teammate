@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Customer, Domain, Score, Role
+from .models import Customer, Domain, Score, Role, Study
 from django.contrib.auth.models import User
 from django.contrib import auth
 
@@ -137,7 +137,30 @@ def signup4(request, customer_pk):
 
 #관심있는 스터디
 def signup5(request, customer_pk):
-    return redirect('home')
+    if request.method == 'POST':
+        customer = Customer.objects.get(pk=customer_pk)
+
+        Study.objects.create(
+            foreignkey=customer,
+            web_hearts = request.POST['web_hearts'],
+            design_hearts = request.POST['design_hearts'],
+            machine_learning_hearts = request.POST['machine_learning_hearts'],
+            statistics_hearts = request.POST['statistics_hearts'],
+            deep_learning_hearts = request.POST['deep_learning_hearts'],
+            algorithm_hearts = request.POST['algorithm_hearts'],
+            nlp_hearts = request.POST['nlp_hearts'],
+            basic_python_hearts = request.POST['basic_python_hearts'],
+            data_analysis_hearts = request.POST['data_analysis_hearts'],
+            voice_recog_hearts = request.POST['voice_recog_hearts'],
+            computer_vision_hearts = request.POST['computer_vision_hearts'],
+            rec_system_hearts = request.POST['rec_system_hearts'],
+            reinforcement_hearts = request.POST['reinforcement_hearts']
+        )
+        
+        
+        return redirect('home')
+
+    return render(request, 'users/signup4.html')
 
 #로그인
 def login(request):

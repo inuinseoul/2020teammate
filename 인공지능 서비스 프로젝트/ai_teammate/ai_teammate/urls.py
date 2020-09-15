@@ -24,5 +24,6 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('edit/', include('edit.urls')),
     path('alarm/', include('alarm.urls')),
-    path('team_rec/', include('team_rec.urls'))
+    path('team_rec/', include('team_rec.urls')),
+    path('study_rec/', include('study_rec.urls'))
 ]

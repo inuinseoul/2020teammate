@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>스터디메이트 추천</title>
+{% endblock %}
+
+{% block style %}
+<!--이 곳에 style에 해당하는 코드 (css파일 연결 등) 작성-->
+{% endblock %}
+
+{% block content %}
+<!--이 곳에 페이지의 내용 작성-->
+  <h1>스터디메이트 추천 목록</h1>
+  <div>
+  {% for customer in recommend_customer_list %}
+    <a href="{%url 'study_rec:s_check_info' customer.pk %}">{{customer.name}}</a>
+    <br/>
+  {% endfor %}
+    <br/>
+  <form action="{% url 'home' %}">
+  <button type="submit">뒤로가기</button></form> 
+{% endblock %}

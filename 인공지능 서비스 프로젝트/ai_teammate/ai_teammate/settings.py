@@ -45,7 +45,8 @@ USER_APPS = [
     'users',
     'edit',
     'alarm',
-    'team_rec'
+    'team_rec',
+    'study_rec'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + USER_APPS
