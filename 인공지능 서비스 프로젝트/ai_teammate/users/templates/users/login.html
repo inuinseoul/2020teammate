@@ -11,24 +11,6 @@
 
 {% block content %}
 <!--이 곳에 페이지의 내용 작성-->
-    {% comment %} <h1>제목 팀메이트</h1>
-    <h2>로그인</h2>
-    {% if error.state %}
-        <h2>{{ error.msg }}</h2>
-    {%endif%}
-    <form action="{% url 'users:login'%}" method="POST">
-        {% csrf_token %}
-        <input type='text' placeholder='id를 입력해주세요' name='user_id'/>
-        <br/>
-        <br/>
-        <input type='password' placeholder='pw를 입력해주세요' name='user_pw'/>
-        <br/>
-        <br/>
-        <button type='submit'>enter</button>
-        <br/>
-        <br/>
-        아이디가 없으신가요?<a href="{% url 'users:signup' %}">회원가입하기</a>
-    </form> {% endcomment %}
     <form class="form-signin text-center" action="{% url 'users:login'%}" method="POST">
         {% csrf_token %}
         <img class="mb-4" src="{% static 'logo.png'%}" alt="{% static 'logo.png'%}" width="100" height="100">
