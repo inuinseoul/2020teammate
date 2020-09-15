@@ -4,8 +4,9 @@
 <title>Teammate</title>
 {% endblock %}
 
-{% block static %}
-<!--이 곳에 static에 해당하는 코드 (css파일 연결 등) 작성-->
+{% block style %}
+<!--이 곳에 style에 해당하는 코드 (css파일 연결 등) 작성-->
+<link rel='stylesheet' type="text/css" href="{% static 'home.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -25,8 +26,12 @@
         </br>
         <button type='sumit'>로그아웃</button>
     {%else%}
-        <h1>Teammate</h1>
-        <a href="{% url 'users:login'%}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">로그인</a>
-        <a href="{% url 'users:signup' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">회원가입</a>
+        <div class="jumbotron">
+            <h1>Teammate</h1>
+            <p>마음이 잘 맞는 팀원을 구하세요. 함께 공부할 스터디메이트를 만나세요.</p>
+            <a href="{% url 'users:login'%}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">로그인</a>
+            <a href="{% url 'users:signup' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">회원가입</a>
+        </div>
+
     {% endif %}  
 {% endblock %}
