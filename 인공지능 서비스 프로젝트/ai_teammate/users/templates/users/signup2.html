@@ -9,6 +9,9 @@
     <h1>*관심있는 분야*</h1>
     <h3>하트 10개를 베팅해주세요!</h3>
     <br/>
+    {% if error.state %}
+        <h2>{{ error.msg }}</h2>
+    {%endif%}
     <form action="{% url 'users:signup2' user.customer.pk%}" method='POST'>
         {% csrf_token %}
         <h4>건강 (스포츠 + 헬스 + 의료)</h4>

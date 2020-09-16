@@ -8,6 +8,9 @@
 <!--이 곳에 페이지의 내용 작성-->
     <h1>분야별 수준을 알려주세요.</h1>
     <br/>
+    {% if error.state %}
+        <h2>{{ error.msg }}</h2>
+    {%endif%}
     <form action="{% url 'users:signup3' user.customer.pk%}" method='POST'>
         {% csrf_token %}
         <h4>web_score</h4>

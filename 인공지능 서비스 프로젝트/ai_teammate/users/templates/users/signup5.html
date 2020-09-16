@@ -9,6 +9,9 @@
     <h1>*선호스터디*</h1>
     <h3>하트 10개를 베팅해주세요</h3>
     <br/>
+    {% if error.state %}
+        <h2>{{ error.msg }}</h2>
+    {%endif%}
     <form action="{% url 'users:signup5' user.customer.pk %}" method='POST'>
         {% csrf_token %}
         <h4>데이터분석</h4>
