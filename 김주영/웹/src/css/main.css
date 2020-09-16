@@ -1,0 +1,29 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: visible;
+}
+
+#top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.main_intro {
+    font-size: 60px;
+    font-weight: bold;
+    line-height: 30%;
+}
+.sub_intro {
+    font-size: 20px;
+    line-height: 50%;
+}
+
+#team_illustration {
+    width: 30%;
+}
+#line_type_A {
+    width: 60%;
+}
