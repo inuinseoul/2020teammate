@@ -57,9 +57,16 @@
         <p class="lead">
             <a href="{% url 'team_rec:team_rec_list' user.pk %}" class="btn btn-lg btn-secondary">팀메이트 추천</a>
         </p>
+        {% if user.customer.study.get.study_sum != 10 %}
+        <p class="lead">
+            <a href="{% url 'home' %}" class="btn btn-lg btn-secondary">스터디메이트 추천</a>
+        </p>
+        {% else %}
         <p class="lead">
             <a href="{% url 'study_rec:study_rec_list' user.pk %}" class="btn btn-lg btn-secondary">스터디메이트 추천</a>
         </p>
+        {% endif %}
+
     </main>
 
     <footer class="mastfoot mt-auto">
