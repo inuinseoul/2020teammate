@@ -11,6 +11,9 @@
 {% block content %}
 <!--이 곳에 페이지의 내용 작성-->
   <h1>내 정보</h1>
+  {% if error.state %}
+    <h2>{{ error.msg }}</h2>
+  {%endif%}
   <form action="{% url 'edit:domain_edit' customer.pk %}" method = 'POST'>
     {% csrf_token %}
     <h4>--------------------관심있는분야--------------------</h4>

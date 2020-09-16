@@ -44,54 +44,18 @@ def signup(request):
 
                     Domain.objects.create(
                         foreignkey=customer,
-                        health=0,
-                        economy=0,
-                        culture_art=0,
-                        education=0,
-                        society=0,
-                        technology=0,
-                        domain_sum=0,
                     )
 
                     Score.objects.create(
                         foreignkey=customer,
-                        web=0,
-                        design=0,
-                        machine_learning=0,
-                        statistics=0,
-                        deep_learning=0,
-                        algorithm=0,
-                        nlp=0,
-                        data_score=0,
-                        modeling_score=0,
-                        score_sum=0,
                     )
 
                     Role.objects.create(
                         foreignkey=customer,
-                        analysis_hearts=0,
-                        web_hearts=0,
-                        design_hearts=0,
-                        modeling_hearts=0,
-                        role_sum=0,
                     )
 
                     Study.objects.create(
                         foreignkey=customer,
-                        web_hearts=0,
-                        design_hearts=0,
-                        machine_learning_hearts=0,
-                        statistics_hearts=0,
-                        deep_learning_hearts=0,
-                        algorithm_hearts=0,
-                        nlp_hearts=0,
-                        basic_python_hearts=0,
-                        data_analysis_hearts=0,
-                        voice_recog_hearts=0,
-                        computer_vision_hearts=0,
-                        rec_system_hearts=0,
-                        reinforcement_hearts=0,
-                        study_sum=0,
                     )
 
                     auth.login(request, created_user)
@@ -343,7 +307,7 @@ def signup5(request, customer_pk):
             context["error"]["state"] = True
             context["error"]["msg"] = ERROR_MSG2["error2"]
 
-    return render(request, "users/signup4.html", context)
+    return render(request, "users/signup5.html", context)
 
 
 # 로그인
