@@ -26,9 +26,34 @@
 
     <main role="main" class="inner cover text-center">
         <h1 class="cover-heading">{{user.get_username}}님 어서오세요!</h1>
+        {% if user.customer.domain.get.domain_sum != 10 %}
         <p class="lead">
-        원하는 팀메이트를 찾으셨나요?
+            <div class="alert alert-warning" role="alert">
+            흥미도메인 설정이 제대로 이루어지지 않았습니다! <a href="{% url 'edit:info_edit' user.customer.pk%}" class="alert-link">수정하러가기</a>
+            </div>            
         </p>
+        {% endif %}
+        {% if user.customer.score.get.score_sum == 0 %}
+        <p class="lead">
+            <div class="alert alert-warning" role="alert">
+            실력 설정이 제대로 이루어지지 않았습니다! <a href="{% url 'edit:info_edit' user.customer.pk%}" class="alert-link">수정하러가기</a>
+            </div>                
+        </p>
+        {% endif %}
+        {% if user.customer.role.get.role_sum != 10 %}
+        <p class="lead">
+            <div class="alert alert-warning" role="alert">
+            선호역할 설정이 제대로 이루어지지 않았습니다! <a href="{% url 'edit:info_edit' user.customer.pk%}" class="alert-link">수정하러가기</a>
+            </div>              
+        </p>
+        {% endif %}
+        {% if user.customer.study.get.study_sum != 10 %}
+        <p class="lead">
+            <div class="alert alert-warning" role="alert">
+            선호스터디 설정이 제대로 이루어지지 않았습니다! <a href="{% url 'edit:info_edit' user.customer.pk%}" class="alert-link">수정하러가기</a>
+            </div>                
+        </p>
+        {% endif %}
         <p class="lead">
             <a href="{% url 'team_rec:team_rec_list' user.pk %}" class="btn btn-lg btn-secondary">팀메이트 추천</a>
         </p>
