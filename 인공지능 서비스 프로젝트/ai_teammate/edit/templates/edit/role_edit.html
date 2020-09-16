@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>설문정보 수정</title>
+{% endblock %}
+
+{% block style %}
+<!--이 곳에 style에 해당하는 코드 (css파일 연결 등) 작성-->
+{% endblock %}
+
+{% block content %}
+<!--이 곳에 페이지의 내용 작성-->
+  <h1>내 정보</h1>
+  <form action="{% url 'edit:role_edit' customer.pk %}" method = 'POST'>
+    {% csrf_token %}
+    <h4>--------------------선호 역할--------------------</h4>
+      <h5>데이터분석</h5>
+      <input type='text' placeholder='analysis_hearts' name='analysis_hearts' value='{{role.analysis_hearts}}'/>
+      <br/>
+      <h5>웹</h5>
+      <input type='text' placeholder='web_hearts' name='web_hearts' value='{{role.web_hearts}}'/>
+      <br/>
+      <h5>디자인</h5>
+      <input type='text' placeholder='design_hearts' name='design_hearts' value='{{role.design_hearts}}'/>
+      <br/>
+      <h5>모델링</h5>
+      <input type='text' placeholder='modeling_hearts' name='modeling_hearts' value='{{role.modeling_hearts}}'/>
+      <br/>
+      <br/>
+    <button type="submit">설문조사정보 수정하기</button>
+  </form>
+  <br/>
+  <form action="{% url 'edit:edit' customer.pk %}">
+  <button type="submit">뒤로가기</button>
+  </form>
+{% endblock %}

@@ -1,7 +1,12 @@
 from django.shortcuts import render, redirect
-from users.models import Customer, Domain, Score, Role
+from users.models import Customer, Domain, Score, Role, Study
 from django.contrib.auth.models import User
 from django.contrib import auth
+
+#
+def edit(request, customer_pk):
+    return render(request, "edit/edit.html")
+
 
 # 정보수정
 def info_edit(request, customer_pk):
@@ -22,7 +27,7 @@ def info_edit(request, customer_pk):
 
 
 # 설문조사정보수정
-def survey_edit(request, customer_pk):
+def domain_edit(request, customer_pk):
     customer = Customer.objects.get(pk=customer_pk)
     if request.method == "POST":
 
@@ -48,6 +53,19 @@ def survey_edit(request, customer_pk):
             + int(technology),
         )
 
+        return redirect("home")
+
+    domain = Domain.objects.get(foreignkey=customer)
+
+    context = {"customer": customer, "domain": domain}
+
+    return render(request, "edit/domain_edit.html", context)
+
+
+# 설문조사정보수정
+def score_edit(request, customer_pk):
+    customer = Customer.objects.get(pk=customer_pk)
+    if request.method == "POST":
         web = request.POST["web"]
         design = request.POST["design"]
         machine_learning = request.POST["machine_learning"]
@@ -84,6 +102,19 @@ def survey_edit(request, customer_pk):
             + int(modeling_score),
         )
 
+        return redirect("home")
+
+    score = Score.objects.get(foreignkey=customer)
+
+    context = {"customer": customer, "score": score}
+
+    return render(request, "edit/score_edit.html", context)
+
+
+# 설문조사정보수정
+def role_edit(request, customer_pk):
+    customer = Customer.objects.get(pk=customer_pk)
+    if request.method == "POST":
         analysis_hearts = request.POST["analysis_hearts"]
         web_hearts = request.POST["web_hearts"]
         design_hearts = request.POST["design_hearts"]
@@ -100,14 +131,65 @@ def survey_edit(request, customer_pk):
             + int(modeling_hearts),
         )
 
-        print("수정완료")
-
         return redirect("home")
 
-    domain = Domain.objects.get(foreignkey=customer)
-    score = Score.objects.get(foreignkey=customer)
     role = Role.objects.get(foreignkey=customer)
 
-    context = {"customer": customer, "domain": domain, "score": score, "role": role}
+    context = {"customer": customer, "role": role}
 
-    return render(request, "edit/survey_edit.html", context)
+    return render(request, "edit/role_edit.html", context)
+
+
+# 설문조사정보수정
+def study_edit(request, customer_pk):
+    customer = Customer.objects.get(pk=customer_pk)
+    if request.method == "POST":
+        web_hearts = request.POST["web_hearts"]
+        design_hearts = request.POST["design_hearts"]
+        machine_learning_hearts = request.POST["machine_learning_hearts"]
+        statistics_hearts = request.POST["statistics_hearts"]
+        deep_learning_hearts = request.POST["deep_learning_hearts"]
+        algorithm_hearts = request.POST["algorithm_hearts"]
+        nlp_hearts = request.POST["nlp_hearts"]
+        basic_python_hearts = request.POST["basic_python_hearts"]
+        data_analysis_hearts = request.POST["data_analysis_hearts"]
+        voice_recog_hearts = request.POST["voice_recog_hearts"]
+        computer_vision_hearts = request.POST["computer_vision_hearts"]
+        rec_system_hearts = request.POST["rec_system_hearts"]
+        reinforcement_hearts = request.POST["reinforcement_hearts"]
+
+        Study.objects.filter(foreignkey=customer).update(
+            web_hearts=web_hearts,
+            design_hearts=design_hearts,
+            machine_learning_hearts=machine_learning_hearts,
+            statistics_hearts=statistics_hearts,
+            deep_learning_hearts=deep_learning_hearts,
+            algorithm_hearts=algorithm_hearts,
+            nlp_hearts=nlp_hearts,
+            basic_python_hearts=basic_python_hearts,
+            data_analysis_hearts=data_analysis_hearts,
+            voice_recog_hearts=voice_recog_hearts,
+            computer_vision_hearts=computer_vision_hearts,
+            rec_system_hearts=rec_system_hearts,
+            reinforcement_hearts=reinforcement_hearts,
+            study_sum=int(web_hearts)
+            + int(design_hearts)
+            + int(machine_learning_hearts)
+            + int(statistics_hearts)
+            + int(deep_learning_hearts)
+            + int(algorithm_hearts)
+            + int(nlp_hearts)
+            + int(basic_python_hearts)
+            + int(data_analysis_hearts)
+            + int(voice_recog_hearts)
+            + int(computer_vision_hearts)
+            + int(rec_system_hearts)
+            + int(reinforcement_hearts),
+        )
+        return redirect("home")
+
+    study = Study.objects.get(foreignkey=customer)
+
+    context = {"customer": customer, "study": study}
+
+    return render(request, "edit/study_edit.html", context)

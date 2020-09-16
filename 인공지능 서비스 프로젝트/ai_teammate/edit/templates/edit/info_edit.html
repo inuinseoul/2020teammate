@@ -26,10 +26,6 @@
     <button type="submit">내 정보 수정하기</button>
   </form>
   <br/>
-  <form action="{% url 'edit:survey_edit' customer.pk %}">
-  {% csrf_token %}
-  <button type="submit">설문 수정하러가기</button></form>
-  <br/>
   <br/>
   <form action="{% url 'home' %}">
   <button type="submit">뒤로가기</button></form>

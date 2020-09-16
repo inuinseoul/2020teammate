@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>설문정보 수정</title>
+{% endblock %}
+
+{% block style %}
+<!--이 곳에 style에 해당하는 코드 (css파일 연결 등) 작성-->
+{% endblock %}
+
+{% block content %}
+<!--이 곳에 페이지의 내용 작성-->
+  <h1>내 정보</h1>
+  <form action="{% url 'edit:study_edit' customer.pk %}" method = 'POST'>
+    {% csrf_token %}
+    <h4>--------------------선호 스터디--------------------</h4>
+      <h5>웹</h5>
+      <input type='text' placeholder='web_hearts' name='web_hearts' value='{{study.web_hearts}}'/>
+      <br/>
+      <h5>디자인</h5>
+      <input type='text' placeholder='design_hearts' name='design_hearts' value='{{study.design_hearts}}'/>
+      <br/>
+      <h5>머신러닝</h5>
+      <input type='text' placeholder='machine_learning_hearts' name='machine_learning_hearts' value='{{study.machine_learning_hearts}}'/>
+      <br/>
+      <h5>통계</h5>
+      <input type='text' placeholder='statistics_hearts' name='statistics_hearts' value='{{study.statistics_hearts}}'/>
+      <br/>
+      <h5>딥러닝</h5>
+      <input type='text' placeholder='deep_learning_hearts' name='deep_learning_hearts' value='{{study.deep_learning_hearts}}'/>
+      <br/>
+      <h5>알고리즘</h5>
+      <input type='text' placeholder='algorithm_hearts' name='algorithm_hearts' value='{{study.algorithm_hearts}}'/>
+      <br/>
+      <h5>자연어처리</h5>
+      <input type='text' placeholder='nlp_hearts' name='nlp_hearts' value='{{study.nlp_hearts}}'/>
+      <br/>
+      <h5>기초파이썬</h5>
+      <input type='text' placeholder='basic_python_hearts' name='basic_python_hearts' value='{{study.basic_python_hearts}}'/>
+      <br/>
+      <h5>데이터분석</h5>
+      <input type='text' placeholder='data_analysis_hearts' name='data_analysis_hearts' value='{{study.data_analysis_hearts}}'/>
+      <br/>
+      <h5>음성인식</h5>
+      <input type='text' placeholder='voice_recog_hearts' name='voice_recog_hearts' value='{{study.voice_recog_hearts}}'/>
+      <br/>
+      <h5>컴퓨터비전</h5>
+      <input type='text' placeholder='computer_vision_hearts' name='computer_vision_hearts' value='{{study.computer_vision_hearts}}'/>
+      <br/>
+      <h5>추천시스템</h5>
+      <input type='text' placeholder='rec_system_hearts' name='rec_system_hearts' value='{{study.rec_system_hearts}}'/>
+      <br/>
+      <h5>강화학습</h5>
+      <input type='text' placeholder='reinforcement_hearts' name='reinforcement_hearts' value='{{study.reinforcement_hearts}}'/>
+      <br/>
+    <button type="submit">설문조사정보 수정하기</button>
+  </form>
+  <br/>
+  <form action="{% url 'edit:edit' customer.pk %}">
+  <button type="submit">뒤로가기</button>
+  </form>
+{% endblock %}

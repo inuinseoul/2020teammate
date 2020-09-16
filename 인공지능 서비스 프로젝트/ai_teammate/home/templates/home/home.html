@@ -18,8 +18,8 @@
             <h3 class="masthead-brand">Teammate</h3>
             <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link" href="{% url 'alarm:alarm_list' user.customer.pk%}">알림</a>
-            <a class="nav-link" href="{% url 'edit:info_edit' user.customer.pk%}">마이페이지</a>
-            <a class="nav-link" href="{% url 'users:logout'%}">로그아웃</a>
+            <a class="nav-link" href="{% url 'edit:edit' user.customer.pk%}">마이페이지</a>
+            <a class="nav-link" href="{% url 'users:logout' %}">로그아웃</a>
             </nav>
         </div>
     </header>
@@ -29,28 +29,28 @@
         {% if user.customer.domain.get.domain_sum != 10 %}
         <p class="lead">
             <div class="alert alert-warning" role="alert">
-            흥미도메인 설정이 제대로 이루어지지 않았습니다! <a href="{% url 'edit:info_edit' user.customer.pk%}" class="alert-link">수정하러가기</a>
+            흥미도메인 설정이 제대로 이루어지지 않았습니다! <a href="{% url 'edit:domain_edit' user.customer.pk%}" class="alert-link">수정하러가기</a>
             </div>            
         </p>
         {% endif %}
         {% if user.customer.score.get.score_sum == 0 %}
         <p class="lead">
             <div class="alert alert-warning" role="alert">
-            실력 설정이 제대로 이루어지지 않았습니다! <a href="{% url 'edit:info_edit' user.customer.pk%}" class="alert-link">수정하러가기</a>
+            실력 설정이 제대로 이루어지지 않았습니다! <a href="{% url 'edit:score_edit' user.customer.pk%}" class="alert-link">수정하러가기</a>
             </div>                
         </p>
         {% endif %}
         {% if user.customer.role.get.role_sum != 10 %}
         <p class="lead">
             <div class="alert alert-warning" role="alert">
-            선호역할 설정이 제대로 이루어지지 않았습니다! <a href="{% url 'edit:info_edit' user.customer.pk%}" class="alert-link">수정하러가기</a>
+            선호역할 설정이 제대로 이루어지지 않았습니다! <a href="{% url 'edit:role_edit' user.customer.pk%}" class="alert-link">수정하러가기</a>
             </div>              
         </p>
         {% endif %}
         {% if user.customer.study.get.study_sum != 10 %}
         <p class="lead">
             <div class="alert alert-warning" role="alert">
-            선호스터디 설정이 제대로 이루어지지 않았습니다! <a href="{% url 'edit:info_edit' user.customer.pk%}" class="alert-link">수정하러가기</a>
+            선호스터디 설정이 제대로 이루어지지 않았습니다! <a href="{% url 'edit:study_edit' user.customer.pk%}" class="alert-link">수정하러가기</a>
             </div>                
         </p>
         {% endif %}

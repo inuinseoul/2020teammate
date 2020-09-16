@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>설문정보 수정</title>
+{% endblock %}
+
+{% block style %}
+<!--이 곳에 style에 해당하는 코드 (css파일 연결 등) 작성-->
+{% endblock %}
+
+{% block content %}
+<!--이 곳에 페이지의 내용 작성-->
+  <h1>내 정보</h1>
+  <form action="{% url 'edit:score_edit' customer.pk %}" method = 'POST'>
+    {% csrf_token %}
+    <h4>--------------------분야별 수준--------------------</h4>
+      <h5>web_score</h5>
+      <input type='text' placeholder='web_score' name='web' value='{{score.web}}'/>
+      <br/>
+      <h5>design_score</h5>
+      <input type='text' placeholder='design_score' name='design' value='{{score.design}}'/>
+      <br/>
+      <h5>machine_score</h5>
+      <input type='text' placeholder='machine_score' name='machine_learning' value='{{score.machine_learning}}'/>
+      <br/>
+      <h5>statistics_score</h5>
+      <input type='text' placeholder='statistics_score' name='statistics' value='{{score.statistics}}'/>
+      <br/>
+      <h5>deep_learning_score</h5>
+      <input type='text' placeholder='deep_learning_score' name='deep_learning' value='{{score.deep_learning}}'/>
+      <br/>
+      <h5>algorithm_score</h5>
+      <input type='text' placeholder='algorithm_score' name='algorithm' value='{{score.algorithm}}'/>
+      <br/>
+      <h5>nlp_score</h5>
+      <input type='text' placeholder='nlp_score' name='nlp' value='{{score.nlp}}'/>
+      <br/>
+      <br/>
+      <h5>-데이터점수(웹*0.5 + 디자인*0.5)</h5>
+      <h5>점수 : {{score.data_score}}</h5>
+      <h5>-모델링점수(머신러닝*0.25 + 딥러닝*0.25 + 알고리즘*0.25 + NLP*0.25)</h5>
+      <h5>점수 : {{score.modeling_score}}</h5>
+    <button type="submit">설문조사정보 수정하기</button>
+  </form>
+  <br/>
+  <form action="{% url 'edit:edit' customer.pk %}">
+  <button type="submit">뒤로가기</button>
+  </form>
+{% endblock %}
