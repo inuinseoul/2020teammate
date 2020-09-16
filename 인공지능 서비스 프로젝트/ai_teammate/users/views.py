@@ -13,7 +13,7 @@ ERROR_MSG = {
 
 ERROR_MSG2 = {
     "error": "10개의 하트를 제대로 베팅하지않으셨습니다. 값을 다시확인해주세요!!",
-    "error2": "null값이 존재합니다. 입력값을 다시 확인해주세요!!",
+    "error2": "값이 올바르지않습니다. 입력값을 다시 한번 확인해주세요!!!"
 }
 
 # 회원가입
@@ -92,9 +92,14 @@ def signup2(request, customer_pk):
             and len(education)
             and len(society)
             and len(technology)
+            and int(health)>=0
+            and int(economy)>=0
+            and int(culture_art)>=0
+            and int(education)>=0
+            and int(society)>=0
+            and int(technology)>=0 
         ):
-            if (
-                int(health)
+            if (int(health)
                 + int(economy)
                 + int(culture_art)
                 + int(education)
@@ -146,6 +151,13 @@ def signup3(request, customer_pk):
             and len(deep_learning)
             and len(algorithm)
             and len(nlp)
+            and int(web)>=0
+            and int(design)>=0
+            and int(machine_learning)>=0
+            and int(statistics)>=0
+            and int(deep_learning)>=0
+            and int(algorithm)>=0
+            and int(nlp)>=0
         ):
             data_score = round(int(web) * 0.5 + int(design) * 0.5)
             modeling_score = round(
@@ -200,6 +212,10 @@ def signup4(request, customer_pk):
             and len(web_hearts)
             and len(design_hearts)
             and len(modeling_hearts)
+            and int(analysis_hearts)>=0
+            and int(web_hearts)>=0
+            and int(design_hearts)>=0
+            and int(modeling_hearts)>=0
         ):
             if (
                 int(analysis_hearts)
@@ -265,6 +281,19 @@ def signup5(request, customer_pk):
             and len(computer_vision_hearts)
             and len(rec_system_hearts)
             and len(reinforcement_hearts)
+            and int(web_hearts)>=0
+            and int(design_hearts)>=0
+            and int(machine_learning_hearts)>=0
+            and int(statistics_hearts)>=0
+            and int(deep_learning_hearts)>=0
+            and int(algorithm_hearts)>=0
+            and int(nlp_hearts)>=0
+            and int(basic_python_hearts)>=0
+            and int(data_analysis_hearts)>=0
+            and int(voice_recog_hearts)>=0
+            and int(computer_vision_hearts)>=0
+            and int(rec_system_hearts)>=0
+            and int(reinforcement_hearts)>=0
         ):
             if (
                 int(web_hearts)
