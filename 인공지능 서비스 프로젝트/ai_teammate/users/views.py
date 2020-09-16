@@ -26,6 +26,8 @@ def signup(request):
         user_pw = request.POST["user_pw"]
         user_pw_check = request.POST["user_pw_check"]
         name = request.POST["name"]
+        email = request.POST["email"]
+        phone_num = request.POST["phone_num"]
 
         if user_id and user_pw:
             user = User.objects.filter(username=user_id)
@@ -36,7 +38,61 @@ def signup(request):
                         username=user_id, password=user_pw
                     )
 
-                    Customer.objects.create(user=created_user, name=name)
+                    customer = Customer.objects.create(
+                        user=created_user, name=name, email=email, phone_num=phone_num
+                    )
+
+                    Domain.objects.create(
+                        foreignkey=customer,
+                        health=0,
+                        economy=0,
+                        culture_art=0,
+                        education=0,
+                        society=0,
+                        technology=0,
+                        domain_sum=0,
+                    )
+
+                    Score.objects.create(
+                        foreignkey=customer,
+                        web=0,
+                        design=0,
+                        machine_learning=0,
+                        statistics=0,
+                        deep_learning=0,
+                        algorithm=0,
+                        nlp=0,
+                        data_score=0,
+                        modeling_score=0,
+                        score_sum=0,
+                    )
+
+                    Role.objects.create(
+                        foreignkey=customer,
+                        analysis_hearts=0,
+                        web_hearts=0,
+                        design_hearts=0,
+                        modeling_hearts=0,
+                        role_sum=0,
+                    )
+
+                    Study.objects.create(
+                        foreignkey=customer,
+                        web_hearts=0,
+                        design_hearts=0,
+                        machine_learning_hearts=0,
+                        statistics_hearts=0,
+                        deep_learning_hearts=0,
+                        algorithm_hearts=0,
+                        nlp_hearts=0,
+                        basic_python_hearts=0,
+                        data_analysis_hearts=0,
+                        voice_recog_hearts=0,
+                        computer_vision_hearts=0,
+                        rec_system_hearts=0,
+                        reinforcement_hearts=0,
+                        study_sum=0,
+                    )
 
                     auth.login(request, created_user)
 
@@ -58,7 +114,6 @@ def signup(request):
 def signup2(request, customer_pk):
     context = {"error": {"state": False, "msg": ""}}
     if request.method == "POST":
-
         health = request.POST["health"]
         economy = request.POST["economy"]
         culture_art = request.POST["culture_art"]
@@ -86,14 +141,14 @@ def signup2(request, customer_pk):
 
                 customer = Customer.objects.get(pk=customer_pk)
 
-                Domain.objects.create(
-                    foreignkey=customer,
+                Domain.objects.filter(foreignkey=customer).update(
                     health=health,
                     economy=economy,
                     culture_art=culture_art,
                     education=education,
                     society=society,
                     technology=technology,
+                    domain_sum=10,
                 )
 
                 return render(request, "users/signup3.html")
@@ -138,8 +193,7 @@ def signup3(request, customer_pk):
 
             customer = Customer.objects.get(pk=customer_pk)
 
-            Score.objects.create(
-                foreignkey=customer,
+            Score.objects.filter(foreignkey=customer).update(
                 web=web,
                 design=design,
                 machine_learning=machine_learning,
@@ -149,6 +203,15 @@ def signup3(request, customer_pk):
                 nlp=nlp,
                 data_score=data_score,
                 modeling_score=modeling_score,
+                score_sum=int(web)
+                + int(design)
+                + int(machine_learning)
+                + int(statistics)
+                + int(deep_learning)
+                + int(algorithm)
+                + int(nlp)
+                + int(data_score)
+                + int(modeling_score),
             )
 
             return render(request, "users/signup4.html")
@@ -184,12 +247,12 @@ def signup4(request, customer_pk):
 
                 customer = Customer.objects.get(pk=customer_pk)
 
-                Role.objects.create(
-                    foreignkey=customer,
+                Role.objects.filter(foreignkey=customer).update(
                     analysis_hearts=analysis_hearts,
                     web_hearts=web_hearts,
                     design_hearts=design_hearts,
                     modeling_hearts=modeling_hearts,
+                    role_sum=10,
                 )
 
                 return render(request, "users/signup5.html")
@@ -255,8 +318,7 @@ def signup5(request, customer_pk):
                 + int(reinforcement_hearts)
                 == 10
             ):
-                Study.objects.create(
-                    foreignkey=customer,
+                Study.objects.filter(foreignkey=customer).update(
                     web_hearts=web_hearts,
                     design_hearts=design_hearts,
                     machine_learning_hearts=machine_learning_hearts,
@@ -270,6 +332,7 @@ def signup5(request, customer_pk):
                     computer_vision_hearts=computer_vision_hearts,
                     rec_system_hearts=rec_system_hearts,
                     reinforcement_hearts=reinforcement_hearts,
+                    study_sum=10,
                 )
 
                 return redirect("home")
