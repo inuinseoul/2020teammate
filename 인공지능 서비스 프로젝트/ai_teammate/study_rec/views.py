@@ -106,7 +106,7 @@ def study_rec_list(request, customer_pk):
     ]
 
     my_num = df0[df0["user"] == customer_pk].index.tolist()[0]
-
+    # 만약에 전부 0점이라 과목이 없으면 오류뜸. 처리필요!
     study_similarity = cosine_similarity(customer_study, customer_study)
     hope_course_score = get_grade_for_hope_course(
         my_num, customer_study, customer_score
