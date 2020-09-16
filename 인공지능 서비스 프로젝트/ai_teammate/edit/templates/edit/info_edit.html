@@ -14,11 +14,12 @@
   <form action="{% url 'edit:info_edit' customer.pk %}" method = 'POST'>
     {% csrf_token %}
     <h4>이름</h4>
-    <input placeholder="이름을 입력하세요" name="name" value='{{customer.name}}'/>
+    <input type='text' placeholder="이름을 입력하세요" name="name" value='{{customer.name}}'/>
     <h4>email</h4>
-    <input placeholder="email을 입력하세요" name="email" value='{{customer.email}}'/>
+    <input type='email' placeholder="email을 입력하세요" name="email" value='{{customer.email}}'/>
     <h4>phone_num</h4>
-    <input placeholder="phone_num 을 입력하세요" name="phone_num" value='{{customer.phone_num}}'/>
+    <p>formmat : 123-1234-1234</p>
+    <input type='tel' placeholder="123-1234-1234" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" name="phone_num" value='{{customer.phone_num}}'/>
     <br/>
     <br/>
     <br/>
