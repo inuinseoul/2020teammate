@@ -147,7 +147,7 @@ def study_rec_list(request, customer_pk):
 def s_check_info(request, customer_pk):
     customer = Customer.objects.get(pk=customer_pk)
     score = Score.objects.get(foreignkey=customer)
-    study = Role.objects.get(foreignkey=customer)
+    study = Study.objects.get(foreignkey=customer)
 
     context = {"customer": customer, "score": score, "study": study}
     return render(request, "study_rec/s_check_info.html", context)
