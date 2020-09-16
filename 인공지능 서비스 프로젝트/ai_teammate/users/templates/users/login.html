@@ -13,8 +13,7 @@
 <!--이 곳에 페이지의 내용 작성-->
     <form class="form-signin text-center" action="{% url 'users:login'%}" method="POST">
         {% csrf_token %}
-        <img class="mb-4" src="{% static 'logo.png'%}" alt="{% static 'logo.png'%}" width="100" height="100">
-        <h1 class="h3 mb-3 font-weight-normal">Teammate</h1>
+        <img class="mb-4" src="{% static 'logo.png'%}" alt="{% static 'logo.png'%}" width="200" height="200">
         <input id="inputEmail" class="form-control" name='user_id' placeholder="ID" required autofocus>
         <input type='password' id="inputPassword" class="form-control" name='user_pw' placeholder="Password" required>
 

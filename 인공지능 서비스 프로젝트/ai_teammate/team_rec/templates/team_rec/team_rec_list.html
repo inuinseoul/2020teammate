@@ -10,13 +10,28 @@
 
 {% block content %}
 <!--이 곳에 페이지의 내용 작성-->
-  <h1>팀메이트 추천 목록</h1>
-  <div>
-  {% for customer in recommend_customer_list %}
-    <a href="{%url 'team_rec:t_check_info' customer.pk %}">{{customer.name}}</a>
-    <br/>
-  {% endfor %}
-    <br/>
-  <form action="{% url 'home' %}">
-  <button type="submit">뒤로가기</button></form> 
+  <br>
+  <table class="table">
+    <thead class="table-light">
+      <tr>
+        <th scope="col">추천 순위</th>
+        <th scope="col">이름</th>
+        <th scope="col">흥미(건강/경제/문화예술/교육/사회/기술)</th>
+        <th scope="col">역할선호도</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for customer in recommend_customer_list %}
+       <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td><a href="{%url 'team_rec:t_check_info' customer.pk %}">{{customer.name}}</a></td>
+        <td>{{customer.domain.get.health}} / {{customer.domain.get.economy}} / {{customer.domain.get.culture_art}} / {{customer.domain.get.education}} / {{customer.domain.get.society}} / {{customer.domain.get.technology}}</td>
+        <td>{{customer.role.get.analysis_hearts}} / {{customer.role.get.web_hearts}} / {{customer.role.get.design_hearts}} / {{customer.role.get.modeling_hearts}}</td>
+      </tr>       
+      {% endfor %}
+    </tbody>
+  </table>
+  <p class="lead">
+    <a href="{% url 'home' %}" class="btn btn-lg btn-secondary">뒤로가기</a>
+  </p>
 {% endblock %}
