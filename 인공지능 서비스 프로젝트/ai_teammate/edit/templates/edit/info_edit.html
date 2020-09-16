@@ -18,7 +18,8 @@
     <h4>email</h4>
     <input type='email' placeholder="email을 입력하세요" name="email" value='{{customer.email}}'/>
     <h4>phone_num</h4>
-    <input type='tel' placeholder="123-1234-1234" name="phone_num" value='{{customer.phone_num}}'/>
+    <p>formmat : 123-1234-1234</p>
+    <input type='tel' placeholder="123-1234-1234" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" name="phone_num" value='{{customer.phone_num}}'/>
     <br/>
     <br/>
     <br/>
