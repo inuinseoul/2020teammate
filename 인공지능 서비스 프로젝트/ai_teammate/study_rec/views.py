@@ -195,7 +195,7 @@ def study_rec_list(request, customer_pk):
                 color_after.append(color[j])
         print(study_index_after)
         plt.figure(figsize=(3, 3))
-        plt.xticks(fontsize=8, rotation=90)
+        plt.xticks(fontsize=8)
         plt.bar(
             study_index_after,
             study_values_after,
@@ -210,13 +210,3 @@ def study_rec_list(request, customer_pk):
         "recommend_customer_study_list": recommend_customer_study_list,
     }
     return render(request, "study_rec/study_rec_list.html", context)
-
-
-# 추천회원 정보보기
-def s_check_info(request, customer_pk):
-    customer = Customer.objects.get(pk=customer_pk)
-    score = Score.objects.get(foreignkey=customer)
-    study = Study.objects.get(foreignkey=customer)
-
-    context = {"customer": customer, "score": score, "study": study}
-    return render(request, "study_rec/s_check_info.html", context)
