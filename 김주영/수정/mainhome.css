@@ -27,9 +27,12 @@ html, body {
     flex-direction: column;
 }
 #home_title {
-    font-size: 35px;
     margin-left: 100px;
     line-height : 100%; 
+}
+#home_title > h1 {
+    font-size: 75px;
+    font-weight: bold;
 }
 #home_sign_container {
     margin-left: 100px;
