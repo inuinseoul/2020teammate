@@ -15,7 +15,7 @@ input::placeholder {
     
     display: flex;
     flex-direction: column;
-    background-color: tan;
+    /* background-color: tan; */
     align-items: center;
 }
 
@@ -23,7 +23,7 @@ input::placeholder {
     width: 70%;
     display: flex;
     flex-direction: column;
-    background-color: teal;
+    /* background-color: teal; */
     align-items: center;
 }
 
@@ -31,7 +31,7 @@ input::placeholder {
     width: 100%;
     display: flex;
     flex-direction: column;
-    background-color: yellowgreen;
+    /* background-color: yellowgreen; */
     align-items: center;
     justify-content: flex-start;
     line-height: 0%;
