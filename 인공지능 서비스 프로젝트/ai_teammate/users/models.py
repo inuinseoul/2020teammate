@@ -8,7 +8,6 @@ class Customer(models.Model):
     name = models.CharField(max_length=10)
     email = models.CharField(max_length=20, null=True)
     phone_num = models.CharField(max_length=20, null=True)
-    liked_users = models.ManyToManyField(User, related_name="liked_users")
 
 
 # 흥미 테이블

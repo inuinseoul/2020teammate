@@ -15,22 +15,22 @@
     <form action="{% url 'users:signup2' user.customer.pk%}" method='POST'>
         {% csrf_token %}
         <h4>건강 (스포츠 + 헬스 + 의료)</h4>
-        <input type='number' placeholder='건강' name='health' value=0 />
+        <input type='number' placeholder='건강' name='health' value=0 min='0' max='10'/>
         <br/>
         <h4>경제 (금융 + 부동산 + 비즈니스)</h4>
-        <input type='number' placeholder='경제' name='economy' value=0 />
+        <input type='number' placeholder='경제' name='economy' value=0 min='0' max='10'/>
         <br/>
         <h4>문화/예술 (음악 + 영화 + 게임 + 패션/뷰티 + 디자인)</h4>
-        <input type='number' placeholder='문화/예술' name='culture_art' value=0 />
+        <input type='number' placeholder='문화/예술' name='culture_art' value=0 min='0' max='10'/>
         <br/>
         <h4>교육 (도서 + 학습)</h4>
-        <input type='number' placeholder='교육' name='education' value=0 />
+        <input type='number' placeholder='교육' name='education' value=0 min='0' max='10'/>
         <br/>
         <h4>사회 (연애 + 소셜 + 여행 + 교통 + 뉴스)</h4>
-        <input type='number' placeholder='사회' name='society' value=0 />
+        <input type='number' placeholder='사회' name='society' value=0 min='0' max='10'/>
         <br/>
         <h4>기술 (자연, 화학, 공학)</h4>
-        <input type='number' placeholder='기술' name='technology' value=0 />
+        <input type='number' placeholder='기술' name='technology' value=0 min='0' max='10'/>
         <br/>
         <br/>
         <button type="submit">다음</button>
