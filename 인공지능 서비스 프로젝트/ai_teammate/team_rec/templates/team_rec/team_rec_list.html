@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% static "" as baseUrl %}
 
 {% block title %}
 <title>팀메이트 추천</title>
@@ -24,8 +25,10 @@
       {% for customer in recommend_customer_list %}
        <tr>
         <th scope="row">{{forloop.counter}}</th>
-        <td><a href="{%url 'team_rec:t_check_info' customer.pk %}">{{customer.name}}</a></td>
-        <td>{{customer.domain.get.health}} / {{customer.domain.get.economy}} / {{customer.domain.get.culture_art}} / {{customer.domain.get.education}} / {{customer.domain.get.society}} / {{customer.domain.get.technology}}</td>
+        <td><a href="{% url 'team_rec:t_check_info' customer.pk %}">{{customer.name}}</a></td>
+        <td><img src="/static/domain_graph_{{customer.pk}}.png" alt="">
+        </td>
+        {% comment %} <td>{{customer.domain.get.health}} / {{customer.domain.get.economy}} / {{customer.domain.get.culture_art}} / {{customer.domain.get.education}} / {{customer.domain.get.society}} / {{customer.domain.get.technology}}</td> {% endcomment %}
         <td>{{customer.role.get.analysis_hearts}} / {{customer.role.get.web_hearts}} / {{customer.role.get.design_hearts}} / {{customer.role.get.modeling_hearts}}</td>
       </tr>       
       {% endfor %}

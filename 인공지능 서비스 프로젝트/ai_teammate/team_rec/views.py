@@ -5,6 +5,11 @@ from sklearn.metrics.pairwise import cosine_similarity
 from django_pandas.io import read_frame
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib import font_manager, rc
+
+font_name = font_manager.FontProperties(fname="c:/Windows/Fonts/malgun.ttf").get_name()
+rc("font", family=font_name)
 
 # 팀메이트 추천시스템
 def team_rec_list(request, customer_pk):
@@ -56,6 +61,30 @@ def team_rec_list(request, customer_pk):
         recommend_customer_domain_list.append(
             Domain.objects.get(foreignkey=now_customer)
         )
+        domain_index = [
+            "건강",
+            "경제",
+            "문화",
+            "교육",
+            "사회",
+            "기술",
+        ]
+        domain_values = [
+            Domain.objects.get(foreignkey=now_customer).health,
+            Domain.objects.get(foreignkey=now_customer).economy,
+            Domain.objects.get(foreignkey=now_customer).culture_art,
+            Domain.objects.get(foreignkey=now_customer).education,
+            Domain.objects.get(foreignkey=now_customer).society,
+            Domain.objects.get(foreignkey=now_customer).technology,
+        ]
+        plt.figure(figsize=(3, 3))
+        plt.ylim(0, 10)
+        plt.bar(
+            domain_index,
+            domain_values,
+            color=["#F78181", "#F79F81", "#F7BE81", "#F5DA81", "#F3F781", "#D8F781"],
+        )
+        # plt.savefig(f"./static/domain_graph_{i}.png")
         recommend_customer_role_list.append(Role.objects.get(foreignkey=now_customer))
 
     context = {
