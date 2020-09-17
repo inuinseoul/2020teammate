@@ -1,0 +1,142 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: visible;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+.domain_value {
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    text-align: center;
+
+}
+.domain_bttn {
+    height: 30px;
+    width: 30px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#domain_container {
+    height: 100%;
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    /* background-color: tan; */
+    align-items: center;
+}
+
+#domain_area {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    /* background-color: teal; */
+    align-items: center;
+}
+
+#domain_title {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* background-color: yellowgreen; */
+    align-items: center;
+    justify-content: flex-start;
+    line-height: 0%;
+}
+#domain_title > h1 {
+    color: #ef6a56;
+    font-size: 63px;
+    font-weight: bold;
+}
+#domain_subtitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+#domain_subtitle > p {
+    color: #868686;
+    font-size: 30px;
+    font-weight: normal;
+}
+#domain_subtitle > img {
+    margin-top: 5%;
+    width: 75%;
+}
+
+#domain_heartbox > img {
+    width: 40%;
+}
+#domain_heartbox > p {
+    font-size: 40px;
+}
+#domain_heartbox {
+    width: 10%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* background-color: pink; */
+}
+
+#domain_form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#domain_form > form {
+    width: 70%;
+    /* background-color: royalblue; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#form_group_a {
+    margin-top: 0%;
+    width: 100%;
+    /* background-color: seagreen; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+#form_group_a > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+#form_group_b {
+    margin-top: 8%;
+    width: 100%;
+    /* background-color: seagreen; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+#form_group_b > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#domain_form > form > button {
+    font-size: 20px;
+    color: white;
+    padding: 7px 25px 7px 25px;
+    background-color: #ffbbb1;
+    border-radius: 7px;
+    margin-top: 7%;
+    border: 0;
+}
