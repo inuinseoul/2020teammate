@@ -32,6 +32,15 @@
 
 {% block content %}
 <!--이 곳에 페이지의 내용 작성-->
+{% if error.state %}
+<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+  <strong>{{ error.msg }}</strong> 
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{%endif%}
+
     <div id="domain_container">
         <div id="domain_area">
             <div id='domain_title'>
@@ -47,7 +56,7 @@
             </div>
 
             <div id='domain_form'>
-                <form action="{% url 'users:signup2' user.customer.pk%}" method='POST'>
+                <form action="{% url 'users:signup2' user.customer.pk %}" method='POST'>
                     {% csrf_token %}
                     <div id="form_group_a">
                         <div>
@@ -55,7 +64,7 @@
                             <h4>건강</h4>
                             <div>
                                 <input class='domain_bttn' type='button' onclick='setheart("health", -1)' value='-'/>
-                                <input class='domain_value' id='health' type='number' placeholder='건강' name='health' value=0 disabled/>
+                                <input class='domain_value' id='health' type='number' placeholder='건강' name='health' value=0 readonly/>
                                 <input class='domain_bttn' type='button' onclick='setheart("health", 1)' value='+'/>
                             </div>
                         </div>
@@ -65,7 +74,7 @@
                             <h4>경제</h4>
                             <div>
                                 <input class='domain_bttn' type='button' onclick='setheart("economy", -1)' value='-'/>
-                                <input class='domain_value' id='economy' type='number' placeholder='경제' name='economy' value=0 disabled/>
+                                <input class='domain_value' id='economy' type='number' placeholder='경제' name='economy' value=0 readonly/>
                                 <input class='domain_bttn' type='button' onclick='setheart("economy", 1)' value='+'/>
                             </div>
                         </div>
@@ -75,7 +84,7 @@
                             <h4>문화/예술</h4>
                             <div>
                                 <input class='domain_bttn' type='button' onclick='setheart("culture_art", -1)' value='-'/>
-                                <input class='domain_value' id='culture_art' type='number' placeholder='문화/예술' name='culture_art' value=0 disabled/>
+                                <input class='domain_value' id='culture_art' type='number' placeholder='문화/예술' name='culture_art' value=0 readonly/>
                                 <input class='domain_bttn' type='button' onclick='setheart("culture_art", 1)' value='+'/>
                             </div>
                         </div>
@@ -87,7 +96,7 @@
                             <h4>교육</h4>
                             <div>
                                 <input class='domain_bttn' type='button' onclick='setheart("education", -1)' value='-'/>
-                                <input class='domain_value' id='education' type='number' placeholder='교육' name='education' value=0 disabled/>
+                                <input class='domain_value' id='education' type='number' placeholder='교육' name='education' value=0 readonly/>
                                 <input class='domain_bttn' type='button' onclick='setheart("education", 1)' value='+'/>
                             </div>
                         </div>
@@ -96,7 +105,7 @@
                             <h4>사회</h4>
                             <div>
                                 <input class='domain_bttn' type='button' onclick='setheart("society", -1)' value='-'/>
-                                <input class='domain_value' id='society' type='number' placeholder='사회' name='society' value=0 disabled/>
+                                <input class='domain_value' id='society' type='number' placeholder='사회' name='society' value=0 readonly/>
                                 <input class='domain_bttn' type='button' onclick='setheart("society", 1)' value='+'/>
                             </div>
                         </div>
@@ -106,7 +115,7 @@
                             <h4>기술</h4>
                             <div>
                                 <input class='domain_bttn' type='button' onclick='setheart("technology", -1)' value='-'/>
-                                <input class='domain_value' id='technology' type='number' placeholder='기술' name='technology' value=0 disabled/>
+                                <input class='domain_value' id='technology' type='number' placeholder='기술' name='technology' value=0 readonly/>
                                 <input class='domain_bttn' type='button' onclick='setheart("technology", 1)' value='+'/>
                             </div>
                         </div>    
