@@ -111,15 +111,3 @@ def team_rec_list(request, customer_pk):
     }
 
     return render(request, "team_rec/team_rec_list.html", context)
-
-
-# 추천회원 정보보기
-def t_check_info(request, customer_pk):
-    customer = Customer.objects.get(pk=customer_pk)
-    domain = Domain.objects.get(foreignkey=customer)
-    score = Score.objects.get(foreignkey=customer)
-    role = Role.objects.get(foreignkey=customer)
-
-    context = {"customer": customer, "domain": domain, "score": score, "role": role}
-
-    return render(request, "team_rec/t_check_info.html", context)

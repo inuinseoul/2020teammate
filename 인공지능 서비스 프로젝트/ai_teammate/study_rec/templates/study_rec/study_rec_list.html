@@ -38,17 +38,40 @@
     </thead>
     <tbody class="text-center">
       {% for customer in recommend_customer_list %}
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">요청 확인메세지</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              {{customer.name}} 님께 요청을 보내시겠습니까?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+              <form action="{% url 'alarm:alarm_list' customer.pk %}" method = 'POST'>
+              {% csrf_token %}
+              <button type="submit" class="btn btn-outline-primary">요청 보내기</button></form>
+            </div>
+          </div>
+        </div>
+      </div>
        <tr>
         <th class="align-middle" style="width: 20%" scope="row">{{forloop.counter}}</th>
         <td class="align-middle" style="width: 20%">{{customer.name}}</td>
         <td style="width: 40%"><img src="/static/study_graph_{{customer.pk}}.png" alt=""></td>
         <td class="align-middle" style="width: 20%">
-          <a href="{% url 'study_rec:s_check_info' customer.pk %}" class="btn btn-outline-info">스터디메이트 요청</a>
+          <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal">스터디메이트 요청</a>
         </td>
       </tr>       
       {% endfor %}
     </tbody>
   </table>
+
+
 
 
 
