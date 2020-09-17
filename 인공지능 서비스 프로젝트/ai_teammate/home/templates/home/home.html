@@ -19,8 +19,8 @@
             <h1><a id='main_title_a' href='#'>TeamMate</a></h1>
             <div id='main_header_right'>
                 <a href='#' class='main_navi'></a>
-                <a href='{% url 'alarm:alarm_list' user.customer.pk%}' class='main_navi'>notice</a>
-                <a href='{% url 'edit:edit' user.customer.pk%}' class='main_navi'>mypage</a>
+                <a href='{% url 'alarm:alarm_list' user.customer.pk %}' class='main_navi'>Notice</a>
+                <a href='{% url 'edit:edit' user.customer.pk %}' class='main_navi'>Mypage</a>
                 <a href='{% url 'users:logout' %}' id='main_signout'>signout</a>
             </div>
         </div>
