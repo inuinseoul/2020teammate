@@ -195,7 +195,7 @@ def study_rec_list(request, customer_pk):
                 color_after.append(color[j])
         print(study_index_after)
         plt.figure(figsize=(3, 3))
-        plt.xticks(fontsize=8, rotation=90)
+        plt.xticks(fontsize=8)
         plt.bar(
             study_index_after,
             study_values_after,

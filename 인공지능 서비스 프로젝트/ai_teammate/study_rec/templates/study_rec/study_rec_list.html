@@ -28,26 +28,28 @@
   <br>
   <br>
   <table class="table">
-    <thead class="table-light">
+    <thead class="table-light text-center">
       <tr>
         <th style="width: 20%" scope="col">추천 순위</th>
         <th style="width: 20%" scope="col">이름</th>
-        <th style="width: 50%" scope="col">스터디선호도</th>
-        <th style="width: 10%" scope="col">신청</th>
+        <th style="width: 40%" scope="col">스터디선호도</th>
+        <th style="width: 20%" scope="col">신청</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="text-center">
       {% for customer in recommend_customer_list %}
        <tr>
-        <th style="width: 20%" scope="row">{{forloop.counter}}</th>
-        <td style="width: 20%"><a href="{%url 'study_rec:s_check_info' customer.pk %}">{{customer.name}}</a></td>
-        <td style="width: 50%"><img src="/static/study_graph_{{customer.pk}}.png" alt=""></td>
-        <td style="width: 10%">링크</td>
+        <th class="align-middle" style="width: 20%" scope="row">{{forloop.counter}}</th>
+        <td class="align-middle" style="width: 20%">{{customer.name}}</td>
+        <td style="width: 40%"><img src="/static/study_graph_{{customer.pk}}.png" alt=""></td>
+        <td class="align-middle" style="width: 20%">
+          <a href="{% url 'study_rec:s_check_info' customer.pk %}" class="btn btn-outline-info">스터디메이트 요청</a>
+        </td>
       </tr>       
       {% endfor %}
     </tbody>
   </table>
-  <p class="lead">
-    <a href="{% url 'home' %}" class="btn btn-lg btn-secondary">뒤로가기</a>
-  </p>
+
+
+
 {% endblock %}

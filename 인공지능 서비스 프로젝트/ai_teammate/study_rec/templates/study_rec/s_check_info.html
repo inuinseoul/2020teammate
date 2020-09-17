@@ -29,7 +29,7 @@
   강화학습:{{study.reinforcement_hearts}} 
   <br/>
   <br/>
-  <form action="{% url 'alarm:alarm_list' customer.pk%}" method = 'POST'>
+  <form action="{% url 'alarm:alarm_list' customer.pk %}" method = 'POST'>
   {% csrf_token %}
   <button type="submit">알림 보내기</button></form>
   <br/>

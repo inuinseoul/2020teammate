@@ -28,7 +28,7 @@
   <br>
   <br>
   <table class="table">
-    <thead class="table-light">
+    <thead class="table-light text-center">
       <tr>
         <th style="width: 10%" scope="col">추천 순위</th>
         <th style="width: 10%" scope="col">이름</th>
@@ -37,16 +37,16 @@
         <th style="width: 10%" scope="col">신청</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="text-center">
       {% for customer in recommend_customer_list %}
        <tr>
-        <th style="width: 10%" scope="row">{{forloop.counter}}</th>
-        <td style="width: 10%"><a href="{% url 'team_rec:t_check_info' customer.pk %}">{{customer.name}}</a></td>
+        <th class="align-middle" style="width: 10%" scope="row">{{forloop.counter}}</th>
+        <td class="align-middle" style="width: 10%"><a href="{% url 'team_rec:t_check_info' customer.pk %}">{{customer.name}}</a></td>
         <td style="width: 35%"><img src="/static/domain_graph_{{customer.pk}}.png" alt="">
         </td>
         {% comment %} <td>{{customer.domain.get.health}} / {{customer.domain.get.economy}} / {{customer.domain.get.culture_art}} / {{customer.domain.get.education}} / {{customer.domain.get.society}} / {{customer.domain.get.technology}}</td> {% endcomment %}
         <td style="width: 35%"><img src="/static/role_graph_{{customer.pk}}.png" alt=""></td>
-        <td style="width: 10%">링크</td>
+        <td class="align-middle" style="width: 10%">링크</td>
       </tr>       
       {% endfor %}
     </tbody>
