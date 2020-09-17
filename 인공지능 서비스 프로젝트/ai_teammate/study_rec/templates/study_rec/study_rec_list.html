@@ -10,13 +10,26 @@
 
 {% block content %}
 <!--이 곳에 페이지의 내용 작성-->
-  <h1>스터디메이트 추천 목록</h1>
-  <div>
-  {% for customer in recommend_customer_list %}
-    <a href="{%url 'study_rec:s_check_info' customer.pk %}">{{customer.name}}</a>
-    <br/>
-  {% endfor %}
-    <br/>
-  <form action="{% url 'home' %}">
-  <button type="submit">뒤로가기</button></form> 
+  <br>
+  <table class="table">
+    <thead class="table-light">
+      <tr>
+        <th scope="col">추천 순위</th>
+        <th scope="col">이름</th>
+        <th scope="col">스터디선호도</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for customer in recommend_customer_list %}
+       <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td><a href="{%url 'study_rec:s_check_info' customer.pk %}">{{customer.name}}</a></td>
+        <td>?</td>
+      </tr>       
+      {% endfor %}
+    </tbody>
+  </table>
+  <p class="lead">
+    <a href="{% url 'home' %}" class="btn btn-lg btn-secondary">뒤로가기</a>
+  </p>
 {% endblock %}
