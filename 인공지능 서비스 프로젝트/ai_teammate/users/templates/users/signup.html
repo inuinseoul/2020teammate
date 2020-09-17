@@ -16,52 +16,51 @@
   </button>
 </div>
 {%endif%}
-<form action="{% url 'users:signup' %}" method="POST">
-    <div id="signup_container">
-        <div id="signup_area">
-            <div id='signup_title'>
-                <h1>Create your account</h1>
-                <p>for teammate</p>
-            </div>
-            <div id='signup_form'>
-                <form action="" method="POST">
-                {% csrf_token %}
-                    <div id="sigup_item">
-                        <div class='signup_large'>
-                            <span class='signup_label'>ID</span><span class='signup_description'>계정의 아이디를 입력해주세요</span><br />
-                            <input class='signup_input' type='text' placeholder='아이디 입력' name='user_id'/>
-                        </div>
 
-                        <div class='signup_smaill'>
-                            <div>
-                                <span class='signup_label'>PASSWORD</span><span class='signup_description'>계정의 비밀번호를 입력해주세요</span>
-                            </div>
-                            <div>
-                                <input class='signup_input' type='password' placeholder='비밀번호 입력' name='user_pw'/>
-                                <input class='signup_input' type='password' placeholder='확인' name='user_pw_check'/>
-                            </div>
-                        </div>
-
-                        <div class='signup_large'>
-                            <span class='signup_label'>NAME</span><span class='signup_description'>실명을 입력해주세요</span><br />
-                            <input class='signup_input' type='text' placeholder='이름 입력' name='name'/><br />
-                        </div>
-
-                        <div class='signup_large'>
-                            <span class='signup_label'>E-MAIL</span><span class='signup_description'>이메일을 형식에 맞게 입력해주세요</span><br />
-                            <input class='signup_input' type='email' placeholder='example@email.com' name='email'/><br />
-                        </div>
-
-                        <div class='signup_large'>
-                            <span class='signup_label'>PHONE</span><span class='signup_description'>휴대전화번호를 형식에 맞게 입력해주세요</span><br />
-                            <input class='signup_input' type='tel' placeholder='010-0000-0000' pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" name='phone_num'/><br />
-                        </div>
-                        
+<div id="signup_container">
+    <div id="signup_area">
+        <div id='signup_title'>
+            <h1>Create your account</h1>
+            <p>for teammate</p>
+        </div>
+        <div id='signup_form'>
+            <form action="{% url 'users:signup' %}" method="POST">
+            {% csrf_token %}
+                <div id="sigup_item">
+                    <div class='signup_large'>
+                        <span class='signup_label'>ID</span><span class='signup_description'>계정의 아이디를 입력해주세요</span><br />
+                        <input class='signup_input' type='text' placeholder='아이디 입력' name='user_id'/>
                     </div>
-                    <button type='submit'>다음</button>
-                </form>
-            </div>
+
+                    <div class='signup_smaill'>
+                        <div>
+                            <span class='signup_label'>PASSWORD</span><span class='signup_description'>계정의 비밀번호를 입력해주세요</span>
+                        </div>
+                        <div>
+                            <input class='signup_input' type='password' placeholder='비밀번호 입력' name='user_pw'/>
+                            <input class='signup_input' type='password' placeholder='확인' name='user_pw_check'/>
+                        </div>
+                    </div>
+
+                    <div class='signup_large'>
+                        <span class='signup_label'>NAME</span><span class='signup_description'>실명을 입력해주세요</span><br />
+                        <input class='signup_input' type='text' placeholder='이름 입력' name='name'/><br />
+                    </div>
+
+                    <div class='signup_large'>
+                        <span class='signup_label'>E-MAIL</span><span class='signup_description'>이메일을 형식에 맞게 입력해주세요</span><br />
+                        <input class='signup_input' type='email' placeholder='example@email.com' name='email'/><br />
+                    </div>
+
+                    <div class='signup_large'>
+                        <span class='signup_label'>PHONE</span><span class='signup_description'>휴대전화번호를 형식에 맞게 입력해주세요</span><br />
+                        <input class='signup_input' type='tel' placeholder='010-0000-0000' pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" name='phone_num'/><br />
+                    </div>
+                    
+                </div>
+                <button type='submit'>다음</button>
+            </form>
         </div>
     </div>
-</form>
+</div>
 {% endblock %}

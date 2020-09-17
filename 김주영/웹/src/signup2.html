@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeamMate</title>
+
+    <link rel='stylesheet' href='./css/signup2.css' />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel='stylesheet' type='text/css'>
+
+    <script type='text/javascript'>
+        function setheart(id, value) {
+            var el1 = document.getElementById('hearts');
+            var el2 = document.getElementById(id);
+
+            var hearts = Number(el1.textContent);
+            var select = Number(el2.value);
+            
+            // ((hearts - (value*-1) >= 0) && (hearts + (value*-1) <= 10)) || ((hearts + (value*-1) <= 10) && (hearts + (value*-1) >= 0))
+            
+            if (value < 0) {
+                if ((select + value >= 0)) {
+                    el1.innerHTML = hearts - value;
+                    el2.value = select + value;
+                }
+            }
+            if (value > 0) {
+                if (hearts - value >= 0) {
+                    el1.innerHTML = hearts - value;
+                    el2.value = select + value;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div id="domain_container">
+        <div id="domain_area">
+            <div id='domain_title'>
+                <h1>Select your domain</h1>
+                <div id='domain_subtitle'>
+                    <p>관심있는 분야에 하트를 배팅해주세요</p>
+                    <img id='domain_line_type_A' src='../resource/line_type_A.png' />
+                </div>
+                <div id='domain_heartbox'>
+                    <img src='../resource/heart.png' />
+                    <p id='hearts'>10</p>
+                </div>
+            </div>
+
+            <div id='domain_form'>
+                <form action="{% url 'users:signup2' user.customer.pk%}" method='POST'>
+                    <div id="form_group_a">
+                        <div>
+                            <!-- <h4>건강 (스포츠 + 헬스 + 의료)</h4> -->
+                            <h4>건강</h4>
+                            <div>
+                                <input class='domain_bttn' type='button' onclick='setheart("health", -1)' value='-'/>
+                                <input class='domain_value' id='health' type='number' placeholder='건강' name='health' value=0 disabled/>
+                                <input class='domain_bttn' type='button' onclick='setheart("health", 1)' value='+'/>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <!-- <h4>경제 (금융 + 부동산 + 비즈니스)</h4> -->
+                            <h4>경제</h4>
+                            <div>
+                                <input class='domain_bttn' type='button' onclick='setheart("economy", -1)' value='-'/>
+                                <input class='domain_value' id='economy' type='number' placeholder='경제' name='economy' value=0 disabled/>
+                                <input class='domain_bttn' type='button' onclick='setheart("economy", 1)' value='+'/>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <!-- <h4>문화/예술 (음악 + 영화 + 게임 + 패션/뷰티 + 디자인)</h4> -->
+                            <h4>문화/예술</h4>
+                            <div>
+                                <input class='domain_bttn' type='button' onclick='setheart("culture_art", -1)' value='-'/>
+                                <input class='domain_value' id='culture_art' type='number' placeholder='문화/예술' name='culture_art' value=0 disabled/>
+                                <input class='domain_bttn' type='button' onclick='setheart("culture_art", 1)' value='+'/>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="form_group_b">
+                        <div>
+                            <!-- <h4>교육 (도서 + 학습)</h4> -->
+                            <h4>교육</h4>
+                            <div>
+                                <input class='domain_bttn' type='button' onclick='setheart("education", -1)' value='-'/>
+                                <input class='domain_value' id='education' type='number' placeholder='교육' name='education' value=0 disabled/>
+                                <input class='domain_bttn' type='button' onclick='setheart("education", 1)' value='+'/>
+                            </div>
+                        </div>
+                        <div>
+                            <!-- <h4>사회 (연애 + 소셜 + 여행 + 교통 + 뉴스)</h4> -->
+                            <h4>사회</h4>
+                            <div>
+                                <input class='domain_bttn' type='button' onclick='setheart("society", -1)' value='-'/>
+                                <input class='domain_value' id='society' type='number' placeholder='사회' name='society' value=0 disabled/>
+                                <input class='domain_bttn' type='button' onclick='setheart("society", 1)' value='+'/>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <!-- <h4>기술 (자연, 화학, 공학)</h4> -->
+                            <h4>기술</h4>
+                            <div>
+                                <input class='domain_bttn' type='button' onclick='setheart("technology", -1)' value='-'/>
+                                <input class='domain_value' id='technology' type='number' placeholder='기술' name='technology' value=0 disabled/>
+                                <input class='domain_bttn' type='button' onclick='setheart("technology", 1)' value='+'/>
+                            </div>
+                        </div>    
+                    </div>
+                    <button type='submit'>다음</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
