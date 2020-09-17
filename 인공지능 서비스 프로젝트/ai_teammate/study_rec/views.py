@@ -140,7 +140,7 @@ def study_rec_list(request, customer_pk):
         recommend_customer_score_list.append(Score.objects.get(foreignkey=now_customer))
         recommend_customer_study_list.append(Study.objects.get(foreignkey=now_customer))
 
-        role_index = [
+        study_index = [
             "웹",
             "디자인",
             "머신러닝",
@@ -155,7 +155,7 @@ def study_rec_list(request, customer_pk):
             "추천",
             "강화학습",
         ]
-        role_values = [
+        study_values = [
             Study.objects.get(foreignkey=now_customer).web_hearts,
             Study.objects.get(foreignkey=now_customer).design_hearts,
             Study.objects.get(foreignkey=now_customer).machine_learning_hearts,
@@ -170,28 +170,37 @@ def study_rec_list(request, customer_pk):
             Study.objects.get(foreignkey=now_customer).rec_system_hearts,
             Study.objects.get(foreignkey=now_customer).reinforcement_hearts,
         ]
-        plt.figure(figsize=(5, 5))
+        color = [
+            "#F78181",
+            "#F79F81",
+            "#F7BE81",
+            "#F5DA81",
+            "#F3F781",
+            "#D8F781",
+            "#9FF781",
+            "#81F79F",
+            "#A9E2F3",
+            "#A9E2F3",
+            "#D0A9F5",
+            "#F5A9F2",
+            "#F781BE",
+        ]
+        study_index_after = []
+        study_values_after = []
+        color_after = []
+        for j in range(0, 13):
+            if int(study_values[j]) > 0:
+                study_index_after.append(study_index[j])
+                study_values_after.append(study_values[j])
+                color_after.append(color[j])
+        print(study_index_after)
+        plt.figure(figsize=(3, 3))
         plt.xticks(fontsize=8, rotation=90)
         plt.bar(
-            role_index,
-            role_values,
-            color=[
-                "#F78181",
-                "#F79F81",
-                "#F7BE81",
-                "#F5DA81",
-                "#F3F781",
-                "#D8F781",
-                "#9FF781",
-                "#81F79F",
-                "#A9E2F3",
-                "#A9E2F3",
-                "#D0A9F5",
-                "#F5A9F2",
-                "#F781BE",
-            ],
+            study_index_after,
+            study_values_after,
+            color=color_after,
             width=0.5,  # default: 0.8
-            align="edge",
         )
         plt.savefig(f"./static/study_graph_{i}.png")
 
