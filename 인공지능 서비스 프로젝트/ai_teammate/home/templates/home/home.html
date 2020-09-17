@@ -27,34 +27,31 @@
         <div id="main_article_top">
             <div id="main_intro_box">
                 <p class='main_intro'>Create your team</p>
-                <br>
-                <br>
                 <p class='main_intro'>Right now</p>
-                <br>
-                <br>
-                
                 <img id='main_line_type_A' src='{% static 'line_type_A.png' %}' />
 
-                <br>
-                <br>
                 {% if user.customer.study.get.study_sum != 10 %}
-                <p class="main_subtro" style="height:20px">
-                    선호스터디 설정이 제대로 이루어지지 않았습니다! <a href="{% url 'edit:study_edit' user.customer.pk%}" class="alert-link">수정하러가기</a>              
+                <p class="main_subtro">
+                    선호스터디 설정이 제대로 이루어지지 않았습니다! <a href="{% url 'edit:study_edit' user.customer.pk%}" class="alert-link">수정하기</a>              
                 </p>
-                {% elif user.customer.domain.get.domain_sum != 10 %}
-                <p class="main_subtro" style="height:20px">
-                    흥미도메인 설정이 제대로 이루어지지 않았습니다! <a href="{% url 'edit:domain_edit' user.customer.pk%}" class="alert-link">수정하러가기</a>         
+                {% endif %}
+                {% if user.customer.domain.get.domain_sum != 10 %}
+                <p class="main_subtro">
+                    흥미도메인 설정이 제대로 이루어지지 않았습니다! <a href="{% url 'edit:domain_edit' user.customer.pk%}" class="alert-link">수정하기</a>         
                 </p>
-                {% elif user.customer.score.get.score_sum == 0 %}
-                <p class="main_subtro" style="height:20px">
-                    실력 설정이 제대로 이루어지지 않았습니다! <a href="{% url 'edit:score_edit' user.customer.pk%}" class="alert-link">수정하러가기</a>               
+                {% endif %}
+                {% if user.customer.score.get.score_sum == 0 %}
+                <p class="main_subtro">
+                    실력 설정이 제대로 이루어지지 않았습니다! <a href="{% url 'edit:score_edit' user.customer.pk%}" class="alert-link">수정하기</a>               
                 </p>
-                {% elif user.customer.role.get.role_sum != 10 %}
-                <p class="main_subtro" style="height:20px">
-                    선호역할 설정이 제대로 이루어지지 않았습니다! <a href="{% url 'edit:role_edit' user.customer.pk%}" class="alert-link">수정하러가기</a>             
+                {% endif %}
+                {% if user.customer.role.get.role_sum != 10 %}
+                <p class="main_subtro">
+                    선호역할 설정이 제대로 이루어지지 않았습니다! <a href="{% url 'edit:role_edit' user.customer.pk%}" class="alert-link">수정하기</a>             
                 </p>
-                {% else %}
-                <p class="main_subtro" style="height:20px">
+                {% endif %}
+                {% if user.customer.study.get.study_sum == 10 and user.customer.score.get.score_sum != 0 and user.customer.domain.get.domain_sum == 10 and user.customer.role.get.role_sum == 10 %}
+                <p class="main_subtro">
                     최고의 팀메이트를 만나고, 원하는 기사를 읽어보세요!             
                 </p>
                 {% endif %}
