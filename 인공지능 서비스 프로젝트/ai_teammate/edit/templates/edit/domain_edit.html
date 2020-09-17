@@ -18,22 +18,22 @@
     {% csrf_token %}
     <h4>--------------------관심있는분야--------------------</h4>
       <h5>건강(스포츠+헬스+의료)</h5>
-      <input type='number' placeholder='건강' name='health' value='{{domain.health}}'/>
+      <input type='number' placeholder='건강' name='health' value='{{domain.health}}' min='0' max='10'/>
       <br/>
       <h5>경제 (금융 + 부동산 + 비즈니스)</h5>
-      <input type='number' placeholder='경제' name='economy' value='{{domain.economy}}'/>
+      <input type='number' placeholder='경제' name='economy' value='{{domain.economy}}' min='0' max='10'/>
       <br/>
       <h5>문화/예술 (음악 + 영화 + 게임 + 패션/뷰티 + 디자인)</h5>
-      <input type='number' placeholder='문화/예술' name='culture_art' value='{{domain.culture_art}}'/>
+      <input type='number' placeholder='문화/예술' name='culture_art' value='{{domain.culture_art}}' min='0' max='10'/>
       <br/>
       <h5>교육 (도서 + 학습)</h5>
-      <input type='number' placeholder='교육' name='education' value='{{domain.education}}'/>
+      <input type='number' placeholder='교육' name='education' value='{{domain.education}}' min='0' max='10'/>
       <br/>
       <h5>사회 (연애 + 소셜 + 여행 + 교통 + 뉴스)</h5>
-      <input type='number' placeholder='사회' name='society' value='{{domain.society}}'/>
+      <input type='number' placeholder='사회' name='society' value='{{domain.society}}' min='0' max='10'/>
       <br/>
       <h5>기술 (자연, 화학, 공학)</h5>
-      <input type='number' placeholder='기술' name='technology' value='{{domain.technology}}'/>
+      <input type='number' placeholder='기술' name='technology' value='{{domain.technology}}' min='0' max='10'/>
       <br/>
       <br/>
     <button type="submit">설문조사정보 수정하기</button>

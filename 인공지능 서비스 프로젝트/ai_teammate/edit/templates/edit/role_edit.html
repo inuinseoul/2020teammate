@@ -18,16 +18,16 @@
     {% csrf_token %}
     <h4>--------------------선호 역할--------------------</h4>
       <h5>데이터분석</h5>
-      <input type='number' placeholder='analysis_hearts' name='analysis_hearts' value='{{role.analysis_hearts}}'/>
+      <input type='number' placeholder='analysis_hearts' name='analysis_hearts' value='{{role.analysis_hearts}}' min='0' max='10'/>
       <br/>
       <h5>웹</h5>
-      <input type='number' placeholder='web_hearts' name='web_hearts' value='{{role.web_hearts}}'/>
+      <input type='number' placeholder='web_hearts' name='web_hearts' value='{{role.web_hearts}}' min='0' max='10'/>
       <br/>
       <h5>디자인</h5>
-      <input type='number' placeholder='design_hearts' name='design_hearts' value='{{role.design_hearts}}'/>
+      <input type='number' placeholder='design_hearts' name='design_hearts' value='{{role.design_hearts}}' min='0' max='10'/>
       <br/>
       <h5>모델링</h5>
-      <input type='number' placeholder='modeling_hearts' name='modeling_hearts' value='{{role.modeling_hearts}}'/>
+      <input type='number' placeholder='modeling_hearts' name='modeling_hearts' value='{{role.modeling_hearts}}' min='0' max='10'/>
       <br/>
       <br/>
     <button type="submit">설문조사정보 수정하기</button>

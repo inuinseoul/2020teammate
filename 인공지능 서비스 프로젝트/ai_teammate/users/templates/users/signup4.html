@@ -15,16 +15,16 @@
     <form action="{% url 'users:signup4' user.customer.pk %}" method='POST'>
         {% csrf_token %}
         <h4>데이터분석</h4>
-        <input type='number' placeholder='analysis_hearts' name='analysis_hearts' value=0 />
+        <input type='number' placeholder='analysis_hearts' name='analysis_hearts' value=0 min='0' max='10'/>
         <br/>
         <h4>웹</h4>
-        <input type='number' placeholder='web_hearts' name='web_hearts' value=0 />
+        <input type='number' placeholder='web_hearts' name='web_hearts' value=0 min='0' max='10'/>
         <br/>
         <h4>디자인</h4>
-        <input type='number' placeholder='design_hearts' name='design_hearts' value=0 />
+        <input type='number' placeholder='design_hearts' name='design_hearts' value=0 min='0' max='10'/>
         <br/>
         <h4>모델링</h4>
-        <input type='number' placeholder='modeling_hearts' name='modeling_hearts' value=0 />
+        <input type='number' placeholder='modeling_hearts' name='modeling_hearts' value=0 min='0' max='10'/>
         <br/>
         <br/>
         <button type="submit">enter</button>

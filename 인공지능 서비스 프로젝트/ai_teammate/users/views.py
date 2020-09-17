@@ -13,7 +13,7 @@ ERROR_MSG = {
 
 ERROR_MSG2 = {
     "error": "10개의 하트를 제대로 베팅하지않으셨습니다. 값을 다시확인해주세요!!",
-    "error2": "null값이 존재합니다. 입력값을 다시 확인해주세요!!",
+    "error2": "null값이 존재합니다. 입력값을 다시 한번 확인해주세요!!!"
 }
 
 # 회원가입
@@ -93,8 +93,7 @@ def signup2(request, customer_pk):
             and len(society)
             and len(technology)
         ):
-            if (
-                int(health)
+            if (int(health)
                 + int(economy)
                 + int(culture_art)
                 + int(education)

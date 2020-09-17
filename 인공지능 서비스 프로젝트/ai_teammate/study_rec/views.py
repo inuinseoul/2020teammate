@@ -5,6 +5,11 @@ from sklearn.metrics.pairwise import cosine_similarity
 from django_pandas.io import read_frame
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib import font_manager, rc
+
+font_name = font_manager.FontProperties(fname="c:/Windows/Fonts/malgun.ttf").get_name()
+rc("font", family=font_name)
 
 ###############################################################
 
@@ -134,6 +139,61 @@ def study_rec_list(request, customer_pk):
         recommend_customer_list.append(now_customer)
         recommend_customer_score_list.append(Score.objects.get(foreignkey=now_customer))
         recommend_customer_study_list.append(Study.objects.get(foreignkey=now_customer))
+
+        role_index = [
+            "웹",
+            "디자인",
+            "머신러닝",
+            "통계",
+            "딥러닝",
+            "알고리즘",
+            "NLP",
+            "파이썬",
+            "데이터",
+            "음성인식",
+            "비전",
+            "추천",
+            "강화학습",
+        ]
+        role_values = [
+            Study.objects.get(foreignkey=now_customer).web_hearts,
+            Study.objects.get(foreignkey=now_customer).design_hearts,
+            Study.objects.get(foreignkey=now_customer).machine_learning_hearts,
+            Study.objects.get(foreignkey=now_customer).statistics_hearts,
+            Study.objects.get(foreignkey=now_customer).deep_learning_hearts,
+            Study.objects.get(foreignkey=now_customer).algorithm_hearts,
+            Study.objects.get(foreignkey=now_customer).nlp_hearts,
+            Study.objects.get(foreignkey=now_customer).basic_python_hearts,
+            Study.objects.get(foreignkey=now_customer).data_analysis_hearts,
+            Study.objects.get(foreignkey=now_customer).voice_recog_hearts,
+            Study.objects.get(foreignkey=now_customer).computer_vision_hearts,
+            Study.objects.get(foreignkey=now_customer).rec_system_hearts,
+            Study.objects.get(foreignkey=now_customer).reinforcement_hearts,
+        ]
+        plt.figure(figsize=(5, 5))
+        plt.xticks(fontsize=8, rotation=90)
+        plt.bar(
+            role_index,
+            role_values,
+            color=[
+                "#F78181",
+                "#F79F81",
+                "#F7BE81",
+                "#F5DA81",
+                "#F3F781",
+                "#D8F781",
+                "#9FF781",
+                "#81F79F",
+                "#A9E2F3",
+                "#A9E2F3",
+                "#D0A9F5",
+                "#F5A9F2",
+                "#F781BE",
+            ],
+            width=0.5,  # default: 0.8
+            align="edge",
+        )
+        plt.savefig(f"./static/study_graph_{i}.png")
 
     context = {
         "recommend_customer_list": recommend_customer_list,
