@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeamMate</title>
+
+    <link rel='stylesheet' href='./signup5.css' />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel='stylesheet' type='text/css'>
+
+    <script type='text/javascript'>
+        function setheart(id, value) {
+            var el1 = document.getElementById('hearts');
+            var el2 = document.getElementById(id);
+
+            var hearts = Number(el1.textContent);
+            var select = Number(el2.value);
+            
+            if (value < 0) {
+                if ((select + value >= 0)) {
+                    el1.innerHTML = hearts - value;
+                    el2.value = select + value;
+                }
+            }
+            if (value > 0) {
+                if (hearts - value >= 0) {
+                    el1.innerHTML = hearts - value;
+                    el2.value = select + value;
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html, body {
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class='error' id='false'>id값을 true로 변경하면 경고창이 생깁니다</div>
+        <div id="area">
+            <div id="title">
+                <h1>Select your position</h1>
+                <p>선호하는 역할에 하트를 배팅해주세요</p>
+            </div>
+            <div id="form">
+                <form action="{% url 'users:signup4' user.customer.pk %}" method='POST'>
+                    <div id='heartbox'>
+                        <img src='../resource/heart.png' />
+                        <p id='hearts'>10</p>
+                    </div>
+                    <img id='line_type_A' src='../resource/line_type_A.png' />
+
+                    <div id="form_group">
+
+                        <div>
+                            <h4>데이터분석</h4>
+                            <div>
+                                <input class='bttn' type='button' onclick='setheart("analysis_hearts", -1)' value='-'/>
+                                <input class='value' id='analysis_hearts' type='number' name='analysis_hearts' value=0 disabled/>
+                                <input class='bttn' type='button' onclick='setheart("analysis_hearts", 1)' value='+'/>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4>웹</h4>
+                            <div>
+                                <input class='bttn' type='button' onclick='setheart("web_hearts", -1)' value='-'/>
+                                <input class='value' id='web_hearts' type='number' name='web_hearts' value=0 disabled/>
+                                <input class='bttn' type='button' onclick='setheart("web_hearts", 1)' value='+'/>
+                            </div>
+                        </div>
+                    
+                        <div>
+                            <h4>디자인</h4>
+                            <div>
+                                <input class='bttn' type='button' onclick='setheart("design_hearts", -1)' value='-'/>
+                                <input class='value' id='design_hearts' type='number' name='design_hearts' value=0 disabled/>
+                                <input class='bttn' type='button' onclick='setheart("design_hearts", 1)' value='+'/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4>모델링</h4>
+                            <div>
+                                <input class='bttn' type='button' onclick='setheart("modeling_hearts", -1)' value='-'/>
+                                <input class='value' id='modeling_hearts' type='number' name='modeling_hearts' value=0 disabled/>
+                                <input class='bttn' type='button' onclick='setheart("modeling_hearts", 1)' value='+'/>
+                            </div>
+                        </div>
+                    </div>
+                    <button type='submit'>다음</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

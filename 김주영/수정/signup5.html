@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeamMate</title>
+
+    <link rel='stylesheet' href='./signup5.css' />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel='stylesheet' type='text/css'>
+
+    <script type='text/javascript'>
+        function setheart(id, value) {
+            var el1 = document.getElementById('hearts');
+            var el2 = document.getElementById(id);
+
+            var hearts = Number(el1.textContent);
+            var select = Number(el2.value);
+            
+            if (value < 0) {
+                if ((select + value >= 0)) {
+                    el1.innerHTML = hearts - value;
+                    el2.value = select + value;
+                }
+            }
+            if (value > 0) {
+                if (hearts - value >= 0) {
+                    el1.innerHTML = hearts - value;
+                    el2.value = select + value;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <div class='error' id='false'>id값을 true로 변경하면 경고창이 생깁니다</div>
+        <div id="area">
+            <div id="title">
+                <h1>Select your position</h1>
+                <p>선호하는 역할에 하트를 배팅해주세요</p>
+            </div>
+            <div id="form">
+                <form action="{% url 'users:signup4' user.customer.pk %}" method='POST'>
+                    <div id='heartbox'>
+                        <img src='../resource/heart.png' />
+                        <p id='hearts'>10</p>
+                    </div>
+                    <img id='line_type_A' src='../resource/line_type_A.png' />
+                    
+                    <div id="form_group">
+
+                        <div>
+                            <h4>웹</h4>
+                            <div>
+                                <input class='bttn' type='button' onclick='setheart("web_hearts", -1)' value='-'/>
+                                <input class='value' id='web_hearts' type='number' name='web_hearts' value=0 disabled/>
+                                <input class='bttn' type='button' onclick='setheart("web_hearts", 1)' value='+'/>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4>디자인</h4>
+                            <div>
+                                <input class='bttn' type='button' onclick='setheart("design_hearts", -1)' value='-'/>
+                                <input class='value' id='design_hearts' type='number' name='design_hearts' value=0 disabled/>
+                                <input class='bttn' type='button' onclick='setheart("design_hearts", 1)' value='+'/>
+                            </div>
+                        </div>
+                    
+                        <div>
+                            <h4>머신러닝</h4>
+                            <div>
+                                <input class='bttn' type='button' onclick='setheart("machine_learning_hearts", -1)' value='-'/>
+                                <input class='value' id='machine_learning_hearts' type='number' name='machine_learning_hearts' value=0 disabled/>
+                                <input class='bttn' type='button' onclick='setheart("machine_learning_hearts", 1)' value='+'/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4>통계</h4>
+                            <div>
+                                <input class='bttn' type='button' onclick='setheart("statistics_hearts", -1)' value='-'/>
+                                <input class='value' id='statistics_hearts' type='number' name='statistics_hearts' value=0 disabled/>
+                                <input class='bttn' type='button' onclick='setheart("statistics_hearts", 1)' value='+'/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4>딥러닝</h4>
+                            <div>
+                                <input class='bttn' type='button' onclick='setheart("deep_learning_hearts", -1)' value='-'/>
+                                <input class='value' id='deep_learning_hearts' type='number' name='deep_learning_hearts' value=0 disabled/>
+                                <input class='bttn' type='button' onclick='setheart("deep_learning_hearts", 1)' value='+'/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4>알고리즘</h4>
+                            <div>
+                                <input class='bttn' type='button' onclick='setheart("algorithm_hearts", -1)' value='-'/>
+                                <input class='value' id='algorithm_hearts' type='number' name='algorithm_hearts' value=0 disabled/>
+                                <input class='bttn' type='button' onclick='setheart("algorithm_hearts", 1)' value='+'/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4>자연어처리</h4>
+                            <div>
+                                <input class='bttn' type='button' onclick='setheart("nlp_hearts", -1)' value='-'/>
+                                <input class='value' id='nlp_hearts' type='number' name='nlp_hearts' value=0 disabled/>
+                                <input class='bttn' type='button' onclick='setheart("nlp_hearts", 1)' value='+'/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4>파이썬 기초</h4>
+                            <div>
+                                <input class='bttn' type='button' onclick='setheart("basic_python_hearts", -1)' value='-'/>
+                                <input class='value' id='basic_python_hearts' type='number' name='basic_python_hearts' value=0 disabled/>
+                                <input class='bttn' type='button' onclick='setheart("basic_python_hearts", 1)' value='+'/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4>데이터분석</h4>
+                            <div>
+                                <input class='bttn' type='button' onclick='setheart("data_analysis_hearts", -1)' value='-'/>
+                                <input class='value' id='data_analysis_hearts' type='number' name='data_analysis_hearts' value=0 disabled/>
+                                <input class='bttn' type='button' onclick='setheart("data_analysis_hearts", 1)' value='+'/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4>음성인식</h4>
+                            <div>
+                                <input class='bttn' type='button' onclick='setheart("voice_recog_hearts", -1)' value='-'/>
+                                <input class='value' id='voice_recog_hearts' type='number' name='voice_recog_hearts' value=0 disabled/>
+                                <input class='bttn' type='button' onclick='setheart("voice_recog_hearts", 1)' value='+'/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4>컴퓨터비전</h4>
+                            <div>
+                                <input class='bttn' type='button' onclick='setheart("computer_vision_hearts", -1)' value='-'/>
+                                <input class='value' id='computer_vision_hearts' type='number' name='computer_vision_hearts' value=0 disabled/>
+                                <input class='bttn' type='button' onclick='setheart("computer_vision_hearts", 1)' value='+'/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4>추천시스템</h4>
+                            <div>
+                                <input class='bttn' type='button' onclick='setheart("rec_system_hearts", -1)' value='-'/>
+                                <input class='value' id='rec_system_hearts' type='number' name='rec_system_hearts' value=0 disabled/>
+                                <input class='bttn' type='button' onclick='setheart("rec_system_hearts", 1)' value='+'/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4>강화학습</h4>
+                            <div>
+                                <input class='bttn' type='button' onclick='setheart("reinforcement_hearts", -1)' value='-'/>
+                                <input class='value' id='reinforcement_hearts' type='number' name='reinforcement_hearts' value=0 disabled/>
+                                <input class='bttn' type='button' onclick='setheart("reinforcement_hearts", 1)' value='+'/>
+                            </div>
+                        </div>
+                    </div>
+                    <button type='submit'>다음</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
