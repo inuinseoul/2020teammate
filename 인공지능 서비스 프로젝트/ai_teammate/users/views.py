@@ -130,13 +130,13 @@ def signup2(request, customer_pk):
 def signup3(request, customer_pk):
     context = {"error": {"state": False, "msg": ""}}
     if request.method == "POST":
-        web = request.POST["web"]
-        design = request.POST["design"]
-        machine_learning = request.POST["machine_learning"]
-        statistics = request.POST["statistics"]
-        deep_learning = request.POST["deep_learning"]
-        algorithm = request.POST["algorithm"]
-        nlp = request.POST["nlp"]
+        web = request.POST["web"][:-2]
+        design = request.POST["design"][:-2]
+        machine_learning = request.POST["machine_learning"][:-2]
+        statistics = request.POST["statistics"][:-2]
+        deep_learning = request.POST["deep_learning"][:-2]
+        algorithm = request.POST["algorithm"][:-2]
+        nlp = request.POST["nlp"][:-2]
 
         if (
             len(web)
@@ -147,12 +147,12 @@ def signup3(request, customer_pk):
             and len(algorithm)
             and len(nlp)
         ):
-            data_score = round(int(web) * 0.5 + int(design) * 0.5)
+            data_score = round(float(web) * 0.5 + float(design) * 0.5)
             modeling_score = round(
-                int(machine_learning) * 0.25
-                + int(deep_learning) * 0.25
-                + int(algorithm) * 0.25
-                + int(nlp) * 0.25
+                float(machine_learning) * 0.25
+                + float(deep_learning) * 0.25
+                + float(algorithm) * 0.25
+                + float(nlp) * 0.25
             )
 
             customer = Customer.objects.get(pk=customer_pk)
@@ -167,15 +167,15 @@ def signup3(request, customer_pk):
                 nlp=nlp,
                 data_score=data_score,
                 modeling_score=modeling_score,
-                score_sum=int(web)
-                + int(design)
-                + int(machine_learning)
-                + int(statistics)
-                + int(deep_learning)
-                + int(algorithm)
-                + int(nlp)
-                + int(data_score)
-                + int(modeling_score),
+                score_sum=float(web)
+                + float(design)
+                + float(machine_learning)
+                + float(statistics)
+                + float(deep_learning)
+                + float(algorithm)
+                + float(nlp)
+                + float(data_score)
+                + float(modeling_score),
             )
 
             return render(request, "users/signup4.html")

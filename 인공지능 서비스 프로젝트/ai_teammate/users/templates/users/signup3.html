@@ -2,154 +2,108 @@
 
 {% block style %}
 <!--이 곳에 style에 해당하는 코드 (css파일 연결 등) 작성-->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<link rel='stylesheet' href='{% static 'signup3.css'%}' />
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel='stylesheet' type='text/css'>
 {% endblock %}
 
 {% block content %}
 <!--이 곳에 페이지의 내용 작성-->
-    <h1>분야별 수준을 알려주세요.</h1>
-    <br/>
-    {% if error.state %}
-        <h2>{{ error.msg }}</h2>
-    {%endif%}
-    <form action="{% url 'users:signup3' user.customer.pk%}" method='POST'>
-        {% csrf_token %}
-        <h4>web_score</h4>
-        <div class="Container">            						  
-            <input style = "width:50%;" class="slider_range1" type="range" value="1" min="1" max="10" step="1" name="web"></input>
-            <font size = 5 id = "slider_value_view1">1</font>						  
-        </div>
-        <br/>
-        <h4>design_score</h4>
-        <div class="Container">            						  
-            <input style = "width:50%;" class="slider_range2" type="range" value="1" min="1" max="10" step="1" name="design"></input>
-            <font size = 5 id = "slider_value_view2">1</font>						  
-        </div>
-        <br/>
-        <h4>machine_score</h4>
-        <div class="Container">            						  
-            <input style = "width:50%;" class="slider_range3" type="range" value="1" min="1" max="10" step="1" name="machine_learning"></input>
-            <font size = 5 id = "slider_value_view3">1</font>						  
-        </div>
-        <br/>
-        <h4>statistics_score</h4>
-        <div class="Container">            						  
-            <input style = "width:50%;" class="slider_range4" type="range" value="1" min="1" max="10" step="1" name="statistics"></input>
-            <font size = 5 id = "slider_value_view4">1</font>						  
-        </div>
-        <br/>
-        <h4>deep_learning_score</h4>
-        <div class="Container">            						  
-            <input style = "width:50%;" class="slider_range5" type="range" value="1" min="1" max="10" step="1" name="deep_learning"></input>
-            <font size = 5 id = "slider_value_view5">1</font>						  
-        </div>
-        <br/>
-        <h4>algorithm_score</h4>
-        <div class="Container">            						  
-            <input style = "width:50%;" class="slider_range6" type="range" value="1" min="1" max="10" step="1" name="algorithm"></input>
-            <font size = 5 id = "slider_value_view6">1</font>						  
-        </div>
-        <br/>
-        <h4>nlp_score</h4>
-        <div class="Container">            						  
-            <input style = "width:50%;" class="slider_range7" type="range" value="1" min="1" max="10" step="1" name="nlp"></input>
-            <font size = 5 id = "slider_value_view7">1</font>						  
-        </div>
-        <br/>
-        <br/>
-        <button type="submit">다음</button>
-    </form>
+    <div id="score_container">
+        <div id="score_area">
+            <div id="score_title">
+                <h1>Enter yout score</h1>
+                <p>드래그 하여 분야별 수준을 알려주세요</p>
+            </div>
+            
+            <div id="score_form">
+                <form action="{% url 'users:signup3' user.customer.pk%}" method='POST'>
+                {% csrf_token %}
+                    <div>
+                        <h4>웹</h4>
+                        <div class='score_question'>
+                            <p>모름</p>
+                            <p>기본 문법</p>
+                            <p>간단한 응용</p>
+                            <p>소규모 프로젝트</p>
+                            <p>서비스 구현</p>
+                        </div>
+                        <input style = "width:100%;" class="slider_range1" type="range" value="1" min="1" max="10" step="0.001" name="web"></input>
+                    </div>
+                    
+                    <div>
+                        <h4>디자인</h4>
+                        <div class='score_question'>
+                            <p>모름</p>
+                            <p>기본 문법</p>
+                            <p>간단한 응용</p>
+                            <p>소규모 프로젝트</p>
+                            <p>서비스 구현</p>
+                        </div>
+                        <input style = "width:100%;" class="slider_range2" type="range" value="1" min="1" max="10" step="0.001" name="design"></input>	
+                    </div>
 
-    <script language = "javascript">
-    function ShowSliderValue1(sVal)
-    {	var obValueView = document.getElementById("slider_value_view1");
-        obValueView.innerHTML = sVal
-    }
-    var RangeSlider1 = function(){
-        var range = $('.slider_range1');
-        
-        range.on('input', function(){		
-            ShowSliderValue1(this.value);
-        });
-    };
-    RangeSlider1();
+                    <div>
+                        <h4>머신러닝</h4>
+                        <div class='score_question'>
+                            <p>모름</p>
+                            <p>기본 문법</p>
+                            <p>간단한 응용</p>
+                            <p>소규모 프로젝트</p>
+                            <p>서비스 구현</p>
+                        </div>
+                        <input style = "width:100%;" class="slider_range3" type="range" value="1" min="1" max="10" step="0.001" name="machine_learning"></input>	
+                    </div>
 
-    function ShowSliderValue2(sVal)
-    {	var obValueView = document.getElementById("slider_value_view2");
-        obValueView.innerHTML = sVal
-    }
-    var RangeSlider2 = function(){
-        var range = $('.slider_range2');
-        
-        range.on('input', function(){		
-            ShowSliderValue2(this.value);
-        });
-    };
-    RangeSlider2();
+                    <div>
+                        <h4>통계</h4>
+                        <div class='score_question'>
+                            <p>모름</p>
+                            <p>기본 문법</p>
+                            <p>간단한 응용</p>
+                            <p>소규모 프로젝트</p>
+                            <p>서비스 구현</p>
+                        </div>
+                        <input style = "width:100%;" class="slider_range4" type="range" value="1" min="1" max="10" step="0.001" name="statistics"></input>	
+                    </div>
 
-    function ShowSliderValue3(sVal)
-    {	var obValueView = document.getElementById("slider_value_view3");
-        obValueView.innerHTML = sVal
-    }
-    var RangeSlider3 = function(){
-        var range = $('.slider_range3');
-        
-        range.on('input', function(){		
-            ShowSliderValue3(this.value);
-        });
-    };
-    RangeSlider3();
+                    <div>
+                        <h4>딥러닝</h4>
+                        <div class='score_question'>
+                            <p>모름</p>
+                            <p>기본 문법</p>
+                            <p>간단한 응용</p>
+                            <p>소규모 프로젝트</p>
+                            <p>서비스 구현</p>
+                        </div>
+                        <input style = "width:100%;" class="slider_range5" type="range" value="1" min="1" max="10" step="0.001" name="deep_learning"></input>
+                    </div>
 
-    function ShowSliderValue4(sVal)
-    {	var obValueView = document.getElementById("slider_value_view4");
-        obValueView.innerHTML = sVal
-    }
-    var RangeSlider4 = function(){
-        var range = $('.slider_range4');
-        
-        range.on('input', function(){		
-            ShowSliderValue4(this.value);
-        });
-    };
-    RangeSlider4();
+                    <div>
+                        <h4>알고리즘</h4>
+                        <div class='score_question'>
+                            <p>모름</p>
+                            <p>기본 문법</p>
+                            <p>간단한 응용</p>
+                            <p>소규모 프로젝트</p>
+                            <p>서비스 구현</p>
+                        </div>
+                        <input style = "width:100%;" class="slider_range6" type="range" value="1" min="1" max="10" step="0.001" name="algorithm"></input>
+                    </div>
 
-    function ShowSliderValue5(sVal)
-    {	var obValueView = document.getElementById("slider_value_view5");
-        obValueView.innerHTML = sVal
-    }
-    var RangeSlider5 = function(){
-        var range = $('.slider_range5');
-        
-        range.on('input', function(){		
-            ShowSliderValue5(this.value);
-        });
-    };
-    RangeSlider5();
-
-    function ShowSliderValue6(sVal)
-    {	var obValueView = document.getElementById("slider_value_view6");
-        obValueView.innerHTML = sVal
-    }
-    var RangeSlider6 = function(){
-        var range = $('.slider_range6');
-        
-        range.on('input', function(){		
-            ShowSliderValue6(this.value);
-        });
-    };
-    RangeSlider6();
-
-    function ShowSliderValue7(sVal)
-    {	var obValueView = document.getElementById("slider_value_view7");
-        obValueView.innerHTML = sVal
-    }
-    var RangeSlider7 = function(){
-        var range = $('.slider_range7');
-        
-        range.on('input', function(){		
-            ShowSliderValue7(this.value);
-        });
-    };
-    RangeSlider7();
-    </script>
+                    <div>
+                        <h4>자연어처리</h4>
+                        <div class='score_question'>
+                            <p>모름</p>
+                            <p>기본 문법</p>
+                            <p>간단한 응용</p>
+                            <p>소규모 프로젝트</p>
+                            <p>서비스 구현</p>
+                        </div>
+                        <input style = "width:100%;" class="slider_range7" type="range" value="1" min="1" max="10" step="0.001" name="nlp"></input>	
+                    </div>
+                    <button type="submit">다음</button>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock %}
