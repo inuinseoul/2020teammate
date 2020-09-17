@@ -61,6 +61,7 @@ def team_rec_list(request, customer_pk):
         recommend_customer_domain_list.append(
             Domain.objects.get(foreignkey=now_customer)
         )
+
         domain_index = [
             "건강",
             "경제",
@@ -78,14 +79,29 @@ def team_rec_list(request, customer_pk):
             Domain.objects.get(foreignkey=now_customer).technology,
         ]
         plt.figure(figsize=(3, 3))
-        plt.ylim(0, 10)
         plt.bar(
             domain_index,
             domain_values,
-            color=["#F78181", "#F79F81", "#F7BE81", "#F5DA81", "#F3F781", "#D8F781"],
+            color=["#F7BE81", "#F5DA81", "#F3F781", "#D8F781", "#9FF781", "#81F79F"],
         )
-        # plt.savefig(f"./static/domain_graph_{i}.png")
+        plt.savefig(f"./static/domain_graph_{i}.png")
+
         recommend_customer_role_list.append(Role.objects.get(foreignkey=now_customer))
+
+        role_index = ["데이터", "웹", "디자인", "모델링"]
+        role_values = [
+            Role.objects.get(foreignkey=now_customer).analysis_hearts,
+            Role.objects.get(foreignkey=now_customer).web_hearts,
+            Role.objects.get(foreignkey=now_customer).design_hearts,
+            Role.objects.get(foreignkey=now_customer).modeling_hearts,
+        ]
+        plt.figure(figsize=(3, 3))
+        plt.bar(
+            role_index,
+            role_values,
+            color=["#F78181", "#A9E2F3", "#D0A9F5", "#F5A9F2"],
+        )
+        plt.savefig(f"./static/role_graph_{i}.png")
 
     context = {
         "recommend_customer_list": recommend_customer_list,
