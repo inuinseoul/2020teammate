@@ -1,103 +1,100 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeamMate</title>
 
-{% block title %}
-<title>설문정보 수정</title>
-{% endblock %}
+    <link rel='stylesheet' href='./css/edit.css' />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel='stylesheet' type='text/css'>
 
-{% block style %}
-<!--이 곳에 style에 해당하는 코드 (css파일 연결 등) 작성-->
-<link rel='stylesheet' href='{% static 'edit.css' %}' />
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+        function setheart(id, value) {
+            var el1 = document.getElementById('hearts');
+            var el2 = document.getElementById(id);
 
-<script type='text/javascript'>
-    function setheart(id, value) {
-        var el1 = document.getElementById('hearts');
-        var el2 = document.getElementById(id);
-
-        var hearts = Number(el1.textContent);
-        var select = Number(el2.value);
-        
-        if (value < 0) {
-            if ((select + value >= 0)) {
-                el1.innerHTML = hearts - value;
-                el2.value = select + value;
+            var hearts = Number(el1.textContent);
+            var select = Number(el2.value);
+            
+            if (value < 0) {
+                if ((select + value >= 0)) {
+                    el1.innerHTML = hearts - value;
+                    el2.value = select + value;
+                }
+            }
+            if (value > 0) {
+                if (hearts - value >= 0) {
+                    el1.innerHTML = hearts - value;
+                    el2.value = select + value;
+                }
             }
         }
-        if (value > 0) {
-            if (hearts - value >= 0) {
-                el1.innerHTML = hearts - value;
-                el2.value = select + value;
-            }
+    </script>
+
+    <style>
+
+        /* .form_input {
+            margin-top: 3%;
+            margin-bottom: 3%;
+        } */
+        .form_button {
+            margin-top: 6%;
+            margin-bottom: 20%;
         }
-    }
-</script>
 
-<style>
+        #line_type_A { width: 90%; margin-bottom: 5%;}
 
-    /* .form_input {
-        margin-top: 3%;
-        margin-bottom: 3%;
-    } */
-    .form_button {
-        margin-top: 6%;
-        margin-bottom: 20%;
-    }
+        #right_title {
+            margin-top: 20%;
 
-    #line_type_A { width: 90%; margin-bottom: 5%; margin-top: 3%;}
+            width: 100%;
+            
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            /* background-color: red; */
+        }
+        #right_title > h2 { font-size: 30px; }
+        #right_title > img { width: 35px; margin-left: 40px; margin-right: 10px;}
 
-    #right_title {
-        margin-top: 20%;
+        .form_value {
+            width: 90%;
+            height: 90px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .form_value > h4 { font-size: 20px; }
+        .value {
+            width: 45px;
+            height: 27px;
+            font-size: 23px;
+            border-radius: 0px;
+            text-align: center;
+            background-color: white;
+        }
+        .bttn {
+            height: 30px;
+            width: 30px;
+            font-size: 20px;
+            font-weight: bold;
+        }
 
-        width: 100%;
-        
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-        /* background-color: red; */
-    }
-    #right_title > h2 { font-size: 30px; font-weight: bold; }
-    #right_title > img { width: 35px; margin-left: 40px; margin-right: 10px;}
-
-    .form_value {
-        width: 90%;
-        height: 90px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .form_value > h4 { font-size: 20px; font-weight: bold; }
-    .value {
-        width: 45px;
-        height: 27px;
-        font-size: 23px;
-        border-radius: 0px;
-        text-align: center;
-        background-color: white;
-    }
-    .bttn {
-        height: 30px;
-        width: 30px;
-        font-size: 20px;
-        font-weight: bold;
-    }
-
-</style>
-{% endblock %}
-
-{% block content %}
-<!--이 곳에 페이지의 내용 작성-->
+    </style>
+</head>
+<body>
     <div id="main">
         <div id="header">
-            <h1><a href='{% url 'home' %}'>TeamMate</a></h1>
+            <h1><a href='#'>TeamMate</a></h1>
 
             <div>
-                <a href='{% url 'edit:domain_edit' user.customer.pk %}'>흥미</a>
-                <a href='{% url 'edit:role_edit' user.customer.pk %}'>역할</a>
-                <a href='{% url 'edit:score_edit' user.customer.pk %}'>실력</a>
-                <a href='{% url 'edit:info_edit' user.customer.pk %}'>개인정보</a>
-                <a href='{% url 'edit:study_edit' user.customer.pk %}'>스터디</a>
+                <a href='#'>흥미</a>
+                <a href='#'>역할</a>
+                <a href='#'>실력</a>
+                <a href='#'>개인정보</a>
+                <a href='#'>스터디</a>
             </div>
         </div>
         <div id="err">
@@ -108,10 +105,10 @@
                 
                 <div id='right_title'>
                     <h2>역할 배팅 수정</h2>
-                    <img src='{% static 'heart.png' %}' />
+                    <img src='../resource/heart.png' />
                     <h2 id='hearts'>10</h2>
                 </div>
-                <img id='line_type_A' src='{% static 'line_type_A.png' %}' />
+                <img id='line_type_A' src='../resource/line_type_A.png' />
                 
                 <form action="{% url 'edit:study_edit' customer.pk %}" method = 'POST'>
 
@@ -242,8 +239,9 @@
                 </form>
             </div>
             <div id="left">
-                <img src='{% static 'info_edit.png' %}' />
+                <img src='../resource/info_edit.png' />
             </div>
         </div>
     </div>
-{% endblock %}
+</body>
+</html>
