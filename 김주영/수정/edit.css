@@ -21,6 +21,21 @@ html, body {
     /* background-color: wheat; */
 }
 
+/*
+
+
+에러 처리
+
+
+*/
+#err {
+    margin-top: 6%;
+    /* background-color: aquamarine; */
+    position: absolute;
+    opacity: 0.7;
+}
+
+
 /* 
 
 
@@ -40,7 +55,7 @@ html, body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
 
     /* background-color: pink; */
 }
@@ -53,21 +68,21 @@ html, body {
     align-items: center;
 }
 
-
 #header > h1 > a, #header > div > a:link { text-decoration: none; }
 #header > h1 > a, #header > div > a:hover { text-decoration: none; }
 #header > h1 > a, #header > div > a:visited { text-decoration: none; }
 #header > h1 > a, #header > div > a { color: black; text-decoration: none; }
 #header > h1 > a {
     color: #ee624d; 
+    font-weight: 900;
 }
 
 #header > div > a:nth-last-child(1) {
     margin-left: 5%;
     color: white; 
     text-align: center;
-
-    padding: 5px 25px 7px 25px;
+    width: 125px;
+    padding: 5px 15px 7px 15px;
     background-color: #ffbbb1;
     border-radius: 100px;
 }
@@ -106,6 +121,7 @@ html, body {
 #right > h2 {
     margin-top: 20%;
     font-size: 30px;
+    font-weight: 900;
 }
 #right > form { 
     width: 100%; 
@@ -122,12 +138,16 @@ html, body {
 }
 #left > img {
     margin-top: 20%;
-    width: 100%;
-    /* position: fixed; */
+    /* background-color: aquamarine; */
+    /* width: 100%; */
+    position: fixed;
+    height: 80%;
+    bottom: 0%;
 }
 
 .button_square {
     font-size: 20px;
+    font-weight: bold;
     color: white;
     padding: 7px 25px 7px 25px;
     background-color: #ffbbb1;
