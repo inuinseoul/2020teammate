@@ -135,6 +135,7 @@ def study_rec_list(request, customer_pk):
     recommend_pk_list = df0.iloc[recommend_id_list].id
 
     recommend_customer_list = []
+    recommend_customer_list_already = []
     recommend_customer_length = len(recommend_pk_list)
     if len(recommend_pk_list) <= 5:
         recommend_pk_list = recommend_pk_list
@@ -145,7 +146,10 @@ def study_rec_list(request, customer_pk):
 
     for i in recommend_pk_list:
         now_customer = Customer.objects.get(pk=int(i))
-        recommend_customer_list.append(now_customer)
+        if now_customer.study_state == 1:
+            recommend_customer_list_already.append(now_customer)
+        else:
+            recommend_customer_list.append(now_customer)
 
         study_index = [
             "웹",
@@ -210,7 +214,7 @@ def study_rec_list(request, customer_pk):
             width=0.5,  # default: 0.8
         )
         plt.savefig(f"./static/study_graph_{i}.png")
-
+    recommend_customer_list = recommend_customer_list + recommend_customer_list_already
     context = {
         "recommend_customer_list": recommend_customer_list,
         "page": page,

@@ -32,13 +32,13 @@
       <tr>
         <th style="width: 20%" scope="col">추천 순위</th>
         <th style="width: 20%" scope="col">이름</th>
-        <th style="width: 40%" scope="col">스터디선호도</th>
+        <th style="width: 30%" scope="col">스터디선호도</th>
+        <th style="width: 10%" scope="col">스터디여부</th>
         <th style="width: 20%" scope="col">신청</th>
       </tr>
     </thead>
     <tbody class="text-center">
       {% for customer in recommend_customer_list %}
-      {% if customer.study_state == 0%}
       <div class="modal fade" id="exampleModal{{customer.pk}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -65,12 +65,12 @@
        <tr>
         <th class="align-middle" style="width: 20%" scope="row">{{forloop.counter}}</th>
         <td class="align-middle" style="width: 20%">{{customer.name}}</td>
-        <td style="width: 40%"><img src="/static/study_graph_{{customer.pk}}.png" alt=""></td>
+        <td style="width: 30%"><img src="/static/study_graph_{{customer.pk}}.png" alt=""></td>
+        <td class="align-middle" style="width: 10%">{{customer.study_state}}</td>
         <td class="align-middle" style="width: 20%">
           <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal{{customer.pk}}">스터디메이트 요청</a>
         </td>
-      </tr>    
-      {%endif%}   
+      </tr>  
       {% endfor %}
     </tbody>
   </table>
