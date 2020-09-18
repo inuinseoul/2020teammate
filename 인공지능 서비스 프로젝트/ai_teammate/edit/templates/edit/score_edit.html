@@ -11,6 +11,29 @@
 
 {% block content %}
 <!--이 곳에 페이지의 내용 작성-->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background:#ffbbb1;">
+    <a class="navbar-brand" href="{% url 'home' %}" >Teammate</a>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'edit:info_edit' user.pk %}">개인정보</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'edit:domain_edit' user.customer.pk %}">흥미 설문</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link active" href="{% url 'edit:score_edit' user.customer.pk %}">실력 설문</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'edit:role_edit' user.customer.pk %}">역할 설문</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'edit:study_edit' user.customer.pk %}">스터디 설문</a>
+        </li>
+      </ul>
+      <a class="nav-link my-2 my-sm-0" style="color:white;" href="{% url 'users:logout' %}">signout</a>
+    </div>
+  </nav>
   <h1>내 정보</h1>
   {% if error.state %}
     <h2>{{ error.msg }}</h2>
@@ -65,9 +88,6 @@
     <button type="submit">설문조사정보 수정하기</button>
   </form>
   <br/>
-  <form action="{% url 'edit:edit' customer.pk %}">
-  <button type="submit">뒤로가기</button>
-  </form>
 
     <script language = "javascript">
     function ShowSliderValue1(sVal)

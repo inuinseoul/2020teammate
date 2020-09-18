@@ -7,7 +7,7 @@
 {% block style %}
 <!--이 곳에 style에 해당하는 코드 (css파일 연결 등) 작성-->
 <link rel='stylesheet' href='{% static 'mainhome.css' %}'/>
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel='stylesheet' type='text/css'/>
 {% endblock %}
 
 {% block content %}
@@ -20,7 +20,7 @@
             <div id='main_header_right'>
                 <a href='#' class='main_navi'></a>
                 <a href='{% url 'alarm:alarm_list' user.customer.pk %}' class='main_navi'>notice</a>
-                <a href='{% url 'edit:edit' user.customer.pk %}' class='main_navi'>mypage</a>
+                <a href='{% url 'edit:info_edit' user.customer.pk %}' class='main_navi'>mypage</a>
                 <a href='{% url 'users:logout' %}' id='main_signout'>signout</a>
             </div>
         </div>
