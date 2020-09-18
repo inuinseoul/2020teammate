@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>설문정보 수정</title>
+{% endblock %}
+
+{% block style %}
+<!--이 곳에 style에 해당하는 코드 (css파일 연결 등) 작성-->
+{% endblock %}
+
+{% block content %}
+<!--이 곳에 페이지의 내용 작성-->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background:#ffbbb1;">
+    <a class="navbar-brand" href="{% url 'home' %}" >Teammate</a>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'edit:info_edit' user.customer.pk %}">개인정보</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'edit:domain_edit' user.customer.pk %}">흥미 설문</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'edit:score_edit' user.customer.pk %}">실력 설문</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'edit:role_edit' user.customer.pk %}">역할 설문</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link active" href="{% url 'edit:study_edit' user.customer.pk %}">스터디 설문</a>
+        </li>
+      </ul>
+      <a class="nav-link my-2 my-sm-0" style="color:white;" href="{% url 'users:logout' %}">signout</a>
+    </div>
+  </nav>
+
+  <h1>내 정보</h1>
+  {% if error.state %}
+    <h2>{{ error.msg }}</h2>
+  {%endif%}
+  <form action="{% url 'edit:study_edit' customer.pk %}" method = 'POST'>
+    {% csrf_token %}
+    <h4>--------------------선호 스터디--------------------</h4>
+      <h5>웹</h5>
+      <input type='number' placeholder='web_hearts' name='web_hearts' value='{{study.web_hearts}}' min='0' max='10'/>
+      <br/>
+      <h5>디자인</h5>
+      <input type='number' placeholder='design_hearts' name='design_hearts' value='{{study.design_hearts}}' min='0' max='10'/>
+      <br/>
+      <h5>머신러닝</h5>
+      <input type='number' placeholder='machine_learning_hearts' name='machine_learning_hearts' value='{{study.machine_learning_hearts}}' min='0' max='10'/>
+      <br/>
+      <h5>통계</h5>
+      <input type='number' placeholder='statistics_hearts' name='statistics_hearts' value='{{study.statistics_hearts}}' min='0' max='10'/>
+      <br/>
+      <h5>딥러닝</h5>
+      <input type='number' placeholder='deep_learning_hearts' name='deep_learning_hearts' value='{{study.deep_learning_hearts}}' min='0' max='10'/>
+      <br/>
+      <h5>알고리즘</h5>
+      <input type='number' placeholder='algorithm_hearts' name='algorithm_hearts' value='{{study.algorithm_hearts}}' min='0' max='10'/>
+      <br/>
+      <h5>자연어처리</h5>
+      <input type='number' placeholder='nlp_hearts' name='nlp_hearts' value='{{study.nlp_hearts}}' min='0' max='10'/>
+      <br/>
+      <h5>기초파이썬</h5>
+      <input type='number' placeholder='basic_python_hearts' name='basic_python_hearts' value='{{study.basic_python_hearts}}' min='0' max='10'/>
+      <br/>
+      <h5>데이터분석</h5>
+      <input type='number' placeholder='data_analysis_hearts' name='data_analysis_hearts' value='{{study.data_analysis_hearts}}' min='0' max='10'/>
+      <br/>
+      <h5>음성인식</h5>
+      <input type='number' placeholder='voice_recog_hearts' name='voice_recog_hearts' value='{{study.voice_recog_hearts}}' min='0' max='10'/>
+      <br/>
+      <h5>컴퓨터비전</h5>
+      <input type='number' placeholder='computer_vision_hearts' name='computer_vision_hearts' value='{{study.computer_vision_hearts}}' min='0' max='10'/>
+      <br/>
+      <h5>추천시스템</h5>
+      <input type='number' placeholder='rec_system_hearts' name='rec_system_hearts' value='{{study.rec_system_hearts}}' min='0' max='10'/>
+      <br/>
+      <h5>강화학습</h5>
+      <input type='number' placeholder='reinforcement_hearts' name='reinforcement_hearts' value='{{study.reinforcement_hearts}}' min='0' max='10'/>
+      <br/>
+    <button type="submit">설문조사정보 수정하기</button>
+  </form>
+  <br/>
+{% endblock %}

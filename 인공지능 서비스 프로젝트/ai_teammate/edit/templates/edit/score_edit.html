@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>설문정보 수정</title>
+{% endblock %}
+
+{% block style %}
+<!--이 곳에 style에 해당하는 코드 (css파일 연결 등) 작성-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<!--이 곳에 페이지의 내용 작성-->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background:#ffbbb1;">
+    <a class="navbar-brand" href="{% url 'home' %}" >Teammate</a>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'edit:info_edit' user.customer.pk %}">개인정보</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'edit:domain_edit' user.customer.pk %}">흥미 설문</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link active" href="{% url 'edit:score_edit' user.customer.pk %}">실력 설문</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'edit:role_edit' user.customer.pk %}">역할 설문</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'edit:study_edit' user.customer.pk %}">스터디 설문</a>
+        </li>
+      </ul>
+      <a class="nav-link my-2 my-sm-0" style="color:white;" href="{% url 'users:logout' %}">signout</a>
+    </div>
+  </nav>
+  <h1>내 정보</h1>
+  {% if error.state %}
+    <h2>{{ error.msg }}</h2>
+  {%endif%}
+  <form action="{% url 'edit:score_edit' customer.pk %}" method = 'POST'>
+    {% csrf_token %}
+    <h4>--------------------분야별 수준--------------------</h4>
+      <h4>web_score</h4>
+      <div class="Container" >            						  
+          <input style = "width:50%;" class="slider_range1" type="range" value="{{score.web}}" min="1" max="10" step="1" name="web"></input>
+          <font size = 5 id = "slider_value_view1">{{score.web}}</font>						  
+      </div>
+      <br/>
+      <h4>design_score</h4>
+      <div class="Container" >            						  
+          <input style = "width:50%;" class="slider_range2" type="range" value="{{score.design}}" min="1" max="10" step="1" name="design"></input>
+          <font size = 5 id = "slider_value_view2">{{score.design}}</font>						  
+      </div>
+      <br/>
+      <h4>machine_score</h4>
+      <div class="Container" >            						  
+          <input style = "width:50%;" class="slider_range3" type="range" value="{{score.machine_learning}}" min="1" max="10" step="1" name="machine_learning"></input>
+          <font size = 5 id = "slider_value_view3">{{score.machine_learning}}</font>						  
+      </div>
+      <br/>
+      <h4>statistics_score</h4>
+      <div class="Container" >            						  
+          <input style = "width:50%;" class="slider_range4" type="range" value="{{score.statistics}}" min="1" max="10" step="1" name="statistics"></input>
+          <font size = 5 id = "slider_value_view4">{{score.statistics}}</font>						  
+      </div>
+      <br/>
+      <h4>deep_learning_score</h4>
+      <div class="Container" >            						  
+          <input style = "width:50%;" class="slider_range5" type="range" value="{{score.deep_learning}}" min="1" max="10" step="1" name="deep_learning"></input>
+          <font size = 5 id = "slider_value_view5">{{score.deep_learning}}</font>						  
+      </div>
+      <br/>
+      <h4>algorithm_score</h4>
+      <div class="Container" >            						  
+          <input style = "width:50%;" class="slider_range6" type="range" value="{{score.algorithm}}" min="1" max="10" step="1" name="algorithm"></input>
+          <font size = 5 id = "slider_value_view6">{{score.algorithm}}</font>						  
+      </div>
+      <br/>
+      <h4>nlp_score</h4>
+      <div class="Container" >            						  
+          <input style = "width:50%;" class="slider_range7" type="range" value="{{score.nlp}}" min="1" max="10" step="1" name="nlp"></input>
+          <font size = 5 id = "slider_value_view7">{{score.nlp}}</font>						  
+      </div>
+      <br/>
+      <h5>※ 데이터점수 = 웹*0.5 + 디자인*0.5</h5>
+      <h5>※ 모델링점수 = 머신러닝*0.25 + 딥러닝*0.25 + 알고리즘*0.25 + NLP*0.25</h5>
+    <button type="submit">설문조사정보 수정하기</button>
+  </form>
+  <br/>
+
+    <script language = "javascript">
+    function ShowSliderValue1(sVal)
+    {	var obValueView = document.getElementById("slider_value_view1");
+        obValueView.innerHTML = sVal
+    }
+    var RangeSlider1 = function(){
+        var range = $('.slider_range1');
+        
+        range.on('input', function(){		
+            ShowSliderValue1(this.value);
+        });
+    };
+    RangeSlider1();
+
+    function ShowSliderValue2(sVal)
+    {	var obValueView = document.getElementById("slider_value_view2");
+        obValueView.innerHTML = sVal
+    }
+    var RangeSlider2 = function(){
+        var range = $('.slider_range2');
+        
+        range.on('input', function(){		
+            ShowSliderValue2(this.value);
+        });
+    };
+    RangeSlider2();
+
+    function ShowSliderValue3(sVal)
+    {	var obValueView = document.getElementById("slider_value_view3");
+        obValueView.innerHTML = sVal
+    }
+    var RangeSlider3 = function(){
+        var range = $('.slider_range3');
+        
+        range.on('input', function(){		
+            ShowSliderValue3(this.value);
+        });
+    };
+    RangeSlider3();
+
+    function ShowSliderValue4(sVal)
+    {	var obValueView = document.getElementById("slider_value_view4");
+        obValueView.innerHTML = sVal
+    }
+    var RangeSlider4 = function(){
+        var range = $('.slider_range4');
+        
+        range.on('input', function(){		
+            ShowSliderValue4(this.value);
+        });
+    };
+    RangeSlider4();
+
+    function ShowSliderValue5(sVal)
+    {	var obValueView = document.getElementById("slider_value_view5");
+        obValueView.innerHTML = sVal
+    }
+    var RangeSlider5 = function(){
+        var range = $('.slider_range5');
+        
+        range.on('input', function(){		
+            ShowSliderValue5(this.value);
+        });
+    };
+    RangeSlider5();
+
+    function ShowSliderValue6(sVal)
+    {	var obValueView = document.getElementById("slider_value_view6");
+        obValueView.innerHTML = sVal
+    }
+    var RangeSlider6 = function(){
+        var range = $('.slider_range6');
+        
+        range.on('input', function(){		
+            ShowSliderValue6(this.value);
+        });
+    };
+    RangeSlider6();
+
+    function ShowSliderValue7(sVal)
+    {	var obValueView = document.getElementById("slider_value_view7");
+        obValueView.innerHTML = sVal
+    }
+    var RangeSlider7 = function(){
+        var range = $('.slider_range7');
+        
+        range.on('input', function(){		
+            ShowSliderValue7(this.value);
+        });
+    };
+    RangeSlider7();
+    </script>
+{% endblock %}

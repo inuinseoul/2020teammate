@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>기본정보 수정</title>
+{% endblock %}
+
+{% block style %}
+<!--이 곳에 style에 해당하는 코드 (css파일 연결 등) 작성-->
+{% endblock %}
+
+{% block content %}
+<!--이 곳에 페이지의 내용 작성-->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background:#ffbbb1;">
+    <a class="navbar-brand" href="{% url 'home' %}" >Teammate</a>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item justify-content-end">
+          <a class="nav-link active" href="{% url 'edit:info_edit' user.customer.pk %}">개인정보</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'edit:domain_edit' user.customer.pk %}">흥미 설문</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'edit:score_edit' user.customer.pk %}">실력 설문</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'edit:role_edit' user.customer.pk %}">역할 설문</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'edit:study_edit' user.customer.pk %}">스터디 설문</a>
+        </li>
+      </ul>
+      <a class="nav-link my-2 my-sm-0" style="color:white;" href="{% url 'users:logout' %}">signout</a>
+    </div>
+  </nav>
+
+  <h1>내 정보</h1>
+  <form action="{% url 'edit:info_edit' customer.pk %}" method = 'POST'>
+    {% csrf_token %}
+    <h4>이름</h4>
+    <input type='text' placeholder="이름을 입력하세요" name="name" value='{{customer.name}}'/>
+    <h4>email</h4>
+    <input type='email' placeholder="email을 입력하세요" name="email" value='{{customer.email}}'/>
+    <h4>phone_num</h4>
+    <p>formmat : 123-1234-1234</p>
+    <input type='tel' placeholder="123-1234-1234" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" name="phone_num" value='{{customer.phone_num}}'/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <button type="submit">내 정보 수정하기</button>
+  </form>
+  <br/>
+  <br/>
+  <form action="{% url 'home' %}">
+  <button type="submit">뒤로가기</button></form>
+{% endblock %}

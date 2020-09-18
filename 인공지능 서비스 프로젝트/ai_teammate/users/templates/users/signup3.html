@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block style %}
+<!--이 곳에 style에 해당하는 코드 (css파일 연결 등) 작성-->
+<link rel='stylesheet' href='{% static 'signup3.css'%}' />
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block content %}
+<!--이 곳에 페이지의 내용 작성-->
+    <div id="score_container">
+        <div id="score_area">
+            <div id="score_title">
+                <h1>Enter yout score</h1>
+                <p>드래그 하여 분야별 수준을 알려주세요</p>
+            </div>
+            
+            <div id="score_form">
+                <form action="{% url 'users:signup3' user.customer.pk%}" method='POST'>
+                {% csrf_token %}
+                    <div>
+                        <h4>웹</h4>
+                        <div class='score_question'>
+                            <p>모름</p>
+                            <p>기본 문법</p>
+                            <p>간단한 응용</p>
+                            <p>소규모 프로젝트</p>
+                            <p>서비스 구현</p>
+                        </div>
+                        <input style = "width:100%;" class="slider_range1" type="range" value="1" min="1" max="10" step="0.001" name="web"></input>
+                    </div>
+                    
+                    <div>
+                        <h4>디자인</h4>
+                        <div class='score_question'>
+                            <p>모름</p>
+                            <p>기본 문법</p>
+                            <p>간단한 응용</p>
+                            <p>소규모 프로젝트</p>
+                            <p>서비스 구현</p>
+                        </div>
+                        <input style = "width:100%;" class="slider_range2" type="range" value="1" min="1" max="10" step="0.001" name="design"></input>	
+                    </div>
+
+                    <div>
+                        <h4>머신러닝</h4>
+                        <div class='score_question'>
+                            <p>모름</p>
+                            <p>기본 문법</p>
+                            <p>간단한 응용</p>
+                            <p>소규모 프로젝트</p>
+                            <p>서비스 구현</p>
+                        </div>
+                        <input style = "width:100%;" class="slider_range3" type="range" value="1" min="1" max="10" step="0.001" name="machine_learning"></input>	
+                    </div>
+
+                    <div>
+                        <h4>통계</h4>
+                        <div class='score_question'>
+                            <p>모름</p>
+                            <p>기본 문법</p>
+                            <p>간단한 응용</p>
+                            <p>소규모 프로젝트</p>
+                            <p>서비스 구현</p>
+                        </div>
+                        <input style = "width:100%;" class="slider_range4" type="range" value="1" min="1" max="10" step="0.001" name="statistics"></input>	
+                    </div>
+
+                    <div>
+                        <h4>딥러닝</h4>
+                        <div class='score_question'>
+                            <p>모름</p>
+                            <p>기본 문법</p>
+                            <p>간단한 응용</p>
+                            <p>소규모 프로젝트</p>
+                            <p>서비스 구현</p>
+                        </div>
+                        <input style = "width:100%;" class="slider_range5" type="range" value="1" min="1" max="10" step="0.001" name="deep_learning"></input>
+                    </div>
+
+                    <div>
+                        <h4>알고리즘</h4>
+                        <div class='score_question'>
+                            <p>모름</p>
+                            <p>기본 문법</p>
+                            <p>간단한 응용</p>
+                            <p>소규모 프로젝트</p>
+                            <p>서비스 구현</p>
+                        </div>
+                        <input style = "width:100%;" class="slider_range6" type="range" value="1" min="1" max="10" step="0.001" name="algorithm"></input>
+                    </div>
+
+                    <div>
+                        <h4>자연어처리</h4>
+                        <div class='score_question'>
+                            <p>모름</p>
+                            <p>기본 문법</p>
+                            <p>간단한 응용</p>
+                            <p>소규모 프로젝트</p>
+                            <p>서비스 구현</p>
+                        </div>
+                        <input style = "width:100%;" class="slider_range7" type="range" value="1" min="1" max="10" step="0.001" name="nlp"></input>	
+                    </div>
+                    <button type="submit">다음</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% comment %} {% extends "base.html" %}
+
+{% block title %}
+<title>스터디메이트 추천</title>
+{% endblock %}
+
+{% block style %}
+<!--이 곳에 style에 해당하는 코드 (css파일 연결 등) 작성-->
+<link rel='stylesheet' href='{% static 'news.css' %}'/>
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block content %}
+<!--이 곳에 페이지의 내용 작성-->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background:#ffbbb1;">
+    <a class="navbar-brand" href="{% url 'home' %}" >Home</a>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'team_rec:team_rec_list' user.pk %}">teammate</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'edit:info_edit' user.customer.pk %}">mypage</a>
+        </li>
+      </ul>
+      <a class="nav-link my-2 my-sm-0" style="color:white;" href="{% url 'users:logout' %}">signout</a>
+    </div>
+  </nav>
+
+
+{% endblock %} {% endcomment %}
+{% comment %} [ '공통','문화/예술', '경제', '건강', '사회', '기술'] {% endcomment %}
+<button type='button'><a href ="{% url 'newsletter:all' %}">공통</button>
+<button type='button'><a href ="{% url 'newsletter:art' %}">문화/예술</button>
+<button type='button'><a href ="{% url 'newsletter:economy' %}">경제</button>
+<button type='button'><a href ="{% url 'newsletter:health' %}">건강</button>
+<button type='button'><a href ="{% url 'newsletter:social' %}">사회</button>
+<button type='button'><a href ="{% url 'newsletter:tech' %}">기술</button>
+
+          {% comment %} <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal{{customer.pk}}">스터디메이트 요청</a> {% endcomment %}
