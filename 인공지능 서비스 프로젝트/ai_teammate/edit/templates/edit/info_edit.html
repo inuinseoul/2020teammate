@@ -84,12 +84,25 @@
                         </form>
                         <button class='button_square' type="submit">수정하기</button>
                     </div>
-
                 </form>
+                <br/>
+                {% if user.customer.team_state == 0 %}
+                <a href="{% url 'users:team_no' customer.pk %}">팀추천on</a>
+                {%else%}
+                <a href="{% url 'users:team_yes' customer.pk %}">팀추천off</a>
+                {%endif%}
+                {% if user.customer.study_state == 0 %}
+                <a href="{% url 'users:study_no' customer.pk %}">스터디추천on</a>
+                {%else%}
+                <a href="{% url 'users:study_yes' customer.pk %}">스터디추천ff</a>
+                {%endif%}
             </div>
             <div id="left">
                 <img src='{% static 'info_edit.png' %}' />
             </div>
         </div>
     </div>
+
+<br/>
+<br/>
 {% endblock %}

@@ -39,6 +39,7 @@
     </thead>
     <tbody class="text-center">
       {% for customer in recommend_customer_list %}
+      {% if customer.team_state == 0%}
        <tr>
         <th class="align-middle" style="width: 10%" scope="row">{{forloop.counter|add:page|add:"-5"}}</th>
         <td class="align-middle" style="width: 10%">{{customer.name}}</td>
@@ -71,7 +72,8 @@
               </div>
             </div>
           </div>
-        </div>    
+        </div> 
+        {%endif%}   
       {% endfor %}
     </tbody>
   </table>

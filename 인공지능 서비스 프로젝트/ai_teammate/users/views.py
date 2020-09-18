@@ -355,3 +355,31 @@ def logout(request):
     auth.logout(request)
 
     return redirect("home")
+
+#팀원 더이상안구함
+def team_no(request,customer_pk):
+    Customer.objects.filter(pk=customer_pk).update(
+            team_state = 1
+        )
+    return redirect('edit:info_edit',customer_pk)
+
+#팀원 다시구함
+def team_yes(request,customer_pk):
+    Customer.objects.filter(pk=customer_pk).update(
+            team_state = 0
+        )
+    return redirect('edit:info_edit',customer_pk)
+
+#스터디 더이상안구함
+def study_no(request,customer_pk):
+    Customer.objects.filter(pk=customer_pk).update(
+            study_state = 1
+        )
+    return redirect('edit:info_edit',customer_pk)
+
+#스터디 다시구함
+def study_yes(request,customer_pk):
+    Customer.objects.filter(pk=customer_pk).update(
+            study_state = 0
+        )
+    return redirect('edit:info_edit',customer_pk)

@@ -8,7 +8,9 @@ class Customer(models.Model):
     name = models.CharField(max_length=10)
     email = models.CharField(max_length=20, null=True)
     phone_num = models.CharField(max_length=20, null=True)
-    state = models.IntegerField(default=0)
+    team_state = models.IntegerField(default=0)#팀상태
+    study_state = models.IntegerField(default=0)#스터디상태
+    intro = models.TextField()#자기소개
 
 
 # 흥미 테이블
