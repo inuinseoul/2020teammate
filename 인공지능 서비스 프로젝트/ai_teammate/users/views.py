@@ -28,6 +28,7 @@ def signup(request):
         name = request.POST["name"]
         email = request.POST["email"]
         phone_num = request.POST["phone_num"]
+        intro = request.POST["intro"]
 
         if user_id and user_pw:
             user = User.objects.filter(username=user_id)
@@ -39,7 +40,11 @@ def signup(request):
                     )
 
                     customer = Customer.objects.create(
-                        user=created_user, name=name, email=email, phone_num=phone_num
+                        user=created_user,
+                        name=name,
+                        email=email,
+                        phone_num=phone_num,
+                        intro=intro,
                     )
 
                     Domain.objects.create(
@@ -356,30 +361,26 @@ def logout(request):
 
     return redirect("home")
 
-#팀원 더이상안구함
-def team_no(request,customer_pk):
-    Customer.objects.filter(pk=customer_pk).update(
-            team_state = 1
-        )
-    return redirect('edit:info_edit',customer_pk)
 
-#팀원 다시구함
-def team_yes(request,customer_pk):
-    Customer.objects.filter(pk=customer_pk).update(
-            team_state = 0
-        )
-    return redirect('edit:info_edit',customer_pk)
+# 팀원 더이상안구함
+def team_no(request, customer_pk):
+    Customer.objects.filter(pk=customer_pk).update(team_state=1)
+    return redirect("edit:info_edit", customer_pk)
 
-#스터디 더이상안구함
-def study_no(request,customer_pk):
-    Customer.objects.filter(pk=customer_pk).update(
-            study_state = 1
-        )
-    return redirect('edit:info_edit',customer_pk)
 
-#스터디 다시구함
-def study_yes(request,customer_pk):
-    Customer.objects.filter(pk=customer_pk).update(
-            study_state = 0
-        )
-    return redirect('edit:info_edit',customer_pk)
+# 팀원 다시구함
+def team_yes(request, customer_pk):
+    Customer.objects.filter(pk=customer_pk).update(team_state=0)
+    return redirect("edit:info_edit", customer_pk)
+
+
+# 스터디 더이상안구함
+def study_no(request, customer_pk):
+    Customer.objects.filter(pk=customer_pk).update(study_state=1)
+    return redirect("edit:info_edit", customer_pk)
+
+
+# 스터디 다시구함
+def study_yes(request, customer_pk):
+    Customer.objects.filter(pk=customer_pk).update(study_state=0)
+    return redirect("edit:info_edit", customer_pk)
