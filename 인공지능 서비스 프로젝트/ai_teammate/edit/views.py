@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 
 # 정보수정
-# 정보수정
 def info_edit(request, customer_pk):
     if request.method == "POST":
         Customer.objects.filter(pk=customer_pk).update(
@@ -127,7 +126,13 @@ def score_edit(request, customer_pk):
             and len(algorithm)
             and len(nlp)
         ):
-
+            web = round(float(web))
+            design = round(float(design))
+            machine_learning = round(float(machine_learning))
+            statistics = round(float(statistics))
+            deep_learning = round(float(deep_learning))
+            algorithm = round(float(algorithm))
+            nlp = round(float(nlp))
             data_score = round(int(statistics) * 0.5 + int(machine_learning) * 0.5)
             modeling_score = round(
                 int(machine_learning) * 0.25
@@ -137,13 +142,13 @@ def score_edit(request, customer_pk):
             )
 
             Score.objects.filter(foreignkey=customer).update(
-                web=request.POST["web"],
-                design=request.POST["design"],
-                machine_learning=request.POST["machine_learning"],
-                statistics=request.POST["statistics"],
-                deep_learning=request.POST["deep_learning"],
-                algorithm=request.POST["algorithm"],
-                nlp=request.POST["nlp"],
+                web=web,
+                design=design,
+                machine_learning=machine_learning,
+                statistics=statistics,
+                deep_learning=deep_learning,
+                algorithm=algorithm,
+                nlp=nlp,
                 data_score=data_score,
                 modeling_score=modeling_score,
                 score_sum=int(web)
