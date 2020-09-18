@@ -3,7 +3,6 @@ from . import views
 
 app_name = "edit"
 urlpatterns = [
-    path("<int:customer_pk>", views.edit, name="edit"),  # 마이페이지 메인
     path("info_edit/<int:customer_pk>", views.info_edit, name="info_edit"),  # 정보수정하기
     path(
         "domain_edit/<int:customer_pk>", views.domain_edit, name="domain_edit"

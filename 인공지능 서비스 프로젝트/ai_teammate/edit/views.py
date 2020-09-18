@@ -3,12 +3,6 @@ from users.models import Customer, Domain, Score, Role, Study
 from django.contrib.auth.models import User
 from django.contrib import auth
 
-#
-def edit(request, customer_pk):
-    return render(request, "edit/edit.html")
-
-
-
 # 정보수정
 def info_edit(request, customer_pk):
     if request.method == "POST":
@@ -26,10 +20,11 @@ def info_edit(request, customer_pk):
 
     return render(request, "edit/info_edit.html", context)
 
-#정보수정시 오류방지 MSG
+
+# 정보수정시 오류방지 MSG
 ERROR_MSG2 = {
     "error": "10개의 하트를 제대로 베팅하지않으셨습니다. 값을 다시확인해주세요!!",
-    "error2": "null값이 존재합니다. 입력값을 다시 한번 확인해주세요!!!"
+    "error2": "null값이 존재합니다. 입력값을 다시 한번 확인해주세요!!!",
 }
 
 # 설문조사정보수정
@@ -38,8 +33,11 @@ def domain_edit(request, customer_pk):
     customer = Customer.objects.get(pk=customer_pk)
     domain = Domain.objects.get(foreignkey=customer)
 
-    context = {"error": {"state": False, "msg": "" }, 
-    'customer':customer, 'domain': domain}
+    context = {
+        "error": {"state": False, "msg": ""},
+        "customer": customer,
+        "domain": domain,
+    }
 
     if request.method == "POST":
 
@@ -84,7 +82,7 @@ def domain_edit(request, customer_pk):
                 )
 
                 return redirect("home")
-            
+
             else:
                 context["error"]["state"] = True
                 context["error"]["msg"] = ERROR_MSG2["error"]
@@ -101,9 +99,12 @@ def score_edit(request, customer_pk):
     customer = Customer.objects.get(pk=customer_pk)
     score = Score.objects.get(foreignkey=customer)
 
-    context = {"error": {"state": False, "msg": ""},
-    'customer':customer, 'score': score}
-    
+    context = {
+        "error": {"state": False, "msg": ""},
+        "customer": customer,
+        "score": score,
+    }
+
     if request.method == "POST":
         web = request.POST["web"]
         design = request.POST["design"]
@@ -153,7 +154,7 @@ def score_edit(request, customer_pk):
             )
 
             return redirect("home")
-        
+
         else:
             context["error"]["state"] = True
             context["error"]["msg"] = ERROR_MSG2["error2"]
@@ -167,9 +168,8 @@ def role_edit(request, customer_pk):
     customer = Customer.objects.get(pk=customer_pk)
     role = Role.objects.get(foreignkey=customer)
 
-    context = {"error": {"state": False, "msg": ""},
-    "customer": customer, "role": role}
-    
+    context = {"error": {"state": False, "msg": ""}, "customer": customer, "role": role}
+
     if request.method == "POST":
         analysis_hearts = request.POST["analysis_hearts"]
         web_hearts = request.POST["web_hearts"]
@@ -218,10 +218,12 @@ def study_edit(request, customer_pk):
     customer = Customer.objects.get(pk=customer_pk)
     study = Study.objects.get(foreignkey=customer)
 
-    context = {"error": {"state": False, "msg": ""},
-    "customer": customer, "study": study }
+    context = {
+        "error": {"state": False, "msg": ""},
+        "customer": customer,
+        "study": study,
+    }
 
-    
     if request.method == "POST":
         web_hearts = request.POST["web_hearts"]
         design_hearts = request.POST["design_hearts"]
@@ -298,7 +300,7 @@ def study_edit(request, customer_pk):
                     + int(reinforcement_hearts),
                 )
                 return redirect("home")
-            
+
             else:
                 context["error"]["state"] = True
                 context["error"]["msg"] = ERROR_MSG2["error"]

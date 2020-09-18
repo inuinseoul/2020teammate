@@ -18,7 +18,7 @@
           <a class="nav-link" href="{% url 'team_rec:team_rec_list' user.pk %}">teammate</a>
         </li>
         <li class="nav-item justify-content-end">
-          <a class="nav-link" href="{% url 'edit:edit' user.customer.pk %}">mypage</a>
+          <a class="nav-link" href="{% url 'edit:info_edit' user.customer.pk %}">mypage</a>
         </li>
       </ul>
       <a class="nav-link my-2 my-sm-0" style="color:white;" href="{% url 'users:logout' %}">signout</a>

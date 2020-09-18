@@ -10,6 +10,21 @@
 
 {% block content %}
 <!--이 곳에 페이지의 내용 작성-->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background:#ffbbb1;">
+    <a class="navbar-brand" href="{% url 'home' %}" >Home</a>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'study_rec:study_rec_list' user.pk %}">studymate</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'edit:info_edit' user.customer.pk %}">mypage</a>
+        </li>
+      </ul>
+      <a class="nav-link my-2 my-sm-0" style="color:white;" href="{% url 'users:logout' %}">signout</a>
+    </div>
+  </nav>
+
   <h1>알림</h1>
   {% for message in message_list%}
     {% if message.recipient == user.customer.name%}
@@ -21,8 +36,4 @@
       {%endif%}
     {%endif%}
   {%endfor%}
-    <br/>
-    <br/>
-  <form action="{% url 'home' %}">
-  <button type="submit">뒤로가기</button></form> 
 {% endblock %}
