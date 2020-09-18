@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeamMate</title>
+
+    <link rel='stylesheet' href='./css/edit.css' />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel='stylesheet' type='text/css'>
+
+    <style>
+        .label {
+            font-size: 20px;
+            color: black;
+            margin-right: 10px;
+        }
+        .description {
+            font-size: 14px;
+            color: #868686;
+        }
+        
+        input {
+            border: 2px solid black;
+            border-radius: 7px;
+
+            width: 130%;
+            height: 35px;
+        }
+
+        .form_input {
+            margin-top: 5%;
+            margin-bottom: 5%;
+        }
+        .form_button {
+            margin-top: 15%;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div id="header">
+            <h1><a href='#'>TeamMate</a></h1>
+
+            <div>
+                <a href='#'>흥미</a>
+                <a href='#'>실력</a>
+                <a href='#'>역할</a>
+                <a href='#'>스터디</a>
+                <a href='#'>개인정보</a>
+            </div>
+        </div>
+        <div id="err">
+            <!-- 여기에 오류메세지를 띄워주세용 -->
+        </div>
+        <div id="article">
+            <div id="right">
+                
+                <h1>가입 정보 수정</h1>
+
+                <form action="{% url 'edit:info_edit' customer.pk %}" method = 'POST'>
+
+                    <div class='form_input'>
+                        <span class='label'>NAME</span><span class='description'>해당 서비스 사용 중 보여지는 이름입니다</span><br />
+                        <input type='text' placeholder="이름을 입력하세요" name="name" value='{{customer.name}}'/>
+                    </div>
+                    
+                    <div class='form_input'>
+                        <span class='label'>E-MAIL</span><span class='description'>example@email.com 형식을 지켜주세요</span><br />
+                        <input type='email' placeholder="email을 입력하세요" name="email" value='{{customer.email}}'/>
+                    </div>
+
+                    <div class='form_input'>
+                        <span class='label'>PHONE</span><span class='description'>010-1234-1234 하이픈(-)도 입력해주세요</span><br />
+                        <input type='tel' placeholder="010-1234-1234" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" name="phone_num" value='{{customer.phone_num}}'/>
+                    </div>
+
+                    <div class='form_button'>
+                        <form action="{% url 'home' %}">
+                            <button class='button_square' type="submit">홈</button>
+                        </form>
+                        <button class='button_square' type="submit">수정하기</button>
+                    </div>
+
+                </form>
+            </div>
+            <div id="left">
+                <img src='../resource/info_edit.png' />
+            </div>
+        </div>
+    </div>
+</body>
+</html>
