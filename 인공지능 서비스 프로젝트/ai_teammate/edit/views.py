@@ -4,12 +4,15 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 
 # 정보수정
+# 정보수정
 def info_edit(request, customer_pk):
     if request.method == "POST":
         Customer.objects.filter(pk=customer_pk).update(
             name=request.POST["name"],
             email=request.POST["email"],
             phone_num=request.POST["phone_num"],
+            team_state=request.POST["team_check"],
+            study_state=request.POST["study_check"],
         )
 
         return redirect("home")
