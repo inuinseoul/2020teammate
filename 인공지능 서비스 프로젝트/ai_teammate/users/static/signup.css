@@ -1,9 +1,26 @@
+* {
+    font-family: "Noto Sans KR", sans-serif !important;
+}
+
 html, body {
     margin: 0;
     height: 100%;
     overflow-x: hidden;
     overflow-y: visible;
 }
+
+/* #true {
+    opacity: 1;
+}
+.error {
+    width: 100%;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: center;
+    background-color: #ffbbb1;
+    color: #ae230e;
+    opacity: 0;
+} */
 
 input::placeholder {
     font-size: 15px;
