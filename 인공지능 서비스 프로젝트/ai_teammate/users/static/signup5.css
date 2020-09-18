@@ -9,7 +9,7 @@ html, body {
     overflow-y: visible;
 }
 
-#true {
+/* #True {
     opacity: 1;
 }
 .error {
@@ -20,7 +20,7 @@ html, body {
     background-color: #ffbbb1;
     color: #ae230e;
     opacity: 0;
-}
+} */
 
 .value {
     width: 50px;
@@ -70,12 +70,14 @@ html, body {
     color: #ef6a56;
     font-size: 63px;
     font-weight: bold;
+    margin-bottom: 3%;
+    margin-top: 3%;
 }
 #title > p {
     color: #868686;
     font-size: 30px;
     font-weight: normal;
-    margin-bottom: 5%;
+    margin-bottom: 7%;
 }
 
 #form {
@@ -135,6 +137,7 @@ html, body {
 #form_group > div > h4 {
     font-size: 30px;
     margin-left: 50px;
+    font-weight: bold;
 }
 #form_group > div > div {
     margin-right: 50px;
