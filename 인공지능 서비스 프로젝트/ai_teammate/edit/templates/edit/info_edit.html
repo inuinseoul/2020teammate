@@ -24,17 +24,24 @@
         border: 2px solid black;
         border-radius: 7px;
 
-        width: 130%;
+        width: 60%;
         height: 35px;
     }
 
     .form_input {
-        margin-top: 5%;
-        margin-bottom: 5%;
+        margin-top: 3%;
+        margin-bottom: 3%;
     }
     .form_button {
-        margin-top: 15%;
+        margin-top: 6%;
     }
+    
+    /* #right > h1 {
+        width: 60%;
+        text-align: center;
+        background-color: coral;
+    } */
+
 </style>
 {% endblock %}
 
@@ -45,10 +52,10 @@
             <h1><a href='{% url 'home' %}'>TeamMate</a></h1>
 
             <div>
-                <a href='{% url 'edit:domain_edit' user.customer.pk %}'>흥미</a>
-                <a href='{% url 'edit:score_edit' user.customer.pk %}'>실력</a>
-                <a href='{% url 'edit:role_edit' user.customer.pk %}'>역할</a>
                 <a href='{% url 'edit:study_edit' user.customer.pk %}'>스터디</a>
+                <a href='{% url 'edit:domain_edit' user.customer.pk %}'>흥미</a>
+                <a href='{% url 'edit:role_edit' user.customer.pk %}'>역할</a>
+                <a href='{% url 'edit:score_edit' user.customer.pk %}'>실력</a>
                 <a href='{% url 'edit:info_edit' user.customer.pk %}'>개인정보</a>
             </div>
         </div>
@@ -57,8 +64,7 @@
         </div>
         <div id="article">
             <div id="right">
-                
-                <h1>가입 정보 수정</h1>
+                <h2>가입 정보 수정</h2>
 
                 <form action="{% url 'edit:info_edit' customer.pk %}" method = 'POST'>
                 {% csrf_token %}
@@ -77,6 +83,11 @@
                         <input type='tel' placeholder="010-1234-1234" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" name="phone_num" value='{{customer.phone_num}}'/>
                     </div>
 
+                    <div class='form_input'>
+                        <span class='label'>INTRODUCE</span><span class='description'>자신에 대해 자유롭게 소개해주세요</span><br />
+                        <input class='signup_input' type='text' placeholder='예) 개발은 처음이지만 열심히하겠습니다. 잘 부탁드립니다.' name='intro' value='{{customer.intro}}'/>
+                    </div>
+
                     <div class='form_button'>
                         <form action="{% url 'home' %}">
                         {% csrf_token %}
@@ -85,8 +96,7 @@
                         <button class='button_square' type="submit">수정하기</button>
                     </div>
                 </form>
-                <br/>
-                {% if user.customer.team_state == 0 %}
+                {% comment %} {% if user.customer.team_state == 0 %}
                 <a href="{% url 'users:team_no' customer.pk %}">팀추천on</a>
                 {%else%}
                 <a href="{% url 'users:team_yes' customer.pk %}">팀추천off</a>
@@ -95,14 +105,11 @@
                 <a href="{% url 'users:study_no' customer.pk %}">스터디추천on</a>
                 {%else%}
                 <a href="{% url 'users:study_yes' customer.pk %}">스터디추천ff</a>
-                {%endif%}
+                {%endif%} {% endcomment %}
             </div>
             <div id="left">
                 <img src='{% static 'info_edit.png' %}' />
             </div>
         </div>
     </div>
-
-<br/>
-<br/>
 {% endblock %}
