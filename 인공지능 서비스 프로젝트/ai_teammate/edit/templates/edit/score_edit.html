@@ -80,7 +80,7 @@
                 <h2>분야별 실력 수정</h2>
 
                 <form action="{% url 'edit:score_edit' customer.pk %}" method = 'POST'>
-
+                {% csrf_token %}
                     <div class='form_input'>
                         <h4>웹</h4>
                         <div class='question'>

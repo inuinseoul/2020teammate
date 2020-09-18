@@ -114,7 +114,7 @@
             <img id='line_type_A' src='{% static 'line_type_A.png' %}' />
             
             <form action="{% url 'edit:domain_edit' customer.pk %}" method = 'POST'>
-
+            {% csrf_token %}
                 <div class='form_value'>
                     <h4>건강 (스포츠, 헬스, 의료)</h4>
                     <!-- <h4>건강</h4> -->
