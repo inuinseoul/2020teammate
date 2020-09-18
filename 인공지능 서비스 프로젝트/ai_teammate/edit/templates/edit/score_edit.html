@@ -39,6 +39,7 @@
     }
     .form_input > h4 {
         font-size: 25px;
+        font-weight: 900;
     }
 
     .question > p {
@@ -63,11 +64,11 @@
             <h1><a href='{% url 'home' %}'>TeamMate</a></h1>
 
             <div>
+                <a href='{% url 'edit:info_edit' user.customer.pk %}'>개인정보</a>
                 <a href='{% url 'edit:study_edit' user.customer.pk %}'>스터디</a>
                 <a href='{% url 'edit:domain_edit' user.customer.pk %}'>흥미</a>
                 <a href='{% url 'edit:role_edit' user.customer.pk %}'>역할</a>
                 <a href='{% url 'edit:score_edit' user.customer.pk %}'>실력</a>
-                <a href='{% url 'edit:info_edit' user.customer.pk %}'>개인정보</a>
             </div>
         </div>
         <div id="err">

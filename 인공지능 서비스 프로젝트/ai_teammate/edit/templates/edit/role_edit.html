@@ -43,7 +43,7 @@
         margin-bottom: 20%;
     }
 
-    #line_type_A { width: 90%; margin-bottom: 5%;}
+    #line_type_A { width: 90%; margin-bottom: 5%; margin-top: 3%;}
 
     #right_title {
         margin-top: 20%;
@@ -56,7 +56,7 @@
         align-items: center;
         /* background-color: red; */
     }
-    #right_title > h2 { font-size: 30px; }
+    #right_title > h2 { font-size: 30px; font-weight: bold; }
     #right_title > img { width: 35px; margin-left: 40px; margin-right: 10px;}
 
     .form_value {
@@ -67,7 +67,7 @@
         align-items: center;
         justify-content: space-between;
     }
-    .form_value > h4 { font-size: 20px; }
+    .form_value > h4 { font-size: 20px; font-weight: bold;}
     .value {
         width: 45px;
         height: 27px;
@@ -93,11 +93,11 @@
             <h1><a href='{% url 'home' %}'>TeamMate</a></h1>
 
             <div>
+                <a href='{% url 'edit:score_edit' user.customer.pk %}'>실력</a>
+                <a href='{% url 'edit:info_edit' user.customer.pk %}'>개인정보</a>
                 <a href='{% url 'edit:study_edit' user.customer.pk %}'>스터디</a>
                 <a href='{% url 'edit:domain_edit' user.customer.pk %}'>흥미</a>
                 <a href='{% url 'edit:role_edit' user.customer.pk %}'>역할</a>
-                <a href='{% url 'edit:score_edit' user.customer.pk %}'>실력</a>
-                <a href='{% url 'edit:info_edit' user.customer.pk %}'>개인정보</a>
             </div>
         </div>
         <div id="err">

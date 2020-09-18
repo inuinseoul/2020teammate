@@ -86,12 +86,12 @@ h4 {
     width: 130px;
     height: 30px;
     font-size: 16px;
-    /* background-color: seagreen; */
     text-align: center;
     color: #868686;
 }
 .score_question > p:nth-child(1) {text-align: left;}
 .score_question > p:nth-child(2) {text-align: left;}
+.score_question > p:nth-last-child(2) {text-align: right;}
 .score_question > p:nth-last-child(1) {text-align: right;}
 
 
