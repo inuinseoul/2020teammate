@@ -64,8 +64,9 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                <form action="{% url 'alarm:alarm_list' customer.pk %}" method = 'POST'>
+                <form action="{% url 'alarm:alarm_create' customer.pk %}" method = 'POST'>
                 {% csrf_token %}
+                <textarea name='contents' ></textarea>
                 <button type="submit" class="btn btn-outline-primary">요청 보내기</button></form>
               </div>
             </div>

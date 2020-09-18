@@ -21,16 +21,30 @@
       <a class="nav-link my-2 my-sm-0" style="color:white;" href="{% url 'users:logout' %}">signout</a>
     </div>
   </nav>
-
-  <h1>알림</h1>
+  <br/>
+  <br/>
+  <br/>
+  <h4>팀메이트알림</h4>
   {% for message in message_list%}
-    {% if message.recipient == user.customer.name%}
+    {% if message.recipient_pk == user.customer.pk%}
       {% if message %}
-        <a href="{% url 'alarm:check_info' message.pk %}">{{message.sender}}</a>님에게 팀원제의가 들어왔습니다.
-        <a href="{%url 'alarm:del_alarm' message.pk%}">알림삭제</a>   
-        <h5>Sent Time: {{message.sentAt}}</h5>
+        <a href="{% url 'alarm:check_info' message.pk %}">{{message.sender}}</a>님에게 팀메이트 알림이 왔습니다.
+        <div>내용: {{message.contents}}<a href="{% url 'alarm:del_alarm' message.pk%}">삭제하기</a></div>
+        <div>Sent Time: {{message.sentAt}}</div>
       </br>
       {%endif%}
     {%endif%}
   {%endfor%}
+  <h4>스터디그룹알림</h4>
+  {% for message in message_list2%}
+    {% if message.recipient_pk == user.customer.pk%}
+      {% if message %}
+        <a href="{% url 'alarm:check_info2' message.pk %}">{{message.sender}}</a>님에게 스터디그룹 알림이 왔습니다.
+        <div>내용: {{message.contents}}<a href="{% url 'alarm:del_alarm2' message.pk%}">삭제하기</a></div>  
+        <div>Sent Time: {{message.sentAt}}</div>
+      </br>
+      {%endif%}
+    {%endif%}
+  {%endfor%}
+
 {% endblock %}
