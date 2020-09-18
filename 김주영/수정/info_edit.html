@@ -23,17 +23,24 @@
             border: 2px solid black;
             border-radius: 7px;
 
-            width: 130%;
+            width: 60%;
             height: 35px;
         }
 
         .form_input {
-            margin-top: 5%;
-            margin-bottom: 5%;
+            margin-top: 3%;
+            margin-bottom: 3%;
         }
         .form_button {
-            margin-top: 15%;
+            margin-top: 6%;
         }
+        
+        /* #right > h1 {
+            width: 60%;
+            text-align: center;
+            background-color: coral;
+        } */
+
     </style>
 </head>
 <body>
@@ -42,10 +49,10 @@
             <h1><a href='#'>TeamMate</a></h1>
 
             <div>
-                <a href='#'>흥미</a>
-                <a href='#'>실력</a>
-                <a href='#'>역할</a>
                 <a href='#'>스터디</a>
+                <a href='#'>흥미</a>
+                <a href='#'>역할</a>
+                <a href='#'>실력</a>
                 <a href='#'>개인정보</a>
             </div>
         </div>
@@ -55,7 +62,7 @@
         <div id="article">
             <div id="right">
                 
-                <h1>가입 정보 수정</h1>
+                <h2>가입 정보 수정</h2>
 
                 <form action="{% url 'edit:info_edit' customer.pk %}" method = 'POST'>
 
