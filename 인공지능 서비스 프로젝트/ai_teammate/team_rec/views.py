@@ -1,3 +1,4 @@
+from django.http import request
 from django.shortcuts import render
 from users.models import Customer, Domain, Score, Role
 from django.contrib import auth
@@ -13,6 +14,10 @@ rc("font", family=font_name)
 
 # 팀메이트 추천시스템
 def team_rec_list(request, customer_pk):
+    page = 5
+    if request.method == "POST":
+        page = int(request.POST["page"]) + 5
+
     customer_list = Customer.objects.all()
     score_list = Score.objects.all()
     domain_list = Domain.objects.all()
@@ -50,17 +55,17 @@ def team_rec_list(request, customer_pk):
     recommend_pk_list = df0.iloc[recommend_id_list].id
 
     recommend_customer_list = []
-    recommend_customer_score_list = []
-    recommend_customer_domain_list = []
-    recommend_customer_role_list = []
+    recommend_customer_length = len(recommend_pk_list)
+    if len(recommend_pk_list) <= 5:
+        recommend_pk_list = recommend_pk_list
+    elif len(recommend_pk_list) <= page:
+        recommend_pk_list = recommend_pk_list[page - 5 :]
+    else:
+        recommend_pk_list = recommend_pk_list[page - 5 : page]
 
     for i in recommend_pk_list:
         now_customer = Customer.objects.get(pk=int(i))
         recommend_customer_list.append(now_customer)
-        recommend_customer_score_list.append(Score.objects.get(foreignkey=now_customer))
-        recommend_customer_domain_list.append(
-            Domain.objects.get(foreignkey=now_customer)
-        )
 
         domain_index = [
             "건강",
@@ -86,8 +91,6 @@ def team_rec_list(request, customer_pk):
         )
         plt.savefig(f"./static/domain_graph_{i}.png")
 
-        recommend_customer_role_list.append(Role.objects.get(foreignkey=now_customer))
-
         role_index = ["데이터", "웹", "디자인", "모델링"]
         role_values = [
             Role.objects.get(foreignkey=now_customer).analysis_hearts,
@@ -105,9 +108,8 @@ def team_rec_list(request, customer_pk):
 
     context = {
         "recommend_customer_list": recommend_customer_list,
-        "recommend_customer_score_list": recommend_customer_score_list,
-        "recommend_customer_domain_list": recommend_customer_domain_list,
-        "recommend_customer_role_list": recommend_customer_role_list,
+        "page": page,
+        "recommend_customer_length": recommend_customer_length,
     }
 
     return render(request, "team_rec/team_rec_list.html", context)

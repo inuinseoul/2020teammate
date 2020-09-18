@@ -70,9 +70,13 @@
       {% endfor %}
     </tbody>
   </table>
-
-
-
-
-
+  {% if recommend_customer_length > page %}
+  <form action="{% url 'team_rec:team_rec_list' user.pk %}" method = 'POST'>
+  {% csrf_token %}
+    <input type="hidden" value="{{page}}" name='page' readonly/>
+    <button type="submit" class="btn btn-outline-info btn-lg btn-block">더 보기 ({{recommend_customer_list|length|add:page|add:"-5"}}/{{ recommend_customer_length }})</button>
+  </form>
+  {% else %}
+    <button type="submit" class="btn btn-outline-info btn-lg btn-block">끝 페이지 ({{recommend_customer_list|length|add:page|add:"-5"}}/{{ recommend_customer_length }})</button>
+  {% endif %}
 {% endblock %}

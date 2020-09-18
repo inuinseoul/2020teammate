@@ -40,7 +40,7 @@
     <tbody class="text-center">
       {% for customer in recommend_customer_list %}
        <tr>
-        <th class="align-middle" style="width: 10%" scope="row">{{forloop.counter}}</th>
+        <th class="align-middle" style="width: 10%" scope="row">{{forloop.counter|add:page|add:"-5"}}</th>
         <td class="align-middle" style="width: 10%">{{customer.name}}</td>
         <td style="width: 30%"><img src="/static/domain_graph_{{customer.pk}}.png" alt="">
         </td>
@@ -74,4 +74,13 @@
       {% endfor %}
     </tbody>
   </table>
+  {% if recommend_customer_length > page %}
+  <form action="{% url 'team_rec:team_rec_list' user.pk %}" method = 'POST'>
+  {% csrf_token %}
+    <input type="hidden" value="{{page}}" name='page' readonly/>
+    <button type="submit" class="btn btn-outline-info btn-lg btn-block">더 보기 ({{recommend_customer_list|length|add:page|add:"-5"}}/{{ recommend_customer_length }})</button>
+  </form>
+  {% else %}
+    <button type="submit" class="btn btn-outline-info btn-lg btn-block">끝 페이지 ({{recommend_customer_list|length|add:page|add:"-5"}}/{{ recommend_customer_length }})</button>
+  {% endif %}
 {% endblock %}
