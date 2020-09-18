@@ -241,7 +241,6 @@ def study_edit(request, customer_pk):
         computer_vision_hearts = request.POST["computer_vision_hearts"]
         rec_system_hearts = request.POST["rec_system_hearts"]
         reinforcement_hearts = request.POST["reinforcement_hearts"]
-
         if (
             len(web_hearts)
             and len(design_hearts)

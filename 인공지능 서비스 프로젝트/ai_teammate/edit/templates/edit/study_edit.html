@@ -101,7 +101,14 @@
             </div>
         </div>
         <div id="err">
-           <!-- 여기에 오류메세지를 띄워주세용 -->
+            {% if error.state %}
+            <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+            <strong>{{ error.msg }}</strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            {%endif%}
         </div>
         <div id="article">
             <div id="right">
@@ -182,7 +189,7 @@
                         <h4>파이썬 기초</h4>
                         <div>
                             <input class='bttn' type='button' onclick='setheart("basic_python_hearts", -1)' value='-'/>
-                            <input class='value' id='basic_python_hearts' type='number' name='basic_python_hearts' value='{{study.webbasic_python_hearts_hearts}}' readonly/>
+                            <input class='value' id='basic_python_hearts' type='number' name='basic_python_hearts' value='{{study.basic_python_hearts}}' readonly/>
                             <input class='bttn' type='button' onclick='setheart("basic_python_hearts", 1)' value='+'/>
                         </div>
                     </div>

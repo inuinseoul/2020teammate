@@ -101,7 +101,14 @@
             </div>
         </div>
         <div id="err">
-            <!-- 여기에 오류메세지를 띄워주세용 -->
+            {% if error.state %}
+            <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+            <strong>{{ error.msg }}</strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            {%endif%}
         </div>
         <div id="article">
             <div id="right">
