@@ -40,6 +40,7 @@ def domain_edit(request, customer_pk):
         "error": {"state": False, "msg": ""},
         "customer": customer,
         "domain": domain,
+        "left_heart": 10 - domain.domain_sum,
     }
 
     if request.method == "POST":
@@ -171,7 +172,12 @@ def role_edit(request, customer_pk):
     customer = Customer.objects.get(pk=customer_pk)
     role = Role.objects.get(foreignkey=customer)
 
-    context = {"error": {"state": False, "msg": ""}, "customer": customer, "role": role}
+    context = {
+        "error": {"state": False, "msg": ""},
+        "customer": customer,
+        "role": role,
+        "left_heart": 10 - role.role_sum,
+    }
 
     if request.method == "POST":
         analysis_hearts = request.POST["analysis_hearts"]
@@ -220,11 +226,11 @@ def study_edit(request, customer_pk):
 
     customer = Customer.objects.get(pk=customer_pk)
     study = Study.objects.get(foreignkey=customer)
-
     context = {
         "error": {"state": False, "msg": ""},
         "customer": customer,
         "study": study,
+        "left_heart": 10 - study.study_sum,
     }
 
     if request.method == "POST":
