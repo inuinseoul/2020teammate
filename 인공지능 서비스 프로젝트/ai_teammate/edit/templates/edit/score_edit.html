@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item justify-content-end">
-          <a class="nav-link" href="{% url 'edit:info_edit' user.pk %}">개인정보</a>
+          <a class="nav-link" href="{% url 'edit:info_edit' user.customer.pk %}">개인정보</a>
         </li>
         <li class="nav-item justify-content-end">
           <a class="nav-link" href="{% url 'edit:domain_edit' user.customer.pk %}">흥미 설문</a>
