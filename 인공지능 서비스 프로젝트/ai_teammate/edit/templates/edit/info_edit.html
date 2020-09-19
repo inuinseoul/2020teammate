@@ -24,31 +24,35 @@
         border: 2px solid black;
         border-radius: 7px;
 
-        width: 60%;
+        width: 100%;
         height: 35px;
     }
     textarea {
         border: 2px solid black;
         border-radius: 7px;
 
-        width: 60%;
+        width: 100%;
         height: 100px;
     }
 
     .form_input {
         margin-top: 3%;
         margin-bottom: 3%;
+        width: 60%;
     }
     .form_button {
-        margin-top: 6%;
+        margin-top: 10%;
         margin-bottom: 20%;
     }
+    .button_square { width: 60% }
+
+    .btn-group { float: right; }
     
-    /* #right > h1 {
+    #right > h2 {
         width: 60%;
         text-align: center;
-        background-color: coral;
-    } */
+        /* background-color: coral; */
+    }
 
 </style>
 {% endblock %}
@@ -60,11 +64,12 @@
             <h1><a href='{% url 'home' %}'>TeamMate</a></h1>
 
             <div>
-                <a href='{% url 'edit:study_edit' user.customer.pk %}'>스터디</a>
-                <a href='{% url 'edit:domain_edit' user.customer.pk %}'>흥미</a>
+                <a href='{% url 'edit:info_edit' user.customer.pk %}'>개인정보</a>
                 <a href='{% url 'edit:role_edit' user.customer.pk %}'>역할</a>
                 <a href='{% url 'edit:score_edit' user.customer.pk %}'>실력</a>
-                <a href='{% url 'edit:info_edit' user.customer.pk %}'>개인정보</a>
+                <a href='{% url 'edit:domain_edit' user.customer.pk %}'>흥미</a>
+                <a href='{% url 'edit:study_edit' user.customer.pk %}'>스터디</a>
+                <a href='{% url 'home' %}'>home</a>
             </div>
         </div>
         <div id="err">
@@ -98,7 +103,7 @@
                     </div>
 
                     <div class='form_input'>
-                        <span class='label'>TEAM</span><span class='description'>팀 소속 여부를 알려주세요</span><br />
+                        <span class='label'>TEAM</span><span class='description'>팀 소속 여부를 알려주세요</span>
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         {% if user.customer.team_state == 0 %}
                             <label class="btn btn-light active">
@@ -119,7 +124,7 @@
                     </div>
 
                     <div class='form_input'>
-                        <span class='label'>STUDY</span><span class='description'>스터디 소속 여부를 알려주세요</span><br />
+                        <span class='label'>STUDY</span><span class='description'>스터디 소속 여부를 알려주세요</span>
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         {% if user.customer.study_state == 0 %}
                             <label class="btn btn-light active">
@@ -140,10 +145,10 @@
                     </div>                    
 
                     <div class='form_button'>
-                        <form action="{% url 'home' %}">
+                        <!-- <form action="{% url 'home' %}">
                         {% csrf_token %}
                             <button class='button_square' type="submit">홈</button>
-                        </form>
+                        </form> -->
                         <button class='button_square' type="submit">수정하기</button>
                     </div>
                 </form>
