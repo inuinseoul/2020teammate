@@ -55,6 +55,7 @@ def team_rec_list(request, customer_pk):
     recommend_pk_list = df0.iloc[recommend_id_list].id
 
     recommend_customer_list = []
+    recommend_customer_list_already = []
     recommend_customer_length = len(recommend_pk_list)
     if len(recommend_pk_list) <= 5:
         recommend_pk_list = recommend_pk_list
@@ -65,8 +66,10 @@ def team_rec_list(request, customer_pk):
 
     for i in recommend_pk_list:
         now_customer = Customer.objects.get(pk=int(i))
-        recommend_customer_list.append(now_customer)
-
+        if now_customer.team_state == 1:
+            recommend_customer_list_already.append(now_customer)
+        else:
+            recommend_customer_list.append(now_customer)
         domain_index = [
             "건강",
             "경제",
@@ -105,11 +108,10 @@ def team_rec_list(request, customer_pk):
             color=["#F78181", "#A9E2F3", "#D0A9F5", "#F5A9F2"],
         )
         plt.savefig(f"./static/role_graph_{i}.png")
-
+    recommend_customer_list = recommend_customer_list + recommend_customer_list_already
     context = {
         "recommend_customer_list": recommend_customer_list,
         "page": page,
         "recommend_customer_length": recommend_customer_length,
     }
-
     return render(request, "team_rec/team_rec_list.html", context)

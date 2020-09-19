@@ -32,21 +32,22 @@
       <tr>
         <th style="width: 10%" scope="col">추천 순위</th>
         <th style="width: 10%" scope="col">이름</th>
-        <th style="width: 30%" scope="col">흥미</th>
-        <th style="width: 30%" scope="col">선호역할</th>
+        <th style="width: 25%" scope="col">흥미</th>
+        <th style="width: 25%" scope="col">선호역할</th>
+        <th style="width: 10%" scope="col">팀여부</th>
         <th style="width: 20%" scope="col">신청</th>
       </tr>
     </thead>
     <tbody class="text-center">
       {% for customer in recommend_customer_list %}
-      {% if customer.team_state == 0%}
        <tr>
         <th class="align-middle" style="width: 10%" scope="row">{{forloop.counter|add:page|add:"-5"}}</th>
         <td class="align-middle" style="width: 10%">{{customer.name}}</td>
-        <td style="width: 30%"><img src="/static/domain_graph_{{customer.pk}}.png" alt="">
+        <td style="width: 25%"><img src="/static/domain_graph_{{customer.pk}}.png" alt="">
         </td>
         {% comment %} <td>{{customer.domain.get.health}} / {{customer.domain.get.economy}} / {{customer.domain.get.culture_art}} / {{customer.domain.get.education}} / {{customer.domain.get.society}} / {{customer.domain.get.technology}}</td> {% endcomment %}
-        <td style="width: 30%"><img src="/static/role_graph_{{customer.pk}}.png" alt=""></td>
+        <td style="width: 25%"><img src="/static/role_graph_{{customer.pk}}.png" alt=""></td>
+        <td class="align-middle" style="width: 10%">{{customer.team_state}}</td>
         <td class="align-middle" style="width: 20%">
           <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal{{customer.pk}}">팀메이트 요청</a>
         </td>
@@ -73,8 +74,7 @@
               </form>
             </div>
           </div>
-        </div> 
-        {%endif%}   
+        </div>  
       {% endfor %}
     </tbody>
   </table>
