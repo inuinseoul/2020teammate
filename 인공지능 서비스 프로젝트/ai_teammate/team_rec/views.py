@@ -14,9 +14,9 @@ rc("font", family=font_name)
 
 # 팀메이트 추천시스템
 def team_rec_list(request, customer_pk):
-    page = 5
+    page = 10
     if request.method == "POST":
-        page = int(request.POST["page"]) + 5
+        page = int(request.POST["page"]) + 10
 
     customer_list = Customer.objects.all()
     score_list = Score.objects.all()

@@ -62,7 +62,7 @@
             <img id='main_team_illustration' src='{% static 'team_illustration.png' %}' />
         </div>
         <div id="main_article_bottom">
-            <a href='#'><img class='main_cards' src='{% static 'newsletter_card.png' %}' /></a>
+            <a href='{% url 'newsletter:all' %}'><img class='main_cards' src='{% static 'newsletter_card.png' %}' /></a>
             <a href='{% url 'team_rec:team_rec_list' user.pk %}'><img class='main_cards' src='{% static 'teammate_card.png' %}' /></a>
             {% if user.customer.study.get.study_sum != 10 %}
             <a href='{% url 'home' %}'><img class='main_cards' src='{% static 'studymate_card.png' %}' /></a>

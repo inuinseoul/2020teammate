@@ -40,7 +40,7 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-USER_APPS = ["home", "users", "edit", "alarm", "team_rec", "study_rec"]
+USER_APPS = ["home", "users", "edit", "alarm", "team_rec", "study_rec","newsletter"]
 
 INSTALLED_APPS = DJANGO_APPS + USER_APPS
 
