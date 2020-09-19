@@ -12,6 +12,7 @@ def info_edit(request, customer_pk):
             phone_num=request.POST["phone_num"],
             team_state=request.POST["team_check"],
             study_state=request.POST["study_check"],
+            intro=request.POST["intro"],
         )
 
         return redirect("home")
