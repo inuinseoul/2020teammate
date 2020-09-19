@@ -66,7 +66,7 @@
                 {% endfor%}
                 {% if user.customer.study.get.study_sum == 10 and user.customer.score.get.score_sum != 0 and user.customer.domain.get.domain_sum == 10 and user.customer.role.get.role_sum == 10 %}
                 <p class="main_subtro">
-                    최고의 팀메이트를 만나고, 원하는 기사를 읽어보세요!             
+                    최고의 팀메이트를 만나고, 원하는 기사를 읽어보세요!        
                 </p>
                 {% endif %}
                 {% comment %} <p class='main_subtro'>I will always remember The day you kissed my lips</p>
@@ -76,7 +76,24 @@
             <img id='main_team_illustration' src='{% static 'team_illustration.png' %}' />
         </div>
         <div id="main_article_bottom">
+            {% if max_domain == 0 %}
+            <a href='{% url 'newsletter:health' %}'><img class='main_cards' src='{% static 'newsletter_card.png' %}' /></a>
+            {% endif %}
+            {% if max_domain == 1 %}
+            <a href='{% url 'newsletter:economy' %}'><img class='main_cards' src='{% static 'newsletter_card.png' %}' /></a>
+            {% endif %}
+            {% if max_domain == 2 %}
+            <a href='{% url 'newsletter:art' %}'><img class='main_cards' src='{% static 'newsletter_card.png' %}' /></a>
+            {% endif %}
+            {% if max_domain == 3 %}
             <a href='{% url 'newsletter:all' %}'><img class='main_cards' src='{% static 'newsletter_card.png' %}' /></a>
+            {% endif %}
+            {% if max_domain == 4 %}
+            <a href='{% url 'newsletter:social' %}'><img class='main_cards' src='{% static 'newsletter_card.png' %}' /></a>
+            {% endif %}
+            {% if max_domain == 5 %}
+            <a href='{% url 'newsletter:tech' %}'><img class='main_cards' src='{% static 'newsletter_card.png' %}' /></a>
+            {% endif %}
             <a href='{% url 'team_rec:team_rec_list' user.pk %}'><img class='main_cards' src='{% static 'teammate_card.png' %}' /></a>
             {% if user.customer.study.get.study_sum != 10 %}
             <a href='{% url 'home' %}'><img class='main_cards' src='{% static 'studymate_card.png' %}' /></a>

@@ -65,5 +65,13 @@
       {% endfor %}
     </tbody>
   </table>
-
+  {% if news_num > page %}
+  <form action="{% url 'newsletter:social' %}" method = 'POST'>
+  {% csrf_token %}
+    <input type="hidden" value="{{page}}" name='page' readonly/>
+    <button type="submit" class="btn btn-outline-info btn-lg btn-block">더 보기 ({{social_list|length|add:page|add:"-10"}}/{{ news_num }})</button>
+  </form>
+  {% else %}
+    <button type="submit" class="btn btn-outline-info btn-lg btn-block">끝 페이지 ({{social_list|length|add:page|add:"-10"}}/{{ news_num }})</button>
+  {% endif %}
 {% endblock %}
