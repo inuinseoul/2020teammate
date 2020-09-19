@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>뉴스레터 - 문화/예술</title>
+{% endblock %}
+
+{% block style %}
+<!--이 곳에 style에 해당하는 코드 (css파일 연결 등) 작성-->
+{% endblock %}
+
+{% block content %}
+<!--이 곳에 페이지의 내용 작성-->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background:#ffbbb1;">
+    <a class="navbar-brand" href="{% url 'home' %}" >Home</a>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'newsletter:all' %}">공통</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'newsletter:art' %}" style="color:white;">문화/예술</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'newsletter:economy' %}">경제</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'newsletter:health' %}">건강</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'newsletter:social' %}">사회</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'newsletter:tech' %}">기술</a>
+        </li>
+      </ul>
+      <a class="nav-link my-2 my-sm-0" style="color:white;" href="{% url 'users:logout' %}">signout</a>
+    </div>
+  </nav>
+
+  <br>
+  <br>
+  <table class="table">
+    <thead class="table-light text-center">
+      <tr>
+        <th style="width: 10%" scope="col">카테고리</th>
+        <th style="width: 30%" scope="col">뉴스 제목</th>
+        <th style="width: 40%" scope="col">태그</th>
+        <th style="width: 5%" scope="col">날짜</th>
+      </tr>
+    </thead>
+    <tbody class="text-center">
+      {% for news in art_list %}
+       <tr>
+        {% comment %} <th class="align-middle" style="width: 20%" scope="row">{{forloop.counter}}</th> {% endcomment %}
+        <td style="align-middle" style="width: 10%">{{news.category}}</td>
+        <td class="align-middle" style="width: 30%"><a href = {{news.link}}>{{news.title}}</td>
+        <td class="align-middle" style="width: 40%">{{news.tag}}</td>
+        <td style="align-middle" style="width: 5%">{{news.date}}</td>
+
+
+        {% comment %} <td class="align-middle" style="width: 20%">{{}}</td> {% endcomment %}
+          {% comment %} <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal{{customer.pk}}">스터디메이트 요청</a> {% endcomment %}
+        {% comment %} </td> {% endcomment %}
+      </tr>       
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

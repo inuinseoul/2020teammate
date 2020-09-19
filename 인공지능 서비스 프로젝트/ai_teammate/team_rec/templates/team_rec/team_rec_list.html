@@ -14,9 +14,15 @@
     <a class="navbar-brand" href="{% url 'home' %}" >Home</a>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
+        {% if user.customer.study.get.study_sum == 10 %}
         <li class="nav-item justify-content-end">
           <a class="nav-link" href="{% url 'study_rec:study_rec_list' user.pk %}">studymate</a>
         </li>
+        {% else %}
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'home' %}">studymate</a>
+        </li>
+        {% endif %}
         <li class="nav-item justify-content-end">
           <a class="nav-link" href="{% url 'edit:info_edit' user.customer.pk %}">mypage</a>
         </li>
