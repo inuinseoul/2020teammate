@@ -20,7 +20,7 @@
     }
 
     .form_input {
-        width: 100%;
+        width: 90%;
 
         display: flex;
         flex-direction: column;
@@ -40,6 +40,11 @@
     .form_input > h4 {
         font-size: 25px;
         font-weight: 900;
+    }
+    .button_square { width: 90% }
+    #right > h2 {
+        width: 90%;
+        text-align: center;
     }
 
     .question > p {
@@ -65,10 +70,11 @@
 
             <div>
                 <a href='{% url 'edit:info_edit' user.customer.pk %}'>개인정보</a>
-                <a href='{% url 'edit:study_edit' user.customer.pk %}'>스터디</a>
-                <a href='{% url 'edit:domain_edit' user.customer.pk %}'>흥미</a>
                 <a href='{% url 'edit:role_edit' user.customer.pk %}'>역할</a>
                 <a href='{% url 'edit:score_edit' user.customer.pk %}'>실력</a>
+                <a href='{% url 'edit:domain_edit' user.customer.pk %}'>흥미</a>
+                <a href='{% url 'edit:study_edit' user.customer.pk %}'>스터디</a>
+                <a href='{% url 'home' %}'>home</a>
             </div>
         </div>
         <div id="err">
@@ -166,9 +172,9 @@
                     </div>
 
                     <div class='form_button'>
-                        <form action="{% url 'home' %}">
+                        <!-- <form action="{% url 'home' %}">
                             <button class='button_square' type="submit">홈</button>
-                        </form>
+                        </form> -->
                         <button class='button_square' type="submit">수정하기</button>
                     </div>
 
