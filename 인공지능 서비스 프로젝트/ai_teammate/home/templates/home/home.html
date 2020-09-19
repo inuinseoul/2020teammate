@@ -55,6 +55,20 @@
                     최고의 팀메이트를 만나고, 원하는 기사를 읽어보세요!             
                 </p>
                 {% endif %}
+                {% for message in message_pk %}
+                {% if message == user.customer.pk %}
+                <p class="main_subtro">
+                    팀메이트 알림이 존재합니다. 알림을 확인해주세요!!         
+                </p>
+                {% endif %}
+                {% endfor%}
+                {% for message2 in study_pk %}
+                {% if message2 == user.customer.pk %}
+                <p class="main_subtro">
+                    스터디그룹 알림이 존재합니다. 알림을 확인해주세요!!             
+                </p>
+                {% endif %}
+                {% endfor%}
                 {% comment %} <p class='main_subtro'>I will always remember The day you kissed my lips</p>
                 <p class='main_subtro'>Light as a feather And it went just like this</p>
                 <p class='main_subtro'>No, it's never been better Than the summer of 2020</p> {% endcomment %}
