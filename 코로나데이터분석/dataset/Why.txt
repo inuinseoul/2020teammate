@@ -1,0 +1,4 @@
+데이터가 너무 커서 업로드가 안된다고 함.
+
+- card_20200717.csv (KT, 데이콘 포스트 코로나 데이터 https://dacon.io/competitions/official/235618/overview/)
+- 2019년 1월_12월 역별 시간대별 승하차인원.xlsx (서울 교통공사 http://www.seoulmetro.co.kr/kr/board.do?menuIdx=551&bbsIdx=2209125)
