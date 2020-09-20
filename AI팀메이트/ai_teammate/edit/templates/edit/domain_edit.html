@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>설문정보 수정</title>
+{% endblock %}
+
+{% block style %}
+<!--이 곳에 style에 해당하는 코드 (css파일 연결 등) 작성-->
+<link rel='stylesheet' href='{% static 'edit.css' %}'/>
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel='stylesheet' type='text/css'>
+
+<script type='text/javascript'>
+    function setheart(id, value) {
+        var el1 = document.getElementById('hearts');
+        var el2 = document.getElementById(id);
+
+        var hearts = Number(el1.textContent);
+        var select = Number(el2.value);
+        
+        if (value < 0) {
+            if ((select + value >= 0)) {
+                el1.innerHTML = hearts - value;
+                el2.value = select + value;
+            }
+        }
+        if (value > 0) {
+            if (hearts - value >= 0) {
+                el1.innerHTML = hearts - value;
+                el2.value = select + value;
+            }
+        }
+    }
+</script>
+
+<style>
+
+    /* .form_input {
+        margin-top: 3%;
+        margin-bottom: 3%;
+    } */
+    .form_button {
+        margin-top: 6%;
+        margin-bottom: 20%;
+    }
+
+    #line_type_A { width: 90%; margin-bottom: 5%; margin-top: 3%;}
+
+    #right_title {
+        margin-top: 20%;
+        
+        width: 90%;
+        
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        /* background-color: red; */
+    }
+    #right_title > h2 { font-size: 30px; font-weight: bold;}
+    #right_title > img { width: 35px; margin-left: 40px; margin-right: 10px;}
+
+    .form_value {
+        width: 90%;
+        height: 90px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .form_value > h4 { font-size: 20px; font-weight: bold;}
+    .button_square { width: 90% }
+    .value {
+        width: 45px;
+        height: 27px;
+        font-size: 23px;
+        border-radius: 0px;
+        text-align: center;
+        background-color: white;
+    }
+    .bttn {
+        height: 30px;
+        width: 30px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<!--이 곳에 페이지의 내용 작성-->
+<div id="main">
+    <div id="header">
+        <h1><a href='{% url 'home' %}'>TeamMate</a></h1>
+
+        <div>
+            <a href='{% url 'edit:info_edit' user.customer.pk %}'>개인정보</a>
+            <a href='{% url 'edit:role_edit' user.customer.pk %}'>역할</a>
+            <a href='{% url 'edit:score_edit' user.customer.pk %}'>실력</a>
+            <a href='{% url 'edit:domain_edit' user.customer.pk %}'>흥미</a>
+            <a href='{% url 'edit:study_edit' user.customer.pk %}'>스터디</a>
+            <a href='{% url 'home' %}'>home</a>
+        </div>
+    </div>
+    <div id="err">
+        {% if error.state %}
+        <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+        <strong>{{ error.msg }}</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        {%endif%}
+    </div>
+    <div id="article">
+        <div id="right">
+            
+            <div id='right_title'>
+                <h2>관심분야 배팅 수정</h2>
+                <img src='{% static 'heart.png' %}' />
+                <h2 id='hearts'>{{left_heart}}</h2>
+            </div>
+            <img id='line_type_A' src='{% static 'line_type_A.png' %}' />
+            
+            <form action="{% url 'edit:domain_edit' customer.pk %}" method = 'POST'>
+            {% csrf_token %}
+                <div class='form_value'>
+                    <h4>건강 (스포츠, 헬스, 의료)</h4>
+                    <!-- <h4>건강</h4> -->
+                    <div>
+                        <input class='bttn' type='button' onclick='setheart("health", -1)' value='-'/>
+                        <input class='value' id='health' type='number' name='health' value='{{domain.health}}' readonly/>
+                        <input class='bttn' type='button' onclick='setheart("health", 1)' value='+'/>
+                    </div>
+                </div>
+                
+                <div class='form_value'>
+                    <h4>경제 (금융, 부동산, 비즈니스)</h4>
+                    <!-- <h4>경제</h4> -->
+                    <div>
+                        <input class='bttn' type='button' onclick='setheart("economy", -1)' value='-'/>
+                        <input class='value' id='economy' type='number' name='economy' value='{{domain.economy}}' readonly/>
+                        <input class='bttn' type='button' onclick='setheart("economy", 1)' value='+'/>
+                    </div>
+                </div>
+                
+                <div class='form_value'>
+                    <h4>문화/예술 (음악, 영화,  게임, 패션/뷰티,  디자인)</h4>
+                    <!-- <h4>문화/예술</h4> -->
+                    <div>
+                        <input class='bttn' type='button' onclick='setheart("culture_art", -1)' value='-'/>
+                        <input class='value' id='culture_art' type='number' name='culture_art' value='{{domain.culture_art}}' readonly/>
+                        <input class='bttn' type='button' onclick='setheart("culture_art", 1)' value='+'/>
+                    </div>
+                </div>
+
+                <div class='form_value'>
+                    <h4>교육 (도서, 학습)</h4>
+                    <!-- <h4>교육</h4> -->
+                    <div>
+                        <input class='bttn' type='button' onclick='setheart("education", -1)' value='-'/>
+                        <input class='value' id='education' type='number' name='education' value='{{domain.education}}' readonly/>
+                        <input class='bttn' type='button' onclick='setheart("education", 1)' value='+'/>
+                    </div>
+                </div>
+                <div class='form_value'>
+                    <h4>사회 (연애, 소셜, 여행, 교통, 뉴스)</h4>
+                    <!-- <h4>사회</h4> -->
+                    <div>
+                        <input class='bttn' type='button' onclick='setheart("society", -1)' value='-'/>
+                        <input class='value' id='society' type='number' name='society' value='{{domain.society}}' readonly/>
+                        <input class='bttn' type='button' onclick='setheart("society", 1)' value='+'/>
+                    </div>
+                </div>
+                
+                <div class='form_value'>
+                    <h4>기술 (자연, 화학, 공학)</h4>
+                    <!-- <h4>기술</h4> -->
+                    <div>
+                        <input class='bttn' type='button' onclick='setheart("technology", -1)' value='-'/>
+                        <input class='value' id='technology' type='number' name='technology' value='{{domain.technology}}' readonly/>
+                        <input class='bttn' type='button' onclick='setheart("technology", 1)' value='+'/>
+                    </div>
+                </div>    
+
+                <div class='form_button'>
+                    <!-- <form action="{% url 'home' %}">
+                        <button class='button_square' type="submit">홈</button>
+                    </form> -->
+                    <button class='button_square' type="submit">수정하기</button>
+                </div>
+            </form>
+        </div>
+        <div id="left">
+            <img src='{% static 'info_edit.png' %}' />
+        </div>
+    </div>
+</div>
+{% endblock %}

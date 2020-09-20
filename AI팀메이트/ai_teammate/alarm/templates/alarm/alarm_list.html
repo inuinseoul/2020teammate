@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>알람 리스트</title>
+{% endblock %}
+
+{% block style %}
+<!--이 곳에 style에 해당하는 코드 (css파일 연결 등) 작성-->
+{% endblock %}
+
+{% block content %}
+<!--이 곳에 페이지의 내용 작성-->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background:#ffbbb1;">
+    <a class="navbar-brand" href="{% url 'home' %}" >Home</a>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'edit:info_edit' user.customer.pk %}">mypage</a>
+        </li>
+      </ul>
+      <a class="nav-link my-2 my-sm-0" style="color:white;" href="{% url 'users:logout' %}">signout</a>
+    </div>
+  </nav>
+  <br/>
+  <br/>
+  <br/>
+  <h4>팀메이트알림</h4>
+  {% for message in message_list%}
+    {% if message.recipient_pk == user.customer.pk%}
+      {% if message %}
+        <a href="{% url 'alarm:check_info' message.pk %}">{{message.sender}}</a>님에게 팀메이트 알림이 왔습니다.
+        <div>내용: {{message.contents}}<a href="{% url 'alarm:del_alarm' message.pk%}">삭제하기</a></div>
+        <div>Sent Time: {{message.sentAt}}</div>
+      </br>
+      {%endif%}
+    {%endif%}
+  {%endfor%}
+  <h4>스터디그룹알림</h4>
+  {% for message in message_list2%}
+    {% if message.recipient_pk == user.customer.pk%}
+      {% if message %}
+        <a href="{% url 'alarm:check_info2' message.pk %}">{{message.sender}}</a>님에게 스터디그룹 알림이 왔습니다.
+        <div>내용: {{message.contents}}<a href="{% url 'alarm:del_alarm2' message.pk%}">삭제하기</a></div>  
+        <div>Sent Time: {{message.sentAt}}</div>
+      </br>
+      {%endif%}
+    {%endif%}
+  {%endfor%}
+
+{% endblock %}

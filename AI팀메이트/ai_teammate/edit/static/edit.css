@@ -1,0 +1,157 @@
+* {
+    font-family: "Noto Sans KR", sans-serif !important;
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: visible;
+}
+
+#main {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    /* background-color: wheat; */
+}
+
+/*
+
+
+에러 처리
+
+
+*/
+#err {
+    margin-top: 6%;
+    /* background-color: aquamarine; */
+    position: absolute;
+    opacity: 0.7;
+}
+
+
+/* 
+
+
+상단 바(header) 스타일
+
+
+*/
+#header {
+    width: 70%;
+    height: 10%;
+    background-color: white;
+    position: fixed;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    /* background-color: pink; */
+}
+#header > div {
+    width: 50%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#header > h1 > a, #header > div > a:link { text-decoration: none; }
+#header > h1 > a, #header > div > a:hover { text-decoration: none; }
+#header > h1 > a, #header > div > a:visited { text-decoration: none; }
+#header > h1 > a, #header > div > a { color: black; text-decoration: none; }
+#header > h1 > a {
+    color: #ee624d; 
+    font-weight: 900;
+}
+
+#header > div > a:nth-last-child(1) {
+    margin-left: 5%;
+    color: white; 
+    text-align: center;
+    width: 125px;
+    padding: 5px 15px 7px 15px;
+    background-color: #ffbbb1;
+    border-radius: 100px;
+}
+
+/* 
+
+
+본문 스타일
+
+
+*/
+#article {
+    width: 70%;
+    height: 100%;
+
+    margin-top: 4%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    /* background-color: aqua; */
+}
+
+#right {
+    width: 60%;
+    height: 100%;
+    /* background-color: brown; */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+#right > h2 {
+    margin-top: 20%;
+    font-size: 30px;
+    font-weight: 900;
+}
+#right > form { 
+    width: 100%; 
+}
+
+#left {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    /* background-color: coral; */
+}
+#left > img {
+    margin-top: 20%;
+    /* background-color: aquamarine; */
+    /* width: 100%; */
+    position: fixed;
+    height: 80%;
+    bottom: 0%;
+}
+
+.button_square {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 7px 25px 7px 25px;
+    background-color: #ffbbb1;
+    border-radius: 7px;
+    margin-right: 2%;
+    border: 0;
+}

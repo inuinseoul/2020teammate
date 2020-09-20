@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>기본정보 수정</title>
+{% endblock %}
+
+{% block style %}
+<!--이 곳에 style에 해당하는 코드 (css파일 연결 등) 작성-->
+<link rel='stylesheet' href='{% static 'edit.css' %}'/>
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel='stylesheet' type='text/css'>
+
+<style>
+    .label {
+        font-size: 20px;
+        color: black;
+        margin-right: 10px;
+    }
+    .description {
+        font-size: 14px;
+        color: #868686;
+    }
+    
+    input {
+        border: 2px solid black;
+        border-radius: 7px;
+
+        width: 100%;
+        height: 35px;
+    }
+    textarea {
+        border: 2px solid black;
+        border-radius: 7px;
+
+        width: 100%;
+        height: 100px;
+    }
+
+    .form_input {
+        margin-top: 3%;
+        margin-bottom: 3%;
+        width: 60%;
+    }
+    .form_button {
+        margin-top: 10%;
+        margin-bottom: 20%;
+    }
+    .button_square { width: 60% }
+
+    .btn-group { float: right; }
+    
+    #right > h2 {
+        width: 60%;
+        text-align: center;
+        /* background-color: coral; */
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<!--이 곳에 페이지의 내용 작성-->
+    <div id="main">
+        <div id="header">
+            <h1><a href='{% url 'home' %}'>TeamMate</a></h1>
+
+            <div>
+                <a href='{% url 'edit:info_edit' user.customer.pk %}'>개인정보</a>
+                <a href='{% url 'edit:role_edit' user.customer.pk %}'>역할</a>
+                <a href='{% url 'edit:score_edit' user.customer.pk %}'>실력</a>
+                <a href='{% url 'edit:domain_edit' user.customer.pk %}'>흥미</a>
+                <a href='{% url 'edit:study_edit' user.customer.pk %}'>스터디</a>
+                <a href='{% url 'home' %}'>home</a>
+            </div>
+        </div>
+        <div id="err">
+            <!-- 여기에 오류메세지를 띄워주세용 -->
+        </div>
+        <div id="article">
+            <div id="right">
+                <h2>가입 정보 수정</h2>
+
+                <form action="{% url 'edit:info_edit' customer.pk %}" method = 'POST'>
+                {% csrf_token %}
+                    <div class='form_input'>
+                        <span class='label'>NAME</span><span class='description'>해당 서비스 사용 중 보여지는 이름입니다</span><br />
+                        <input type='text' placeholder="이름을 입력하세요" name="name" value='{{customer.name}}'/>
+                    </div>
+                    
+                    <div class='form_input'>
+                        <span class='label'>E-MAIL</span><span class='description'>example@email.com 형식을 지켜주세요</span><br />
+                        <input type='email' placeholder="email을 입력하세요" name="email" value='{{customer.email}}'/>
+                    </div>
+
+                    <div class='form_input'>
+                        <span class='label'>PHONE</span><span class='description'>010-1234-1234 하이픈(-)도 입력해주세요</span><br />
+                        <input type='tel' placeholder="010-1234-1234" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" name="phone_num" value='{{customer.phone_num}}'/>
+                    </div>
+
+                    <div class='form_input'>
+                        <span class='label'>INTRODUCE</span><span class='description'>자신에 대해 자유롭게 소개해주세요</span><br />
+                        <textarea name="intro" placeholder='예) 개발은 처음이지만 열심히하겠습니다. 잘 부탁드립니다.'>{{customer.intro}}</textarea>
+                        <!-- <input class='signup_input' type='text' placeholder='예) 개발은 처음이지만 열심히하겠습니다. 잘 부탁드립니다.' name='intro' value='{{customer.intro}}'/> -->
+                    </div>
+
+                    <div class='form_input'>
+                        <span class='label'>TEAM</span><span class='description'>팀 소속 여부를 알려주세요</span>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        {% if user.customer.team_state == 0 %}
+                            <label class="btn btn-light active">
+                                <input type="radio" name="team_check" value='1' id="option1"> YES
+                            </label>
+                            <label class="btn btn-light">
+                                <input type="radio" name="team_check" value='0' id="option2" checked> NO
+                            </label>
+                        {% else %}
+                            <label class="btn btn-light active">
+                                <input type="radio" name="team_check" value='1' id="option1" checked> YES
+                            </label>
+                            <label class="btn btn-light">
+                                <input type="radio" name="team_check" value='0' id="option2"> NO
+                            </label>
+                        {% endif %}
+                        </div>
+                    </div>
+
+                    <div class='form_input'>
+                        <span class='label'>STUDY</span><span class='description'>스터디 소속 여부를 알려주세요</span>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        {% if user.customer.study_state == 0 %}
+                            <label class="btn btn-light active">
+                                <input type="radio" name="study_check" value='1' id="option1"> YES
+                            </label>
+                            <label class="btn btn-light">
+                                <input type="radio" name="study_check" value='0' id="option2" checked> NO
+                            </label>
+                        {% else %}
+                            <label class="btn btn-light active">
+                                <input type="radio" name="study_check" value='1' id="option1" checked> YES
+                            </label>
+                            <label class="btn btn-light">
+                                <input type="radio" name="study_check" value='0' id="option2"> NO
+                            </label>
+                        {% endif %}
+                        </div>
+                    </div>                    
+
+                    <div class='form_button'>
+                        <!-- <form action="{% url 'home' %}">
+                        {% csrf_token %}
+                            <button class='button_square' type="submit">홈</button>
+                        </form> -->
+                        <button class='button_square' type="submit">수정하기</button>
+                    </div>
+                </form>
+            </div>
+            <div id="left">
+                <img src='{% static 'info_edit.png' %}' />
+            </div>
+        </div>
+    </div>
+{% endblock %}
