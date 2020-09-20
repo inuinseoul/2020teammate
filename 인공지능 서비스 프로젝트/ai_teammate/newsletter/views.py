@@ -194,6 +194,7 @@ def news_health_list(request):
                     "tag": news["tag"][page + i - 10],
                 }
             )
+
     else:
         for i in range(10):
             health_list.append(
@@ -205,9 +206,9 @@ def news_health_list(request):
                     "tag": news["tag"][page + i - 10],
                 }
             )
-
+    print(len(health_list))
+    print(page)
     context = {"health_list": health_list, "page": page, "news_num": news.shape[0]}
-
     return render(request, "newsletter_health.html", context)
 
 

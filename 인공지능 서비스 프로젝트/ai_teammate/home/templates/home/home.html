@@ -53,14 +53,14 @@
                 {% for message in message_pk %}
                 {% if message == user.customer.pk %}
                 <p class="main_subtro">
-                    미확인 팀메이트 요청 메세지가 존재합니다. <a href="{% url 'edit:role_edit' user.customer.pk%}" class="alert-link">확인</a>         
+                    미확인 팀메이트 요청 메세지가 존재합니다. <a href="{% url 'alarm:alarm_list' user.customer.pk%}" class="alert-link">확인</a>         
                 </p>
                 {% endif %}
                 {% endfor%}
                 {% for message2 in study_pk %}
                 {% if message2 == user.customer.pk %}
                 <p class="main_subtro">
-                    미확인 스터디메이트 요청 메세지가 존재합니다. <a href="{% url 'edit:role_edit' user.customer.pk%}" class="alert-link">확인</a>             
+                    미확인 스터디메이트 요청 메세지가 존재합니다. <a href="{% url 'alarm:alarm_list' user.customer.pk%}" class="alert-link">확인</a>             
                 </p>
                 {% endif %}
                 {% endfor%}

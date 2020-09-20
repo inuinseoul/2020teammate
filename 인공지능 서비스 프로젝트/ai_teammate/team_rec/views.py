@@ -1,6 +1,6 @@
 from django.http import request
 from django.shortcuts import render
-from users.models import Customer, Domain, Score, Role
+from users.models import Customer, Domain, Score, Role, Message
 from django.contrib import auth
 from sklearn.metrics.pairwise import cosine_similarity
 from django_pandas.io import read_frame
@@ -16,7 +16,21 @@ rc("font", family=font_name)
 def team_rec_list(request, customer_pk):
     page = 5
     if request.method == "POST":
-        page = int(request.POST["page"]) + 5
+        if request.POST["request"] != "1":
+            page = request.POST["page"]
+            to_pk = request.POST["request"]
+            customer = Customer.objects.get(pk=to_pk)
+            sender = request.user  # 알림보내는 사람
+
+            Message.objects.create(
+                sender=sender.customer.name,
+                sender_pk=sender.customer.pk,
+                recipient=customer.name,
+                recipient_pk=to_pk,
+                contents=request.POST["contents"],
+            )
+        if request.POST["request"] == "0":
+            page = int(request.POST["page"]) + 5
 
     customer_list = Customer.objects.all()
     score_list = Score.objects.all()

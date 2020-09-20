@@ -24,27 +24,62 @@
   <br/>
   <br/>
   <br/>
-  <h4>팀메이트알림</h4>
-  {% for message in message_list%}
-    {% if message.recipient_pk == user.customer.pk%}
-      {% if message %}
-        <a href="{% url 'alarm:check_info' message.pk %}">{{message.sender}}</a>님에게 팀메이트 알림이 왔습니다.
-        <div>내용: {{message.contents}}<a href="{% url 'alarm:del_alarm' message.pk%}">삭제하기</a></div>
-        <div>Sent Time: {{message.sentAt}}</div>
-      </br>
-      {%endif%}
-    {%endif%}
-  {%endfor%}
-  <h4>스터디그룹알림</h4>
-  {% for message in message_list2%}
-    {% if message.recipient_pk == user.customer.pk%}
-      {% if message %}
-        <a href="{% url 'alarm:check_info2' message.pk %}">{{message.sender}}</a>님에게 스터디그룹 알림이 왔습니다.
-        <div>내용: {{message.contents}}<a href="{% url 'alarm:del_alarm2' message.pk%}">삭제하기</a></div>  
-        <div>Sent Time: {{message.sentAt}}</div>
-      </br>
-      {%endif%}
-    {%endif%}
-  {%endfor%}
+
+  <div class="row mb-2">
+    <div class="col-md-6">
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-info">Teammate request</strong>
+          <br>
+          {% if message_list|length == 0 %}
+            <div class="mb-1 text-muted">미확인요청 없음</div>
+          {% else %}
+            {% for message in message_list %}
+              <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 d-flex flex-column position-static">
+              <div class="mb-1 text-muted">{{message.sentAt}}</div>
+              {% if message.contents|length == 0 %}
+              <p class="card-text mb-auto">내용없음</p>
+              {% else %}
+              <p class="card-text mb-auto">{{message.contents}}</p>
+              {% endif %}   
+              <p class="card-text mb-auto">From. <a href="#" class="stretched-link">{{message.sender}}</a></p>     
+              <br>
+              <a href="{% url 'alarm:del_alarm' message.pk %}" class="stretched-link">삭제</a>
+              </div> 
+              </div>      
+            {%endfor%}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-info">Studymate request</strong>
+          <br>
+          {% if message_list2|length == 0 %}
+            <div class="mb-1 text-muted">미확인요청 없음</div>
+          {% else %}
+            {% for message in message_list2 %}
+              <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 d-flex flex-column position-static">
+              <div class="mb-1 text-muted">{{message.sentAt}}</div>
+              {% if message.contents|length == 0 %}
+              <p class="card-text mb-auto">내용없음</p>
+              {% else %}
+              <p class="card-text mb-auto">{{message.contents}}</p>
+              {% endif %}   
+              <p class="card-text mb-auto">From. <a href="#" class="stretched-link">{{message.sender}}</a></p>     
+              <br>
+              <a href="{% url 'alarm:del_alarm2' message.pk %}" class="stretched-link">삭제</a>
+              </div> 
+              </div>      
+            {%endfor%}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
 
 {% endblock %}

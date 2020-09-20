@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from users.models import Customer, Domain, Score, Role, Study
+from users.models import Customer, Domain, Score, Role, Study, Study_Message
 from django.contrib import auth
 from sklearn.metrics.pairwise import cosine_similarity
 from django_pandas.io import read_frame
@@ -70,7 +70,21 @@ def get_grade_sub_for_hope_course(input_num, customer_study, customer_score):
 def study_rec_list(request, customer_pk):
     page = 5
     if request.method == "POST":
-        page = int(request.POST["page"]) + 5
+        if request.POST["request"] != "1":
+            page = request.POST["page"]
+            to_pk = request.POST["request"]
+            customer = Customer.objects.get(pk=to_pk)
+            sender = request.user  # 알림보내는 사람
+
+            Study_Message.objects.create(
+                sender=sender.customer.name,
+                sender_pk=sender.customer.pk,
+                recipient=customer.name,
+                recipient_pk=to_pk,
+                contents=request.POST["contents"],
+            )
+        if request.POST["request"] == "0":
+            page = int(request.POST["page"]) + 5
 
     customer_list = Customer.objects.all()
     score_list = Score.objects.all()
@@ -204,7 +218,6 @@ def study_rec_list(request, customer_pk):
                 study_index_after.append(study_index[j])
                 study_values_after.append(study_values[j])
                 color_after.append(color[j])
-        print(study_index_after)
         plt.figure(figsize=(3, 3))
         plt.xticks(fontsize=8)
         plt.bar(

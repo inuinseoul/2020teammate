@@ -48,8 +48,10 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form action="{% url 'alarm:alarm_create2' customer.pk %}" method = 'POST'>
-            {% csrf_token %}                
+            <form action="{% url 'study_rec:study_rec_list' user.pk %}" method = 'POST'>
+            {% csrf_token %}     
+            <input type="hidden" value="{{page}}" name='page' readonly/>
+            <input type="hidden" value="{{customer.pk}}" name='request' readonly/>           
             <div class="modal-body text-center">
               <p>보내고 싶은 메세지를 입력하세요!</p>
               <p>(자기소개, 연락처 등)</p>
@@ -78,6 +80,7 @@
   <form action="{% url 'team_rec:team_rec_list' user.pk %}" method = 'POST'>
   {% csrf_token %}
     <input type="hidden" value="{{page}}" name='page' readonly/>
+    <input type="hidden" value="0" name='request' readonly/>
     <button type="submit" class="btn btn-outline-info btn-lg btn-block">더 보기 ({{recommend_customer_list|length|add:page|add:"-5"}}/{{ recommend_customer_length }})</button>
   </form>
   {% else %}
