@@ -25,7 +25,7 @@
   <br/>
   <br/>
 
-  <div class="row mb-2">
+  <div class="row mb-2" style="margin-left:5px; margin-right:5px">
     <div class="col-md-6">
       <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
@@ -42,10 +42,32 @@
               <p class="card-text mb-auto">내용없음</p>
               {% else %}
               <p class="card-text mb-auto">{{message.contents}}</p>
-              {% endif %}   
-              <p class="card-text mb-auto">From. <a href="#" class="stretched-link">{{message.sender}}</a></p>     
+              {% endif %}  
+              <br> 
+              <!-- Button trigger modal -->
+              <p class="card-text mb-auto">From. <a href="#" data-toggle="modal" data-target="#exampleModal">{{message.sender}}</a></p>
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">{{message.sender_foreignKey.name}}님의 자기소개</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      {{message.sender_foreignKey.intro}}
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>   
               <br>
-              <a href="{% url 'alarm:del_alarm' message.pk %}" class="stretched-link">삭제</a>
+              <a href="{% url 'alarm:del_alarm' message.pk %}" style="width:15%;" class="btn btn-outline-dark pull-right">삭제</a>
               </div> 
               </div>      
             {%endfor%}
@@ -69,10 +91,32 @@
               <p class="card-text mb-auto">내용없음</p>
               {% else %}
               <p class="card-text mb-auto">{{message.contents}}</p>
-              {% endif %}   
-              <p class="card-text mb-auto">From. <a href="#" class="stretched-link">{{message.sender}}</a></p>     
+              {% endif %}  
+              <br> 
+              <!-- Button trigger modal -->
+              <p class="card-text mb-auto">From. <a href="#" data-toggle="modal" data-target="#exampleModal">{{message.sender}}</a></p>
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">{{message.sender_foreignKey.name}}님의 정보</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      {{message.sender_foreignKey.intro}}
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>   
               <br>
-              <a href="{% url 'alarm:del_alarm2' message.pk %}" class="stretched-link">삭제</a>
+              <a href="{% url 'alarm:del_alarm2' message.pk %}" style="width:15%;" class="btn btn-outline-dark">삭제</a>
               </div> 
               </div>      
             {%endfor%}

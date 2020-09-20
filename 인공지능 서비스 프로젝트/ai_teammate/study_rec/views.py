@@ -77,8 +77,10 @@ def study_rec_list(request, customer_pk):
             sender = request.user  # 알림보내는 사람
 
             Study_Message.objects.create(
+                sender_foreignKey=sender.customer,
                 sender=sender.customer.name,
                 sender_pk=sender.customer.pk,
+                recipient_foreignKey=customer,
                 recipient=customer.name,
                 recipient_pk=to_pk,
                 contents=request.POST["contents"],

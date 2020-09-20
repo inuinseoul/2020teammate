@@ -8,9 +8,9 @@ class Customer(models.Model):
     name = models.CharField(max_length=10)
     email = models.CharField(max_length=20, null=True)
     phone_num = models.CharField(max_length=20, null=True)
-    team_state = models.IntegerField(default=0)#팀상태
-    study_state = models.IntegerField(default=0)#스터디상태
-    intro = models.TextField()#자기소개
+    team_state = models.IntegerField(default=0)  # 팀상태
+    study_state = models.IntegerField(default=0)  # 스터디상태
+    intro = models.TextField()  # 자기소개
 
 
 # 흥미 테이블
@@ -77,13 +77,19 @@ class Study(models.Model):
     study_sum = models.IntegerField(default=0)
 
 
-#알림(팀메이트)
+# 알림(팀메이트)
 class Message(models.Model):
+    sender_foreignKey = models.ForeignKey(
+        Customer, related_name="to_tm", on_delete=models.CASCADE, null=True
+    )
     sender = models.CharField(max_length=20)  # 보낸사람
-    sender_pk = models.IntegerField() # 보낸사람의 customer_pk
+    sender_pk = models.IntegerField()  # 보낸사람의 customer_pk
+    recipient_foreignKey = models.ForeignKey(
+        Customer, related_name="from_tm", on_delete=models.CASCADE, null=True
+    )
     recipient = models.CharField(max_length=20)  # 받을사람
-    recipient_pk = models.IntegerField() # 받을사람의 recipient_pk
-    contents = models.TextField()#메세지내용
+    recipient_pk = models.IntegerField()  # 받을사람의 recipient_pk
+    contents = models.TextField()  # 메세지내용
     sentAt = models.DateTimeField(auto_now_add=True)  # 쪽지를보낸시간
 
     def save(self, **kwargs):
@@ -91,17 +97,23 @@ class Message(models.Model):
             self.sentAt = timezone.now()
         super(Message, self).save(**kwargs)
 
-#알림(스터디그룹)
+
+# 알림(스터디그룹)
 class Study_Message(models.Model):
+    sender_foreignKey = models.ForeignKey(
+        Customer, related_name="to_sm", on_delete=models.CASCADE, null=True
+    )
     sender = models.CharField(max_length=20)  # 보낸사람
-    sender_pk = models.IntegerField() # 보낸사람의 customer_pk
+    sender_pk = models.IntegerField()  # 보낸사람의 customer_pk
+    recipient_foreignKey = models.ForeignKey(
+        Customer, related_name="from_sm", on_delete=models.CASCADE, null=True
+    )
     recipient = models.CharField(max_length=20)  # 받을사람
-    recipient_pk = models.IntegerField() # 받을사람의 recipient_pk
-    contents = models.TextField()#메세지내용
+    recipient_pk = models.IntegerField()  # 받을사람의 recipient_pk
+    contents = models.TextField()  # 메세지내용
     sentAt = models.DateTimeField(auto_now_add=True)  # 쪽지를보낸시간
 
     def save(self, **kwargs):
         if not self.id:
             self.sentAt = timezone.now()
         super(Study_Message, self).save(**kwargs)
-    
