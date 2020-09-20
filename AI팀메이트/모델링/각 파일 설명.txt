@@ -1,0 +1,28 @@
+※ 1. 데이터 설명 (csv)
+
+	< 1. ITchosun_content.csv --> 9132개 ( 19/03/07 ~  20/09/15 ) 
+
+	IT조선 크롤링 데이터 (http://it.chosun.com) 
+	column명 : [ link, title, date, content, tag, big_category, small_category ]
+		   [링크, 기사 제목, 기사 게재날짜, 기사 본문, 해시태그, 기사 대분류, 기사 소분류 ]
+
+	< 2. AItimes_list.csv > --> 104개 ( 20/09/03 ~  20/09/13 ) 
+	
+	AI타임즈 크롤링 데이터 (http://www.aitimes.com/)
+	column명 : [ link, title, date, big_category ]
+		   [링크, 기사 제목, 기사 게재날짜, 기사 대분류]
+
+	< 3. AItimes_content.csv > --> 
+
+	AI타임즈 크롤링 데이터 (http://www.aitimes.com/)
+	column명 : [ link, tag, content ]
+		   [ 링크, 해시태그, 기사 본문 ]
+
+★ IT조선 기사는 대분류와 소분류가 세분화 되어있어 팀메이트 도메인에 맞게 분류할 수 있음
+★ AI타임즈 사이트에는 좋은 기사들이 많이 게재되지만, 기사의 분류가 도메인을 분류할 수 있는 형식이 아님
+★ AItimes_list.csv와 AItimes_content.csv 를 링크를 기준으로 join
+
+
+※ 2. modeling 설명 ( json, h5 )
+	<1. news_classification_100_5.h5> : ITchosun_content.csv 으로 train한 modeling 정보 파일
+	<2. wordIndex.json> : 토크나이저 데이터
