@@ -22,7 +22,7 @@
 # 위의 과정까지가 python manage.py shell을 키는 것과 비슷한 효과
 
 # 
-CSV_PATH = 'newsletter/result_0918.csv'	# 3. csv 파일 경로
+CSV_PATH = 'newsletter/result_0919.csv'	# 3. csv 파일 경로
 import csv
 from newsletter.models import *	# 2. App이름.models
 
