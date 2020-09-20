@@ -24,5 +24,5 @@
 
 
 ※ 2. modeling 설명 ( json, h5 )
-	<1. news_classification_100_5.h5> : ITchosun_content.csv 으로 train한 modeling 정보 파일 --> 크기가 너무 커서 github에 올라가지 
+	<1. news_classification_100_5.h5> : ITchosun_content.csv 으로 train한 modeling 정보 파일 --> 크기가 너무 커서 github에 올라가지 않음..ㅠㅠ
 	<2. wordIndex.json> : 토크나이저 데이터
