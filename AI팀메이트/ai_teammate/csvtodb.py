@@ -1,20 +1,19 @@
-# import csv
-# import os
-# import django
-# import sys
-# from newsletter.models import News,New_News	# 2. App이름.models
+import csv
+import os
+import django
+import sys
 
-# os.chdir('.')
+os.chdir('.')
 
-# print("Current dir=", end=""), print(os.getcwd())
+print("Current dir=", end=""), print(os.getcwd())
 
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# print("BASE_DIR=", end=""), print(BASE_DIR)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+print("BASE_DIR=", end=""), print(BASE_DIR)
 
-# sys.path.append(BASE_DIR)
+sys.path.append(BASE_DIR)
 
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ai_teammate.settings")	# 1. 여기서 프로젝트명.settings입력
-# django.setup()
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ai_teammate.settings")	# 1. 여기서 프로젝트명.settings입력
+django.setup()
 ###########################################################################################
 #############################################################################################
 ##########################################################################################
@@ -23,7 +22,7 @@
 
 # 
 CSV_PATH = 'newsletter/result_0919.csv'	# 3. csv 파일 경로
-import csv
+# import csv
 from newsletter.models import *	# 2. App이름.models
 
 bulk_list = []
