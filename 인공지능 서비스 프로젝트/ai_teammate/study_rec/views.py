@@ -70,7 +70,7 @@ def get_grade_sub_for_hope_course(input_num, customer_study, customer_score):
 def study_rec_list(request, customer_pk):
     page = 5
     if request.method == "POST":
-        if request.POST["request"] != "1":
+        if request.POST["request"] != "0":
             page = request.POST["page"]
             to_pk = request.POST["request"]
             customer = Customer.objects.get(pk=to_pk)
