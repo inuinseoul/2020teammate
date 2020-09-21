@@ -153,12 +153,6 @@ def study_rec_list(request, customer_pk):
     recommend_customer_list = []
     recommend_customer_list_already = []
     recommend_customer_length = len(recommend_pk_list)
-    if len(recommend_pk_list) <= 5:
-        recommend_pk_list = recommend_pk_list
-    elif len(recommend_pk_list) <= page:
-        recommend_pk_list = recommend_pk_list[page - 5 :]
-    else:
-        recommend_pk_list = recommend_pk_list[page - 5 : page]
 
     for i in recommend_pk_list:
         now_customer = Customer.objects.get(pk=int(i))
@@ -167,6 +161,17 @@ def study_rec_list(request, customer_pk):
         else:
             recommend_customer_list.append(now_customer)
 
+    recommend_customer_list = recommend_customer_list + recommend_customer_list_already
+
+    if len(recommend_customer_list) <= 5:
+        recommend_customer_list = recommend_customer_list
+    elif len(recommend_customer_list) <= page:
+        recommend_customer_list = recommend_customer_list[page - 5 :]
+    else:
+        recommend_customer_list = recommend_customer_list[page - 5 : page]
+
+    for now_customer in recommend_customer_list:
+        i = now_customer.pk
         study_index = [
             "웹",
             "디자인",
@@ -229,7 +234,6 @@ def study_rec_list(request, customer_pk):
             width=0.5,  # default: 0.8
         )
         plt.savefig(f"./static/study_graph_{i}.png")
-    recommend_customer_list = recommend_customer_list + recommend_customer_list_already
     context = {
         "recommend_customer_list": recommend_customer_list,
         "page": page,

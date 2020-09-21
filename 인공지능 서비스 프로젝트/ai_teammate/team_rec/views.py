@@ -73,19 +73,25 @@ def team_rec_list(request, customer_pk):
     recommend_customer_list = []
     recommend_customer_list_already = []
     recommend_customer_length = len(recommend_pk_list)
-    if len(recommend_pk_list) <= 5:
-        recommend_pk_list = recommend_pk_list
-    elif len(recommend_pk_list) <= page:
-        recommend_pk_list = recommend_pk_list[page - 5 :]
-    else:
-        recommend_pk_list = recommend_pk_list[page - 5 : page]
 
     for i in recommend_pk_list:
         now_customer = Customer.objects.get(pk=int(i))
-        if now_customer.team_state == 1:
+        if now_customer.study_state == 1:
             recommend_customer_list_already.append(now_customer)
         else:
             recommend_customer_list.append(now_customer)
+
+    recommend_customer_list = recommend_customer_list + recommend_customer_list_already
+
+    if len(recommend_customer_list) <= 5:
+        recommend_customer_list = recommend_customer_list
+    elif len(recommend_customer_list) <= page:
+        recommend_customer_list = recommend_customer_list[page - 5 :]
+    else:
+        recommend_customer_list = recommend_customer_list[page - 5 : page]
+
+    for now_customer in recommend_customer_list:
+        i = now_customer.pk
         domain_index = [
             "건강",
             "경제",
@@ -124,7 +130,7 @@ def team_rec_list(request, customer_pk):
             color=["#F78181", "#A9E2F3", "#D0A9F5", "#F5A9F2"],
         )
         plt.savefig(f"./static/role_graph_{i}.png")
-    recommend_customer_list = recommend_customer_list + recommend_customer_list_already
+
     context = {
         "recommend_customer_list": recommend_customer_list,
         "page": page,

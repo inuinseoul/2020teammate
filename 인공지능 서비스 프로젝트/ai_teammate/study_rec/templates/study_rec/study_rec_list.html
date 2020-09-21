@@ -65,7 +65,7 @@
         </div>
       </div>
        <tr>
-        <th class="align-middle" style="width: 20%" scope="row">{{forloop.counter}}</th>
+        <th class="align-middle" style="width: 20%" scope="row">{{forloop.counter|add:page|add:"-5"}}</th>
         <td class="align-middle" style="width: 20%">{{customer.name}}</td>
         <td style="width: 30%"><img src="/static/study_graph_{{customer.pk}}.png" alt=""></td>
         <td class="align-middle" style="width: 10%">
@@ -83,7 +83,7 @@
     </tbody>
   </table>
   {% if recommend_customer_length > page %}
-  <form action="{% url 'team_rec:team_rec_list' user.pk %}" method = 'POST'>
+  <form action="{% url 'study_rec:study_rec_list' user.pk %}" method = 'POST'>
   {% csrf_token %}
     <input type="hidden" value="{{page}}" name='page' readonly/>
     <input type="hidden" value="0" name='request' readonly/>
