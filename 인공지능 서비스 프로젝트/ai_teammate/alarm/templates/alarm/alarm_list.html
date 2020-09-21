@@ -7,6 +7,7 @@
 {% block style %}
 <!--이 곳에 style에 해당하는 코드 (css파일 연결 등) 작성-->
 <link rel='stylesheet' href='{% static 'alarm.css' %}'/>
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel='stylesheet' type='text/css'>
 {% endblock %}
 
 {% block content %}
@@ -31,7 +32,7 @@
 
                 {% if message_list|length == 0 %}
                   <div class="alarm_box">
-                      <p style="width: 100%; text-align: center; color: #868686;">Empty</p>                    
+                      <p style="width: 100%; text-align: center; color: #868686; margin-top: 10px;">Empty</p>                    
                   </div>
                 {% else %}
                   {% for message in message_list %}
@@ -69,9 +70,8 @@
                           </div>
                         </div>
                     </div>
-                    
-                    <p>마지막입니다</p>
                   {%endfor%}
+                  <p>마지막입니다</p>
                 {% endif %}
 
 
@@ -91,7 +91,7 @@
 
                 {% if message_list2|length == 0 %}
                   <div class="alarm_box">
-                      <p style="width: 100%; text-align: center; color: #868686;">Empty</p>                    
+                      <p style="width: 100%; text-align: center; color: #868686; margin-top: 10px;">Empty</p>                    
                   </div>
                 {% else %}
                   {% for message in message_list2 %}
@@ -99,7 +99,7 @@
                         <a href='{% url 'alarm:del_alarm' message.pk %}'><img src="{% static 'close_dark.png' %}" /></a>
                         <div class="alarm">
                             <a href="#" data-toggle="modal" data-target="#exampleModal{{message.pk}}">
-                                <p>{{message.sender}}님에게서 팀메이트 요청 도착</p>
+                                <p>{{message.sender}}님에게서 스터디메이트 요청 도착</p>
                                 <p style="color: #868686;">{{message.sentAt}}</p>
                                 <hr />
                                 {% if message.contents|length == 0 %}
@@ -129,9 +129,8 @@
                           </div>
                         </div>
                     </div>
-                    
-                    <p>마지막입니다</p>
                   {%endfor%}
+                  <p>마지막입니다</p>
                 {% endif %}
     
                 </div>

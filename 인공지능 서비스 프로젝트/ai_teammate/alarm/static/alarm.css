@@ -76,25 +76,25 @@ hr {
     height: 100%;
 
     /* background-color: #ffbbb1; */
-    margin-top: 10%;
-
-    font-size: 40px;
-    font-weight: 900;
-    color: #ee624d;
-
+    margin-top: 13%;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
 }
-.article_side > h1 { 
+.article_side > h1 {
+    color: #ee624d;
+    font-size: 85px;
+    font-weight: 900;
+
     margin-bottom: 0%;
 }
-.article_side > p { margin-top: 0%; }
+.article_side > p { margin-top: 5%; }
 .article_side > p > a {
     line-height: 0%;
     font-size: 26px;
+    font-weight: 900;
     background-color: #ffbbb1;
     padding: 3px 30px 5px 30px;
     border-radius: 100px;
