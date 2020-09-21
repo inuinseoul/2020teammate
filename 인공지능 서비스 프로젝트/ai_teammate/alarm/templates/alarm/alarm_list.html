@@ -39,7 +39,7 @@
                     <div class="alarm_box">
                         <a href='{% url 'alarm:del_alarm' message.pk %}'><img src="{% static 'close_dark.png' %}" /></a>
                         <div class="alarm">
-                            <a href="#" data-toggle="modal" data-target="#exampleModal{{message.pk}}">
+                            <a href="#" data-toggle="modal" data-target="#exampleModal1{{message.pk}}">
                                 <p>{{message.sender}}님에게서 팀메이트 요청 도착</p>
                                 <p style="color: #868686;">{{message.sentAt}}</p>
                                 <hr />
@@ -51,17 +51,77 @@
                             </a>
                         </div>
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal{{message.pk}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="exampleModal1{{message.pk}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">{{message.sender_foreignKey.name}}님의 자기소개</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">'{{message.sender_foreignKey.name}}'님의 정보</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                               </div>
-                              <div class="modal-body">
-                                {{message.sender_foreignKey.intro}}
+                              <div class="modal-body text-left">                            
+                                <table class="table text-center">
+                                  <thead class="thead-dark">
+                                    <tr>
+                                      <th scope="col" style="width: 50%">선호역할</th>
+                                      <th scope="col" style="width: 50%">하트</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row" style="width: 50%">데이터</th>
+                                      <td style="width: 50%">{{message.sender_foreignKey.role.get.analysis_hearts}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row" style="width: 50%">웹</th>
+                                      <td style="width: 50%">{{message.sender_foreignKey.role.get.web_hearts}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row" style="width: 50%">디자인</th>
+                                      <td style="width: 50%">{{message.sender_foreignKey.role.get.design_hearts}}</td>
+                                    </tr>
+                                     <tr>
+                                      <th scope="row" style="width: 50%">모델링</th>
+                                      <td style="width: 50%">{{message.sender_foreignKey.role.get.modeling_hearts}}</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                <br>
+                                <table class="table text-center">
+                                  <thead class="thead-dark">
+                                    <tr>
+                                      <th scope="col" style="width: 50%">관심도메인</th>
+                                      <th scope="col" style="width: 50%">하트</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row" style="width: 50%">건강</th>
+                                      <td style="width: 50%">{{message.sender_foreignKey.domain.get.health}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row" style="width: 50%">경제</th>
+                                      <td style="width: 50%">{{message.sender_foreignKey.domain.get.economy}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row" style="width: 50%">문화/예술</th>
+                                      <td style="width: 50%">{{message.sender_foreignKey.domain.get.culture_art}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row" style="width: 50%">교육</th>
+                                      <td style="width: 50%">{{message.sender_foreignKey.domain.get.education}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row" style="width: 50%">교육</th>
+                                      <td style="width: 50%">{{message.sender_foreignKey.domain.get.society}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row" style="width: 50%">교육</th>
+                                      <td style="width: 50%">{{message.sender_foreignKey.domain.get.technology}}</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -98,7 +158,7 @@
                     <div class="alarm_box">
                         <a href='{% url 'alarm:del_alarm2' message.pk %}'><img src="{% static 'close_dark.png' %}" /></a>
                         <div class="alarm">
-                            <a href="#" data-toggle="modal" data-target="#exampleModal{{message.pk}}">
+                            <a href="#" data-toggle="modal" data-target="#exampleModal2{{message.pk}}">
                                 <p>{{message.sender}}님에게서 스터디메이트 요청 도착</p>
                                 <p style="color: #868686;">{{message.sentAt}}</p>
                                 <hr />
@@ -110,17 +170,78 @@
                             </a>
                         </div>
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal{{message.pk}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="exampleModal2{{message.pk}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">{{message.sender_foreignKey.name}}님의 자기소개</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">'{{message.sender_foreignKey.name}}'님의 정보</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
                               </div>
                               <div class="modal-body">
-                                {{message.sender_foreignKey.intro}}
+                                <table class="table text-center">
+                                  <thead class="thead-dark">
+                                    <tr>
+                                      <th scope="col" style="width: 50%">선호스터디</th>
+                                      <th scope="col" style="width: 50%">하트</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row" style="width: 50%">웹</th>
+                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.web_hearts}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row" style="width: 50%">디자인</th>
+                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.design_hearts}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row" style="width: 50%">머신러닝</th>
+                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.machine_learning_hearts}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row" style="width: 50%">통계</th>
+                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.statistics_hearts}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row" style="width: 50%">딥러닝</th>
+                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.deep_learning_hearts}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row" style="width: 50%">알고리즘</th>
+                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.algorithm_hearts}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row" style="width: 50%">자연어처리</th>
+                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.nlp_hearts}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row" style="width: 50%">파이썬기초</th>
+                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.basic_python_hearts}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row" style="width: 50%">데이터분석</th>
+                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.data_analysis_hearts}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row" style="width: 50%">음성인식</th>
+                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.voice_recog_hearts}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row" style="width: 50%">컴퓨터비전</th>
+                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.computer_vision_hearts}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row" style="width: 50%">추천시스템</th>
+                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.rec_system_hearts}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row" style="width: 50%">강화학습</th>
+                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.reinforcement_hearts}}</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

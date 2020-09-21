@@ -58,25 +58,25 @@ def team_rec_list(request, customer_pk):
     domain_similarity = cosine_similarity(customer_domain, customer_domain)
     role_similarity = cosine_similarity(customer_role, customer_role)
 
-    grade_subs = np.abs(customer_score_sum - customer_score_sum[my_num]) * 0.1
+    grade_subs = np.abs(customer_score_sum - customer_score_sum[my_num]) * 0.001
     evaluation_value = (
-        score_similarity[my_num - 1]
+        score_similarity[my_num]
         + grade_subs
-        - domain_similarity[my_num - 1]
-        + role_similarity[my_num - 1]
+        - domain_similarity[my_num]
+        + role_similarity[my_num]
     )
     recommend_id_list = evaluation_value.sort_values().index.tolist()
+
     if my_num in recommend_id_list:
         recommend_id_list.remove(my_num)
     recommend_pk_list = df0.iloc[recommend_id_list].id
-
     recommend_customer_list = []
     recommend_customer_list_already = []
     recommend_customer_length = len(recommend_pk_list)
 
     for i in recommend_pk_list:
         now_customer = Customer.objects.get(pk=int(i))
-        if now_customer.study_state == 1:
+        if now_customer.team_state == 1:
             recommend_customer_list_already.append(now_customer)
         else:
             recommend_customer_list.append(now_customer)

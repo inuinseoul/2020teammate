@@ -137,15 +137,11 @@ def study_rec_list(request, customer_pk):
         my_num, customer_study, customer_score
     )
     grade_subs = (
-        get_grade_sub_for_hope_course(my_num, customer_study, customer_score) * 0.1
+        get_grade_sub_for_hope_course(my_num, customer_study, customer_score) * 0.01
     )
     score_similarity = cosine_similarity(hope_course_score, hope_course_score)
-    evaluation_value = (
-        grade_subs - study_similarity[my_num - 1] - score_similarity[my_num - 1]
-    )
-
+    evaluation_value = grade_subs - study_similarity[my_num]
     recommend_id_list = evaluation_value.sort_values().index.tolist()
-
     if my_num in recommend_id_list:
         recommend_id_list.remove(my_num)
     recommend_pk_list = df0.iloc[recommend_id_list].id
