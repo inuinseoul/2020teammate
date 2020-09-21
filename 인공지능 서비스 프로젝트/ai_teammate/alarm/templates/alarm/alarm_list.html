@@ -96,7 +96,7 @@
                 {% else %}
                   {% for message in message_list2 %}
                     <div class="alarm_box">
-                        <a href='{% url 'alarm:del_alarm' message.pk %}'><img src="{% static 'close_dark.png' %}" /></a>
+                        <a href='{% url 'alarm:del_alarm2' message.pk %}'><img src="{% static 'close_dark.png' %}" /></a>
                         <div class="alarm">
                             <a href="#" data-toggle="modal" data-target="#exampleModal{{message.pk}}">
                                 <p>{{message.sender}}님에게서 스터디메이트 요청 도착</p>

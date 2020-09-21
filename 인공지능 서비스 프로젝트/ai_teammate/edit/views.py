@@ -14,9 +14,6 @@ def info_edit(request, customer_pk):
             study_state=request.POST["study_check"],
             intro=request.POST["intro"],
         )
-
-        return redirect("home")
-
     customer = Customer.objects.get(pk=customer_pk)
 
     context = {"customer": customer}
@@ -85,15 +82,16 @@ def domain_edit(request, customer_pk):
                     + int(technology),
                 )
 
-                return redirect("home")
-
             else:
                 context["error"]["state"] = True
                 context["error"]["msg"] = ERROR_MSG2["error"]
         else:
             context["error"]["state"] = True
             context["error"]["msg"] = ERROR_MSG2["error2"]
-
+    customer = Customer.objects.get(pk=customer_pk)
+    domain = Domain.objects.get(foreignkey=customer)
+    context["customer"] = customer
+    context["domain"] = domain
     return render(request, "edit/domain_edit.html", context)
 
 
@@ -163,12 +161,13 @@ def score_edit(request, customer_pk):
                 + int(modeling_score),
             )
 
-            return redirect("home")
-
         else:
             context["error"]["state"] = True
             context["error"]["msg"] = ERROR_MSG2["error2"]
-
+    customer = Customer.objects.get(pk=customer_pk)
+    score = Score.objects.get(foreignkey=customer)
+    context["customer"] = customer
+    context["score"] = score
     return render(request, "edit/score_edit.html", context)
 
 
@@ -215,15 +214,16 @@ def role_edit(request, customer_pk):
                     + int(design_hearts)
                     + int(modeling_hearts),
                 )
-
-                return redirect("home")
             else:
                 context["error"]["state"] = True
                 context["error"]["msg"] = ERROR_MSG2["error"]
         else:
             context["error"]["state"] = True
             context["error"]["msg"] = ERROR_MSG2["error2"]
-
+    customer = Customer.objects.get(pk=customer_pk)
+    role = Role.objects.get(foreignkey=customer)
+    context["customer"] = customer
+    context["role"] = role
     return render(request, "edit/role_edit.html", context)
 
 
@@ -313,7 +313,6 @@ def study_edit(request, customer_pk):
                     + int(rec_system_hearts)
                     + int(reinforcement_hearts),
                 )
-                return redirect("home")
 
             else:
                 context["error"]["state"] = True
@@ -321,5 +320,8 @@ def study_edit(request, customer_pk):
         else:
             context["error"]["state"] = True
             context["error"]["msg"] = ERROR_MSG2["error2"]
-
+    customer = Customer.objects.get(pk=customer_pk)
+    study = Study.objects.get(foreignkey=customer)
+    context["customer"] = customer
+    context["study"] = study
     return render(request, "edit/study_edit.html", context)
