@@ -6,124 +6,147 @@
 
 {% block style %}
 <!--이 곳에 style에 해당하는 코드 (css파일 연결 등) 작성-->
+<link rel='stylesheet' href='{% static 'alarm.css' %}'/>
 {% endblock %}
 
 {% block content %}
 <!--이 곳에 페이지의 내용 작성-->
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background:#ffbbb1;">
-    <a class="navbar-brand" href="{% url 'home' %}" >Home</a>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item justify-content-end">
-          <a class="nav-link" href="{% url 'edit:info_edit' user.customer.pk %}">mypage</a>
-        </li>
-      </ul>
-      <a class="nav-link my-2 my-sm-0" style="color:white;" href="{% url 'users:logout' %}">signout</a>
-    </div>
-  </nav>
-  <br/>
-  <br/>
-  <br/>
+    <div id="main">
 
-  <div class="row mb-2" style="margin-left:5px; margin-right:5px">
-    <div class="col-md-6">
-      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-info">Teammate request</strong>
-          <br>
-          {% if message_list|length == 0 %}
-            <div class="mb-1 text-muted">미확인요청 없음</div>
-          {% else %}
-            {% for message in message_list %}
-              <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-              <div class="col p-4 d-flex flex-column position-static">
-              <div class="mb-1 text-muted">{{message.sentAt}}</div>
-              {% if message.contents|length == 0 %}
-              <p class="card-text mb-auto">내용없음</p>
-              {% else %}
-              <p class="card-text mb-auto">{{message.contents}}</p>
-              {% endif %}  
-              <br> 
-              <!-- Button trigger modal -->
-              <p class="card-text mb-auto">From. <a href="#" data-toggle="modal" data-target="#exampleModal">{{message.sender}}</a></p>
-
-              <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">{{message.sender_foreignKey.name}}님의 자기소개</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      {{message.sender_foreignKey.intro}}
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                </div>
-              </div>   
-              <br>
-              <a href="{% url 'alarm:del_alarm' message.pk %}" style="width:15%;" class="btn btn-outline-dark pull-right">삭제</a>
-              </div> 
-              </div>      
-            {%endfor%}
-          {% endif %}
+        <div id="header">
         </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-info">Studymate request</strong>
-          <br>
-          {% if message_list2|length == 0 %}
-            <div class="mb-1 text-muted">미확인요청 없음</div>
-          {% else %}
-            {% for message in message_list2 %}
-              <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-              <div class="col p-4 d-flex flex-column position-static">
-              <div class="mb-1 text-muted">{{message.sentAt}}</div>
-              {% if message.contents|length == 0 %}
-              <p class="card-text mb-auto">내용없음</p>
-              {% else %}
-              <p class="card-text mb-auto">{{message.contents}}</p>
-              {% endif %}  
-              <br> 
-              <!-- Button trigger modal -->
-              <p class="card-text mb-auto">From. <a href="#" data-toggle="modal" data-target="#exampleModal">{{message.sender}}</a></p>
 
-              <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">{{message.sender_foreignKey.name}}님의 정보</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      {{message.sender_foreignKey.intro}}
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
+        <div id="article">
+
+            <!-- 팀 알림 영역 -->
+            <div class="article_body" id='team'>
+                
+                <div class="alarm_title">
+                    <h1>TeamMate</h1>
+                    <p>알림 박스를 클릭하면 상세 정보를 조회할 수 있습니다</p>
                 </div>
-              </div>   
-              <br>
-              <a href="{% url 'alarm:del_alarm2' message.pk %}" style="width:15%;" class="btn btn-outline-dark">삭제</a>
-              </div> 
-              </div>      
-            {%endfor%}
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  </div>
 
+
+                <div class="alarm_container">
+
+                {% if message_list|length == 0 %}
+                  <div class="alarm_box">
+                      <p style="width: 100%; text-align: center; color: #868686;">Empty</p>                    
+                  </div>
+                {% else %}
+                  {% for message in message_list %}
+                    <div class="alarm_box">
+                        <a href='{% url 'alarm:del_alarm' message.pk %}'><img src="{% static 'close_dark.png' %}" /></a>
+                        <div class="alarm">
+                            <a href="#" data-toggle="modal" data-target="#exampleModal{{message.pk}}">
+                                <p>{{message.sender}}님에게서 팀메이트 요청 도착</p>
+                                <p style="color: #868686;">{{message.sentAt}}</p>
+                                <hr />
+                                {% if message.contents|length == 0 %}
+                                  <p>내용없음</p>
+                                {% else %}
+                                  <p>{{message.contents}}</p>
+                                {% endif %}
+                            </a>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal{{message.pk}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{message.sender_foreignKey.name}}님의 자기소개</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                {{message.sender_foreignKey.intro}}
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    
+                    <p>마지막입니다</p>
+                  {%endfor%}
+                {% endif %}
+
+
+                </div>
+
+            </div>
+
+            <!-- 스터디 알림 영역 -->
+            <div class="article_body">
+
+                <div class="alarm_title">
+                    <h1>StudyMate</h1>
+                    <p>알림 박스를 클릭하면 상세 정보를 조회할 수 있습니다</p>
+                </div>
+                
+                <div class="alarm_container">
+
+                {% if message_list2|length == 0 %}
+                  <div class="alarm_box">
+                      <p style="width: 100%; text-align: center; color: #868686;">Empty</p>                    
+                  </div>
+                {% else %}
+                  {% for message in message_list2 %}
+                    <div class="alarm_box">
+                        <a href='{% url 'alarm:del_alarm' message.pk %}'><img src="{% static 'close_dark.png' %}" /></a>
+                        <div class="alarm">
+                            <a href="#" data-toggle="modal" data-target="#exampleModal{{message.pk}}">
+                                <p>{{message.sender}}님에게서 팀메이트 요청 도착</p>
+                                <p style="color: #868686;">{{message.sentAt}}</p>
+                                <hr />
+                                {% if message.contents|length == 0 %}
+                                  <p>내용없음</p>
+                                {% else %}
+                                  <p>{{message.contents}}</p>
+                                {% endif %}
+                            </a>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal{{message.pk}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{message.sender_foreignKey.name}}님의 자기소개</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                {{message.sender_foreignKey.intro}}
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    
+                    <p>마지막입니다</p>
+                  {%endfor%}
+                {% endif %}
+    
+                </div>
+
+            </div>
+
+            <div class="article_side">
+                <h1>TeamMate</h1>
+                <p><a href='{% url 'home' %}'>home</a></p>
+            </div>
+            
+        </div>
+
+        <div id="footer">
+        </div>
+
+    </div>
 {% endblock %}

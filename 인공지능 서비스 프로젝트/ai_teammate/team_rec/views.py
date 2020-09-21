@@ -17,7 +17,7 @@ def team_rec_list(request, customer_pk):
     page = 5
     if request.method == "POST":
         if request.POST["request"] != "0":
-            page = request.POST["page"]
+            page = int(request.POST["page"])
             to_pk = request.POST["request"]
             customer = Customer.objects.get(pk=to_pk)
             sender = request.user  # 알림보내는 사람
