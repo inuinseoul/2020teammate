@@ -68,7 +68,13 @@
         <th class="align-middle" style="width: 20%" scope="row">{{forloop.counter}}</th>
         <td class="align-middle" style="width: 20%">{{customer.name}}</td>
         <td style="width: 30%"><img src="/static/study_graph_{{customer.pk}}.png" alt=""></td>
-        <td class="align-middle" style="width: 10%">{{customer.study_state}}</td>
+        <td class="align-middle" style="width: 10%">
+        {% if customer.study_state == 0 %}
+          ❌
+        {% else %}
+          ⭕
+        {% endif %}
+        </td>
         <td class="align-middle" style="width: 20%">
           <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal{{customer.pk}}">스터디메이트 요청</a>
         </td>
