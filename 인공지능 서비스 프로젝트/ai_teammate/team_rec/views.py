@@ -9,7 +9,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import font_manager, rc
 
-font_name = font_manager.FontProperties(fname="c:/Windows/Fonts/malgun.ttf").get_name()
+font_name = font_manager.FontProperties(
+    fname="C:/Users/inwoo_e67bj5z/OneDrive/인공지능사관학교/2020teammate/인공지능 서비스 프로젝트/ai_teammate/team_rec/static/malgun.ttf"
+).get_name()
 rc("font", family=font_name)
 
 # 팀메이트 추천시스템
