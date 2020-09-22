@@ -126,31 +126,34 @@ Role.objects.values()
 #     modeling_score = models.IntegerField(default=0)
 #     score_sum = models.IntegerField(default=0)
 
-# CSV_PATH = 'users/domain.csv'	# 3. csv 파일 경로
+CSV_PATH = 'users/score.csv'	# 3. csv 파일 경로
 # # CSV_PATH = 'C:/Users/leeso/OneDrive/바탕 화면/data/domain_index.csv'
-# import csv
-# from users.models import Domain,Customer	# 2. App이름.models
-# from django.contrib.auth.models import User
-# from django.contrib.auth import get_user_model
+import csv
+from users.models import Score,Customer	# 2. App이름.models
+from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
-# bulk_list = []
-# with open(CSV_PATH, encoding='UTF-8') as csvfile:	# 4. newline =''
-#     data_reader = csv.reader(csvfile)
-#     next(data_reader, None)
-#     for row in data_reader:
-#         bulk_list.append(Domain(		# 5. class명.objects.create
-#             foreignkey = Customer.objects.get(name= row[0]),
-#             health = row[1],
-#             economy = row[2],
-#             culture_art = row[3],
-#             education = row[4],
-#             society = row[5],
-#             technology = row[6],
-#             domain_sum = row[7],
-#         ))
+bulk_list = []
+with open(CSV_PATH, encoding='UTF-8') as csvfile:	# 4. newline =''
+    data_reader = csv.reader(csvfile)
+    next(data_reader, None)
+    for row in data_reader:
+        bulk_list.append(Score(		# 5. class명.objects.create
+            foreignkey = Customer.objects.get(name= row[0]),
+            web = row[1],
+            design = row[2],
+            machine_learning = row[3],
+            statistics = row[4],
+            deep_learning = row[5],
+            algorithm = row[6],
+            nlp = row[7],
+            data_score = row[8],
+            modeling_score = row[9],
+            score_sum = row[10],
+        ))
 
-# Domain.objects.bulk_create(bulk_list)
-# Domain.objects.values()
+Score.objects.bulk_create(bulk_list)
+Score.objects.values()
 
 # 7. Study_message 데이터 업로드
 # 8. Study 데이터 업로드
