@@ -94,7 +94,7 @@
             {% if max_domain == 5 %}
             <a href='{% url 'newsletter:tech' %}'><img class='main_cards' src='{% static 'newsletter_card.png' %}' /></a>
             {% endif %}
-            <a href='{% url 'team_rec:team_rec_list' user.pk %}'><img class='main_cards' src='{% static 'teammate_card.png' %}' /></a>
+            <a href='{% url 'team_rec:person' user.pk %}'><img class='main_cards' src='{% static 'teammate_card.png' %}' /></a>
             {% if user.customer.study.get.study_sum != 10 %}
             <a href='{% url 'home' %}'><img class='main_cards' src='{% static 'studymate_card.png' %}' /></a>
             {% else %}

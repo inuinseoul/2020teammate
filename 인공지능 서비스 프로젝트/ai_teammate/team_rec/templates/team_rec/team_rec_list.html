@@ -73,7 +73,7 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <form action="{% url 'team_rec:team_rec_list' user.pk %}" method = 'POST'>
+              <form action="{% url 'team_rec:person' user.pk %}" method = 'POST'>
               {% csrf_token %}       
               <input type="hidden" value="{{page}}" name='page' readonly/>
               <input type="hidden" value="{{customer.pk}}" name='request' readonly/>           
@@ -93,7 +93,7 @@
     </tbody>
   </table>
   {% if recommend_customer_length > page %}
-  <form action="{% url 'team_rec:team_rec_list' user.pk %}" method = 'POST'>
+  <form action="{% url 'team_rec:person' user.pk %}" method = 'POST'>
   {% csrf_token %}
     <input type="hidden" value="{{page}}" name='page' readonly/>
     <input type="hidden" value="0" name='request' readonly/>
