@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>팀메이트 추천</title>
+{% endblock %}
+
+{% block style %}
+<!--이 곳에 style에 해당하는 코드 (css파일 연결 등) 작성-->
+{% endblock %}
+
+{% block content %}
+<!--이 곳에 페이지의 내용 작성-->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background:#ffbbb1;">
+    <a class="navbar-brand" href="{% url 'home' %}" >Home</a>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        {% if user.customer.study.get.study_sum == 10 %}
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'study_rec:study_rec_list' user.pk %}">studymate</a>
+        </li>
+        {% else %}
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'home' %}">studymate</a>
+        </li>
+        {% endif %}
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="{% url 'edit:info_edit' user.customer.pk %}">mypage</a>
+        </li>
+      </ul>
+      <a class="nav-link my-2 my-sm-0" style="color:white;" href="{% url 'users:logout' %}">signout</a>
+    </div>
+  </nav>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+{% comment %} <button type="button" href="{% url 'team_rec:person' user.customer.pk %}">웹통으로 바로이동</button> {% endcomment %}
+<form action="{% url 'team_rec:person' user.customer.pk %}">
+    <input type="submit" value="개인 추천" />
+</form>
+<form action="{% url 'team_rec:team' user.customer.pk %}">
+    <input type="submit" value="팀 추천" />
+</form>
+<form action="{% url 'team_rec:member' user.customer.pk %}">
+    <input type="submit" value="팀원 추천" />
+</form>
+<form action="{% url 'team_rec:make' user.customer.pk %}">
+    <input type="submit" value="팀 만들기" />
+</form>
+
+
+
+{% endblock %}

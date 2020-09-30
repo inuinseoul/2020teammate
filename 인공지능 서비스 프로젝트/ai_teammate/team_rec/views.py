@@ -13,6 +13,8 @@ from matplotlib import font_manager, rc
 #     fname="/static/malgun.ttf"
 # ).get_name()
 # rc("font", family=font_name)
+def choice(request):
+    return render(request, "team_rec/team_choice.html")
 
 # 팀메이트 추천시스템
 def team_rec_list(request, customer_pk):
@@ -139,3 +141,13 @@ def team_rec_list(request, customer_pk):
         "recommend_customer_length": recommend_customer_length,
     }
     return render(request, "team_rec/team_rec_list.html", context)
+
+
+def team(request):
+    return render(request, "team_rec/team_team.html")
+
+def member(request):
+    return render(request, "team_rec/team_member.html")
+
+def make(request):
+    return render(request, "team_rec/team_make.html")
