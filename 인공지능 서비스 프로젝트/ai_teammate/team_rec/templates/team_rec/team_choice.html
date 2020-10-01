@@ -40,13 +40,13 @@
 <form action="{% url 'team_rec:person' user.customer.pk %}">
     <input type="submit" value="개인 추천" />
 </form>
-<form action="{% url 'team_rec:team' user.customer.pk %}">
+<form action="{% url 'team_rec:team' %}">
     <input type="submit" value="팀 추천" />
 </form>
 <form action="{% url 'team_rec:member' user.customer.pk %}">
     <input type="submit" value="팀원 추천" />
 </form>
-<form action="{% url 'team_rec:make' user.customer.pk %}">
+<form action="{% url 'team_rec:team_make' %}">
     <input type="submit" value="팀 만들기" />
 </form>
 

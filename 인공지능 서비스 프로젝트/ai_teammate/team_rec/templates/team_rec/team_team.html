@@ -30,5 +30,37 @@
       <a class="nav-link my-2 my-sm-0" style="color:white;" href="{% url 'users:logout' %}">signout</a>
     </div>
   </nav>
-  
+
+  <br>
+  <br>
+  <table class="table">
+    <thead class="table-light text-center">
+      <tr>
+        {% comment %} <th style="width: 5%" scope="col">추천 순위</th> {% endcomment %}
+        <th style="width: 10%" scope="col">팀명</th>
+        <th style="width: 15%" scope="col">팀 소개</th>
+        <th style="width: 10%" scope="col">팀장</th>
+        <th style="width: 10%" scope="col">마감</th>
+        <th style="width: 10%" scope="col">신청</th>
+      </tr>
+    </thead>
+    <tbody class="text-center">
+      {% for team in all_list %}
+       <tr>
+        {% comment %} <th class="align-middle" style="width: 20%" scope="row">{{forloop.counter}}</th> {% endcomment %}
+        <td style="align-middle" style="width: 10%">{{team.name}}</td>
+        <td class="align-middle" style="width: 15%">{{team.intro}}</td>
+        <td class="align-middle" style="width: 10%">{{team.leader}}</td>
+        <td style="align-middle" style="width: 10%">{{team.state}}</td>
+
+
+
+        {% comment %} <td class="align-middle" style="width: 20%">{{}}</td> {% endcomment %}
+          {% comment %} <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal{{customer.pk}}">스터디메이트 요청</a> {% endcomment %}
+        {% comment %} </td> {% endcomment %}
+      </tr>       
+      {% endfor %}
+    </tbody>
+  </table>
+
 {% endblock %}

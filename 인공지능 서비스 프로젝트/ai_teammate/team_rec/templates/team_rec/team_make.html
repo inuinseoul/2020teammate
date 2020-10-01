@@ -30,5 +30,18 @@
       <a class="nav-link my-2 my-sm-0" style="color:white;" href="{% url 'users:logout' %}">signout</a>
     </div>
   </nav>
-  
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <h1>팀 만들기</h1>
+  <form method="POST" class="team-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="save btn btn-default"> Save </button>
+  </form>
+
+
 {% endblock %}

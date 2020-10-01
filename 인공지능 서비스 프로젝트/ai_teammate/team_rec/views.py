@@ -1,6 +1,5 @@
 from django.http import request
 from django.shortcuts import render
-from users.models import Customer, Domain, Score, Role, Message
 from django.contrib import auth
 from sklearn.metrics.pairwise import cosine_similarity
 from django_pandas.io import read_frame
@@ -8,6 +7,12 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import font_manager, rc
+from team_rec.forms import Team_form
+from django.utils import timezone
+from django.shortcuts import redirect
+
+from users.models import Customer, Domain, Score, Role, Message
+from team_rec.models import Team_list
 
 # font_name = font_manager.FontProperties(
 #     fname="/static/malgun.ttf"
@@ -144,10 +149,93 @@ def team_rec_list(request, customer_pk):
 
 
 def team(request):
-    return render(request, "team_rec/team_team.html")
+    # page = 10
+    # if request.method == "POST":
+    #     page = int(request.POST["page"]) + 10
+
+    team_list = Team_list.objects.all()
+    df0 = read_frame(team_list)
+
+    team_data = df0.loc[
+        :,
+        [
+            "leader",
+            "name",
+            "intro",
+            "state",
+            "created_date",
+        ],
+    ]
+
+    all_list = []
+    for i in range(team_data.shape[0]):
+        all_list.append(
+            {
+                "leader": team_data["leader"][i],
+                "name": team_data["name"][i],
+                "intro": team_data["intro"][i],
+                "state": team_data["state"][i],
+                "created_date": team_data["created_date"][i],
+            }
+        )
+
+# all_list = []
+# if team_data.shape[0] < page:
+#     for i in range(page - team_data.shape[0]):
+#         all_list.append(
+#             {
+#                 "leader": team_data["leader"][page + i - 10],
+#                 "name": team_data["name"][page + i - 10],
+#                 "intro": team_data["intro"][page + i - 10],
+#                 "state": team_data["state"][page + i - 10],
+#                 "created_date": team_data["created_date"][page + i - 10],
+#             }
+#         )
+# else:
+#     for i in range(10):
+#         all_list.append(
+#             {
+#                 "leader": team_data["leader"][page + i - 10],
+#                 "name": team_data["name"][page + i - 10],
+#                 "intro": team_data["intro"][page + i - 10],
+#                 "state": team_data["state"][page + i - 10],
+#                 "created_date": team_data["created_date"][page + i - 10],
+#             }
+#         )
+# context = {"all_list": all_list, "page": page, "team_num": team_data.shape[0]}
+
+    context = {"all_list": all_list}    
+
+    return render(request, "team_rec/team_team.html",context)
 
 def member(request):
     return render(request, "team_rec/team_member.html")
 
-def make(request):
-    return render(request, "team_rec/team_make.html")
+def team_make(request):
+    if request.method == "POST":
+        form = Team_form(request.POST)
+        if form.is_valid():
+            Team_list = form.save(commit=False)
+            Team_list.leader = request.user
+            Team_list.created_date = timezone.now()
+            Team_list.save()
+            return redirect('/team_rec/team/')#, pk=post.pk)
+
+    else:
+        form = Team_form()
+    return render(request, "team_rec/team_make.html",{'form': form})
+
+
+def team_edit(request):
+    if request.method == "POST":
+        form = Team_form(request.POST)
+        if form.is_valid():
+            Team_list = form.save(commit=False)
+            Team_list.leader = request.user
+            Team_list.created_date = timezone.now()
+            Team_list.save()
+            # return redirect('team_edit', pk=post.pk)
+
+    else:
+        form = Team_form()
+    return render(request, "team_rec/team_make.html",{'form': form})
