@@ -10,6 +10,7 @@ import threading
 def home(request):
     max_domain = -1
     user = request.user
+    context = {}
     if user.is_authenticated:
         my_domain = Domain.objects.get(foreignkey=user.customer)
         domains = [
@@ -36,14 +37,18 @@ def home(request):
         ]
         max_domain = max_index
 
-    customer = user.customer
-    team_message_list = Message.objects.filter(kind="team").filter(recipient=customer)
-    study_message_list = Message.objects.filter(kind="study").filter(recipient=customer)
+        customer = user.customer
+        team_message_list = Message.objects.filter(kind="team").filter(
+            recipient=customer
+        )
+        study_message_list = Message.objects.filter(kind="study").filter(
+            recipient=customer
+        )
 
-    context = {
-        "team_message_list": team_message_list,
-        "study_message_list": study_message_list,
-        "max_domain": max_domain,
-    }
+        context = {
+            "team_message_list": team_message_list,
+            "study_message_list": study_message_list,
+            "max_domain": max_domain,
+        }
 
     return render(request, "home/home.html", context)
