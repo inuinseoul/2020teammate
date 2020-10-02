@@ -50,20 +50,16 @@
                     선호역할 설정이 제대로 이루어지지 않았습니다! <a href="{% url 'edit:role_edit' user.customer.pk%}" class="alert-link">수정하기</a>             
                 </p>
                 {% endif %}
-                {% for message in message_pk %}
-                {% if message == user.customer.pk %}
+                {% if team_message_list|length %}
                 <p class="main_subtro">
-                    미확인 팀메이트 요청 메세지가 존재합니다. <a href="{% url 'alarm:alarm_list' user.customer.pk%}" class="alert-link">확인</a>         
+                    미확인 팀메이트 요청 메세지가 존재합니다. <a href="{% url 'alarm:alarm_list' user.customer.pk%}" class="alert-link">({{team_message_list|length}})</a>         
                 </p>
                 {% endif %}
-                {% endfor%}
-                {% for message2 in study_pk %}
-                {% if message2 == user.customer.pk %}
+                {% if study_message_list|length %}
                 <p class="main_subtro">
-                    미확인 스터디메이트 요청 메세지가 존재합니다. <a href="{% url 'alarm:alarm_list' user.customer.pk%}" class="alert-link">확인</a>             
+                    미확인 스터디메이트 요청 메세지가 존재합니다. <a href="{% url 'alarm:alarm_list' user.customer.pk%}" class="alert-link">({{study_message_list|length}})</a>             
                 </p>
                 {% endif %}
-                {% endfor%}
                 {% if user.customer.study.get.study_sum == 10 and user.customer.score.get.score_sum != 0 and user.customer.domain.get.domain_sum == 10 and user.customer.role.get.role_sum == 10 %}
                 <p class="main_subtro">
                     최고의 팀메이트를 만나고, 원하는 기사를 읽어보세요!        

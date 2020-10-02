@@ -1,5 +1,10 @@
 from django.shortcuts import render
-from users.models import Message, Study_Message, Domain
+from users.models import Domain
+from alarm.models import Message
+from django.http import StreamingHttpResponse
+import cv2
+import numpy as np
+import threading
 
 # Create your views here.
 def home(request):
@@ -31,19 +36,14 @@ def home(request):
         ]
         max_domain = max_index
 
-    message_list = Message.objects.all()
-    study_message_list = Study_Message.objects.all()
+    customer = user.customer
+    team_message_list = Message.objects.filter(kind="team").filter(recipient=customer)
+    study_message_list = Message.objects.filter(kind="study").filter(recipient=customer)
 
-    message_pk = []
-    for i in message_list:
-        if i.recipient_pk not in message_pk:
-            message_pk.append(i.recipient_pk)
-
-    study_pk = []
-    for j in study_message_list:
-        if j.recipient_pk not in study_pk:
-            study_pk.append(j.recipient_pk)
-
-    context = {"message_pk": message_pk, "study_pk": study_pk, "max_domain": max_domain}
+    context = {
+        "team_message_list": team_message_list,
+        "study_message_list": study_message_list,
+        "max_domain": max_domain,
+    }
 
     return render(request, "home/home.html", context)

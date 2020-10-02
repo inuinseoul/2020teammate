@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from users.models import Customer, Domain, Score, Role, Study, Study_Message
+from users.models import Customer, Domain, Score, Role, Study
+from alarm.models import Message
 from django.contrib import auth
 from sklearn.metrics.pairwise import cosine_similarity
 from django_pandas.io import read_frame
@@ -76,14 +77,11 @@ def study_rec_list(request, customer_pk):
             customer = Customer.objects.get(pk=to_pk)
             sender = request.user  # 알림보내는 사람
 
-            Study_Message.objects.create(
-                sender_foreignKey=sender.customer,
-                sender=sender.customer.name,
-                sender_pk=sender.customer.pk,
-                recipient_foreignKey=customer,
-                recipient=customer.name,
-                recipient_pk=to_pk,
+            Message.objects.create(
+                sender=sender.customer,
+                recipient=customer,
                 contents=request.POST["contents"],
+                kind="study",
             )
         if request.POST["request"] == "0":
             page = int(request.POST["page"]) + 5

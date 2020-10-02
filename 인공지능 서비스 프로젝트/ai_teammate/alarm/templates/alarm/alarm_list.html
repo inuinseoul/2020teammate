@@ -30,17 +30,17 @@
 
                 <div class="alarm_container">
 
-                {% if message_list|length == 0 %}
+                {% if message_list_team|length == 0 %}
                   <div class="alarm_box">
                       <p style="width: 100%; text-align: center; color: #868686; margin-top: 10px;">Empty</p>                    
                   </div>
                 {% else %}
-                  {% for message in message_list %}
+                  {% for message in message_list_team %}
                     <div class="alarm_box">
                         <a href='{% url 'alarm:del_alarm' message.pk %}'><img src="{% static 'close_dark.png' %}" /></a>
                         <div class="alarm">
                             <a href="#" data-toggle="modal" data-target="#exampleModal1{{message.pk}}">
-                                <p>{{message.sender}}님에게서 팀메이트 요청 도착</p>
+                                <p>{{message.sender.name}}님에게서 팀메이트 요청 도착</p>
                                 <p style="color: #868686;">{{message.sentAt}}</p>
                                 <hr />
                                 {% if message.contents|length == 0 %}
@@ -55,7 +55,7 @@
                           <div class="modal-dialog">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">'{{message.sender_foreignKey.name}}'님의 정보</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">'{{message.sender.name}}'님의 정보</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
@@ -71,19 +71,19 @@
                                   <tbody>
                                     <tr>
                                       <th scope="row" style="width: 50%">데이터</th>
-                                      <td style="width: 50%">{{message.sender_foreignKey.role.get.analysis_hearts}}</td>
+                                      <td style="width: 50%">{{message.sender.role.get.analysis_hearts}}</td>
                                     </tr>
                                     <tr>
                                       <th scope="row" style="width: 50%">웹</th>
-                                      <td style="width: 50%">{{message.sender_foreignKey.role.get.web_hearts}}</td>
+                                      <td style="width: 50%">{{message.sender.role.get.web_hearts}}</td>
                                     </tr>
                                     <tr>
                                       <th scope="row" style="width: 50%">디자인</th>
-                                      <td style="width: 50%">{{message.sender_foreignKey.role.get.design_hearts}}</td>
+                                      <td style="width: 50%">{{message.sender.role.get.design_hearts}}</td>
                                     </tr>
                                      <tr>
                                       <th scope="row" style="width: 50%">모델링</th>
-                                      <td style="width: 50%">{{message.sender_foreignKey.role.get.modeling_hearts}}</td>
+                                      <td style="width: 50%">{{message.sender.role.get.modeling_hearts}}</td>
                                     </tr>
                                   </tbody>
                                 </table>
@@ -98,27 +98,27 @@
                                   <tbody>
                                     <tr>
                                       <th scope="row" style="width: 50%">건강</th>
-                                      <td style="width: 50%">{{message.sender_foreignKey.domain.get.health}}</td>
+                                      <td style="width: 50%">{{message.sender.domain.get.health}}</td>
                                     </tr>
                                     <tr>
                                       <th scope="row" style="width: 50%">경제</th>
-                                      <td style="width: 50%">{{message.sender_foreignKey.domain.get.economy}}</td>
+                                      <td style="width: 50%">{{message.sender.domain.get.economy}}</td>
                                     </tr>
                                     <tr>
                                       <th scope="row" style="width: 50%">문화/예술</th>
-                                      <td style="width: 50%">{{message.sender_foreignKey.domain.get.culture_art}}</td>
+                                      <td style="width: 50%">{{message.sender.domain.get.culture_art}}</td>
                                     </tr>
                                     <tr>
                                       <th scope="row" style="width: 50%">교육</th>
-                                      <td style="width: 50%">{{message.sender_foreignKey.domain.get.education}}</td>
+                                      <td style="width: 50%">{{message.sender.domain.get.education}}</td>
                                     </tr>
                                     <tr>
                                       <th scope="row" style="width: 50%">교육</th>
-                                      <td style="width: 50%">{{message.sender_foreignKey.domain.get.society}}</td>
+                                      <td style="width: 50%">{{message.sender.domain.get.society}}</td>
                                     </tr>
                                     <tr>
                                       <th scope="row" style="width: 50%">교육</th>
-                                      <td style="width: 50%">{{message.sender_foreignKey.domain.get.technology}}</td>
+                                      <td style="width: 50%">{{message.sender.domain.get.technology}}</td>
                                     </tr>
                                   </tbody>
                                 </table>
@@ -149,17 +149,17 @@
                 
                 <div class="alarm_container">
 
-                {% if message_list2|length == 0 %}
+                {% if message_list_study|length == 0 %}
                   <div class="alarm_box">
                       <p style="width: 100%; text-align: center; color: #868686; margin-top: 10px;">Empty</p>                    
                   </div>
                 {% else %}
-                  {% for message in message_list2 %}
+                  {% for message in message_list_study %}
                     <div class="alarm_box">
-                        <a href='{% url 'alarm:del_alarm2' message.pk %}'><img src="{% static 'close_dark.png' %}" /></a>
+                        <a href='{% url 'alarm:del_alarm' message.pk %}'><img src="{% static 'close_dark.png' %}" /></a>
                         <div class="alarm">
                             <a href="#" data-toggle="modal" data-target="#exampleModal2{{message.pk}}">
-                                <p>{{message.sender}}님에게서 스터디메이트 요청 도착</p>
+                                <p>{{message.sender.name}}님에게서 스터디메이트 요청 도착</p>
                                 <p style="color: #868686;">{{message.sentAt}}</p>
                                 <hr />
                                 {% if message.contents|length == 0 %}
@@ -174,7 +174,7 @@
                           <div class="modal-dialog">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">'{{message.sender_foreignKey.name}}'님의 정보</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">'{{message.sender.name}}'님의 정보</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
@@ -190,55 +190,55 @@
                                   <tbody>
                                     <tr>
                                       <th scope="row" style="width: 50%">웹</th>
-                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.web_hearts}}</td>
+                                      <td style="width: 50%">{{message.sender.study.get.web_hearts}}</td>
                                     </tr>
                                     <tr>
                                       <th scope="row" style="width: 50%">디자인</th>
-                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.design_hearts}}</td>
+                                      <td style="width: 50%">{{message.sender.study.get.design_hearts}}</td>
                                     </tr>
                                     <tr>
                                       <th scope="row" style="width: 50%">머신러닝</th>
-                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.machine_learning_hearts}}</td>
+                                      <td style="width: 50%">{{message.sender.study.get.machine_learning_hearts}}</td>
                                     </tr>
                                     <tr>
                                       <th scope="row" style="width: 50%">통계</th>
-                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.statistics_hearts}}</td>
+                                      <td style="width: 50%">{{message.sender.study.get.statistics_hearts}}</td>
                                     </tr>
                                     <tr>
                                       <th scope="row" style="width: 50%">딥러닝</th>
-                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.deep_learning_hearts}}</td>
+                                      <td style="width: 50%">{{message.sender.study.get.deep_learning_hearts}}</td>
                                     </tr>
                                     <tr>
                                       <th scope="row" style="width: 50%">알고리즘</th>
-                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.algorithm_hearts}}</td>
+                                      <td style="width: 50%">{{message.sender.study.get.algorithm_hearts}}</td>
                                     </tr>
                                     <tr>
                                       <th scope="row" style="width: 50%">자연어처리</th>
-                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.nlp_hearts}}</td>
+                                      <td style="width: 50%">{{message.sender.study.get.nlp_hearts}}</td>
                                     </tr>
                                     <tr>
                                       <th scope="row" style="width: 50%">파이썬기초</th>
-                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.basic_python_hearts}}</td>
+                                      <td style="width: 50%">{{message.sender.study.get.basic_python_hearts}}</td>
                                     </tr>
                                     <tr>
                                       <th scope="row" style="width: 50%">데이터분석</th>
-                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.data_analysis_hearts}}</td>
+                                      <td style="width: 50%">{{message.sender.study.get.data_analysis_hearts}}</td>
                                     </tr>
                                     <tr>
                                       <th scope="row" style="width: 50%">음성인식</th>
-                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.voice_recog_hearts}}</td>
+                                      <td style="width: 50%">{{message.sender.study.get.voice_recog_hearts}}</td>
                                     </tr>
                                     <tr>
                                       <th scope="row" style="width: 50%">컴퓨터비전</th>
-                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.computer_vision_hearts}}</td>
+                                      <td style="width: 50%">{{message.sender.study.get.computer_vision_hearts}}</td>
                                     </tr>
                                     <tr>
                                       <th scope="row" style="width: 50%">추천시스템</th>
-                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.rec_system_hearts}}</td>
+                                      <td style="width: 50%">{{message.sender.study.get.rec_system_hearts}}</td>
                                     </tr>
                                     <tr>
                                       <th scope="row" style="width: 50%">강화학습</th>
-                                      <td style="width: 50%">{{message.sender_foreignKey.study.get.reinforcement_hearts}}</td>
+                                      <td style="width: 50%">{{message.sender.study.get.reinforcement_hearts}}</td>
                                     </tr>
                                   </tbody>
                                 </table>

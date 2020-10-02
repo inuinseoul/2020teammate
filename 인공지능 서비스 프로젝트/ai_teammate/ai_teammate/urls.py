@@ -19,12 +19,12 @@ from django.urls import include
 from home import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
-    path('users/', include('users.urls')),
-    path('edit/', include('edit.urls')),
-    path('alarm/', include('alarm.urls')),
-    path('team_rec/', include('team_rec.urls')),
-    path('study_rec/', include('study_rec.urls')),
-    path('newsletter/',include('newsletter.urls')),
+    path("admin/", admin.site.urls),
+    path("", views.home, name="home"),
+    path("users/", include("users.urls")),
+    path("edit/", include("edit.urls")),
+    path("alarm/", include("alarm.urls")),
+    path("team_rec/", include("team_rec.urls")),
+    path("study_rec/", include("study_rec.urls")),
+    path("newsletter/", include("newsletter.urls")),
 ]

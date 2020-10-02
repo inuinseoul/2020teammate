@@ -11,7 +11,8 @@ from team_rec.forms import Team_form
 from django.utils import timezone
 from django.shortcuts import redirect
 
-from users.models import Customer, Domain, Score, Role, Message
+from users.models import Customer, Domain, Score, Role
+from alarm.models import Message
 from team_rec.models import Team_list
 
 # font_name = font_manager.FontProperties(
@@ -20,6 +21,7 @@ from team_rec.models import Team_list
 # rc("font", family=font_name)
 def choice(request):
     return render(request, "team_rec/team_choice.html")
+
 
 # 팀메이트 추천시스템
 def team_rec_list(request, customer_pk):
@@ -32,13 +34,10 @@ def team_rec_list(request, customer_pk):
             sender = request.user  # 알림보내는 사람
 
             Message.objects.create(
-                sender_foreignKey=sender.customer,
-                sender=sender.customer.name,
-                sender_pk=sender.customer.pk,
-                recipient_foreignKey=customer,
-                recipient=customer.name,
-                recipient_pk=to_pk,
+                sender=sender.customer,
+                recipient=customer,
                 contents=request.POST["contents"],
+                kind="team",
             )
         if request.POST["request"] == "0":
             page = int(request.POST["page"]) + 5
@@ -179,37 +178,39 @@ def team(request):
             }
         )
 
-# all_list = []
-# if team_data.shape[0] < page:
-#     for i in range(page - team_data.shape[0]):
-#         all_list.append(
-#             {
-#                 "leader": team_data["leader"][page + i - 10],
-#                 "name": team_data["name"][page + i - 10],
-#                 "intro": team_data["intro"][page + i - 10],
-#                 "state": team_data["state"][page + i - 10],
-#                 "created_date": team_data["created_date"][page + i - 10],
-#             }
-#         )
-# else:
-#     for i in range(10):
-#         all_list.append(
-#             {
-#                 "leader": team_data["leader"][page + i - 10],
-#                 "name": team_data["name"][page + i - 10],
-#                 "intro": team_data["intro"][page + i - 10],
-#                 "state": team_data["state"][page + i - 10],
-#                 "created_date": team_data["created_date"][page + i - 10],
-#             }
-#         )
-# context = {"all_list": all_list, "page": page, "team_num": team_data.shape[0]}
+    # all_list = []
+    # if team_data.shape[0] < page:
+    #     for i in range(page - team_data.shape[0]):
+    #         all_list.append(
+    #             {
+    #                 "leader": team_data["leader"][page + i - 10],
+    #                 "name": team_data["name"][page + i - 10],
+    #                 "intro": team_data["intro"][page + i - 10],
+    #                 "state": team_data["state"][page + i - 10],
+    #                 "created_date": team_data["created_date"][page + i - 10],
+    #             }
+    #         )
+    # else:
+    #     for i in range(10):
+    #         all_list.append(
+    #             {
+    #                 "leader": team_data["leader"][page + i - 10],
+    #                 "name": team_data["name"][page + i - 10],
+    #                 "intro": team_data["intro"][page + i - 10],
+    #                 "state": team_data["state"][page + i - 10],
+    #                 "created_date": team_data["created_date"][page + i - 10],
+    #             }
+    #         )
+    # context = {"all_list": all_list, "page": page, "team_num": team_data.shape[0]}
 
-    context = {"all_list": all_list}    
+    context = {"all_list": all_list}
 
-    return render(request, "team_rec/team_team.html",context)
+    return render(request, "team_rec/team_team.html", context)
+
 
 def member(request):
     return render(request, "team_rec/team_member.html")
+
 
 def team_make(request):
     if request.method == "POST":
@@ -219,11 +220,11 @@ def team_make(request):
             Team_list.leader = request.user
             Team_list.created_date = timezone.now()
             Team_list.save()
-            return redirect('/team_rec/team/')#, pk=post.pk)
+            return redirect("/team_rec/team/")  # , pk=post.pk)
 
     else:
         form = Team_form()
-    return render(request, "team_rec/team_make.html",{'form': form})
+    return render(request, "team_rec/team_make.html", {"form": form})
 
 
 def team_edit(request):
@@ -238,4 +239,4 @@ def team_edit(request):
 
     else:
         form = Team_form()
-    return render(request, "team_rec/team_make.html",{'form': form})
+    return render(request, "team_rec/team_make.html", {"form": form})
